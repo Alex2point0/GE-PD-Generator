@@ -1,0 +1,162 @@
+<html>
+
+<head>
+
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- BOOTSTRAP -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <!-- Clipboard.js -->
+    <script src="./node_modules/clipboard/dist/clipboard.min.js"></script>
+    </script>
+</head>
+
+<body>
+    <div class="container background-logo">
+        <div class="navbar">
+            <h1 class="col-md-8">Welcome to PD Insights Generator</h1>
+        </div>
+        <!-- Main Section -->
+        <div class="row">
+            <h4>Enter employee name</h4>
+            <input type="Text" class="form-control input-field" id="name1" placeholder="First and last name">
+        </div>
+
+        <!-- DROPDOWN WITH COMMENT -->
+
+        <div class="row">
+            <h4>Please choose the greeting line:</h4>
+        </div>
+        <div class="row">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Your choice
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hi _________!</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hello _________!</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ola, _________!</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hi  _________, hope you are doing well!</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DROPDOWN WITH COMMENT -->
+        <div class="row">
+            <h4>Please, choose the begiining of the insight</h4>
+        </div>
+        <div class="row">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">Your choice
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">I wanted to share the following observations I got during _________</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">During the meeting _________ I noticed that _________</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">While working on the project _________ it came to my attention that __________________</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">This is to follow up our recent discussion and to share some observations that might be of importance for you.</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">I wanted to share with you some thoughts which came to my mind based on my recent experience of working with you.</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row" style="display: none" id="form-control1">
+            <textarea class="form-control" readonly>asdasda</textarea>
+        </div>
+
+        <!-- DROPDOWN WITH COMMENT -->
+        <div class="row">
+            <p>Please, choose the advice</p>
+        </div>
+        <div class="row">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu3" data-toggle="dropdown">Your choice
+            </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu3">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">I think your would be more impactful if you</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">I think your message would be more impactful if you</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">The results of job done could be more visible if you</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">To address this observation, it might be beneficial for you to</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">With that observation, I wanted to suggest you to consider to</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">To avoid such perception, you could </a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My friendly advise for you would be to</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">My humble suggestion for you would be to put bigger focus on the following:</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DROPDOWN WITH COMMENT -->
+        <div class="row">
+            <p>Please, choose the advice</p>
+        </div>
+        <div class="row">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu4" data-toggle="dropdown">Your choice
+            </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu4">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delivery Drive for results Motivated to do the job well do things well and consistently deliver to best of own ability</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delivery Drive for results Makes incremental improvements find ways to use time and resources more cost effectively;</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delivery Quality Focus Sets high standards always wants to provide work of a high standard;</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delivery Quality Focus Encourages high standards in others   develops systems and procedures to manage data and information and shares these with others;</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Personal Effectiveness Problem Solving Generates a range of innovative ideas looks beyond the obvious and immediate information when generating solutions;</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Working Together Communicating Communicates in an accurate and timely manner   communicates accurately and without ambiguity;</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DROPDOWN WITH COMMENT -->
+        <div class="row">
+            <p>Please, choose the advice</p>
+        </div>
+        <div class="row">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu5" data-toggle="dropdown">Your choice
+            </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu5">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hope my advice would help you to _________</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">This thought might help you to _________</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Looking from this prospective might inspire you to _________</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row top-buffer">
+            <div class="col-md-4 text-center btn btn-default" id="btn-generate-insight">Generate Insight</div>
+        </div>
+        <div class="row top-buffer">
+            <textarea class="form-control" id="form-control-generate-insight" rows="5" readonly></textarea>
+        </div>
+        <button class="btn" data-clipboard-target="#foo">
+            <img src="assets/clippy.svg" alt="Copy to clipboard">
+        </button>
+    </div>
+    <!-- Container -->
+    <!-- Scripts section -->
+    <script>
+        $(".dropdown-menu li a").click(function () {
+            $(this).parents(".dropdown").find('.btn').html($(this).text());
+            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+            if ($(this).text().search("__") >= 0) {
+                console.log($(this).text().search("__"));
+                console.log($(this).parent().html());
+            }
+        });
+        $("#btn-generate-insight").click(function () {
+            $("#form-control-generate-insight").text($(".dropdown-toggle").text());
+        })
+    </script>
+</body>
+
+</html>
