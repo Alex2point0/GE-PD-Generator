@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block title %} Login {% endblock %} {% block head %} {{super()}} {% endblock %}
+{% block content %}
+{{ error }}
+<form method="POST">
+    <fieldset>
+      <legend>Personal information:</legend>
+      First name:<br>
+      <input type="text" name="user" value=""><br>
+      Last name:<br>
+      <input type="text" name="pass" value=""><br><br>
+      <input type="submit" value="Submit">
+    </fieldset>
+  </form>
+{% endblock %}
