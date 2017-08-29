@@ -15,9 +15,14 @@ app = Flask(__name__)
 # Classes
 class Question:
     def __init__(self):
-        self.type = None
+        self.type = 'question_with_options'
         self.label = 'Label'
-        self.options = ['Body el1', 'Body el2']
+        self.options = ['Thanks for __', 'Body el2']
+
+# Constants
+UPLOAD_FOLDER = '/static'
+ALLOWED_EXTENSIONS = set(['csv'])
+
 
 # Functions
 def login_required(f):
@@ -27,11 +32,41 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             flash("You need to login first")
-            return render_template(url_for('login'))
+            return redirect('/')
     return wrap
 
-UPLOAD_FOLDER = '/static'
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route('/upload', methods=['GET', 'POST'])
+@login_required
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
+        else:
+            return render_template('upload.html', error="Cannot upload this file") 
+    return render_template('upload.html', error=None)
+    
+
 app.secret_key = 'ge pd generator'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 os.environ['USER'] = 'admin'
 os.environ['PASS'] = 'admin'
