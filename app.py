@@ -5,8 +5,8 @@ General Electric PD Generator
 
 
 import os
-import numpy as np
-from flask import Flask, render_template, request, redirect, url_for, request, session, flash
+import json
+from flask import Flask, render_template, request, redirect, url_for, request, session, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from functools import wraps
 
@@ -20,8 +20,8 @@ class Question:
         self.options = ['Thanks for __', 'Body el2']
 
 # Constants
-UPLOAD_FOLDER = '/static'
-ALLOWED_EXTENSIONS = set(['csv'])
+UPLOAD_FOLDER = './static/uploaded'
+ALLOWED_EXTENSIONS = set(['json'])
 
 
 # Functions
@@ -56,25 +56,38 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            if False:
+                filename = secure_filename(file.filename)
+            else:
+                filename = 'data.json'
+            #file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.save(app.config['UPLOAD_FOLDER'] + '/' + filename)
             return redirect(url_for('uploaded_file',
                                     filename=filename))
         else:
             return render_template('upload.html', error="Cannot upload this file") 
     return render_template('upload.html', error=None)
-    
+
+
+@app.route('/uploads/<filename>')
+@login_required
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)
+
+
 
 app.secret_key = 'ge pd generator'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 os.environ['USER'] = 'admin'
 os.environ['PASS'] = 'admin'
-data = [Question() for _ in range(5)]
 
 @app.route('/')
 def index():
-    return render_template('index.html', data=data)
+    with open(app.static_folder + '/uploaded/data.json', 'r') as json_data:
+        d = json.load(json_data)
+    return render_template('index.html', data=d)
 
 
 @app.route('/login', methods=['GET', 'POST']) 
@@ -95,6 +108,12 @@ def logout():
     session.pop('logged_in', None)
     return redirect(url_for('index'))
 
+
+# This one is a test zone
+@app.route('/test')
+def test():
+    data = None
+    return render_template('test.html', data=data)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
