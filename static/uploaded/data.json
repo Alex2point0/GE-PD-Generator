@@ -1,0 +1,17 @@
+{
+    "001": {
+        "Label": "Label text",
+        "Type": "dropdown",
+        "Options": [
+            "Option 1",
+            "Option 2",
+            "Option 3"
+        ]    
+    },
+    "002": {
+        "Label": "Label Text 2",
+        "Type": "textbox",
+        "Options":[
+        ]
+    }
+}
