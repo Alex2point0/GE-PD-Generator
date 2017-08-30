@@ -7,21 +7,8 @@
 {% endblock %} {% block content %}
 <div class="container">
     <h1>Welcome PD Insights Generator, General Electric</h1>
-    {% for el in data %}
-    <div class="row">
-        {{el.label}}
+    <div class='json_data'>
+        {{ data }}
     </div>
-    <div class="row">
-        <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Tutorials
-              <span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                {% for option in el.options %}
-                <li><a href="#">{{option}}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    {% endfor %}
 </div>
 {% endblock %}
