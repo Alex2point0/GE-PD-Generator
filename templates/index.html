@@ -8,7 +8,13 @@
 <div class="container">
     <h1>Welcome PD Insights Generator, General Electric</h1>
     <div class='json_data'>
-        {{ data }}
+        <ul>
+        {% for key, value in data.items() %}
+            <li>
+            {{value}}
+            <li>
+        {%endfor%}
+        <ul>
     </div>
 </div>
 {% endblock %}
