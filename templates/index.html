@@ -5,16 +5,62 @@
     }
 </style>
 {% endblock %} {% block content %}
+<div id="app">
+  {{ message }}
+</div>
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+
 <div class="container">
     <h1>Welcome PD Insights Generator, General Electric</h1>
-    <div class='json_data'>
-        <ul>
-        {% for key, value in data.items() %}
-            <li>
-            {{value}}
-            <li>
-        {%endfor%}
-        <ul>
-    </div>
+    {% for key, value in data.items() %}
+    <div class="row">
+        
+        <!-- DROPDOWN QUESTION -->
+        {%if value.Type=="dropdown" %}
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">Your choice
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+                    {% for valueA in value.Options %}
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{valueA}}</a></li>
+                    {%endfor%} 
+                </ul>
+            <script>
+                $ (".dropdown-menu li a").click(function(){src=addTextBox.js});
+            </script> 
+            </div>
+        {%endif%}
+       
+        <!-- OPEN QUESTION -->
+        {%if value.Type=="textbox" %}
+            <div class="textbox">
+                
+            </div>
+        {%endif%}
+    </div>    
+    {%endfor%}    
+   
 </div>
+
+<!-- SCRIPT SECTION-->
+ <script>
+        $(".dropdown-menu li a").click(function () {
+            $(this).parents(".dropdown").find('.btn').html($(this).text());
+            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
+            if ($(this).text().search("__") >= 0) {
+                console.log($(this).text().search("__"));
+                console.log($(this).parent().html());
+            }
+        });
+        $("#btn-generate-insight").click(function () {
+            $("#form-control-generate-insight").text($(".dropdown-toggle").text());
+        })
+    </script>
+   
 {% endblock %}
