@@ -1,66 +1,120 @@
 {% extends "base.html" %} {% block title %}Index{% endblock %} {% block head %} {{ super() }}
-<style type="text/css">
-    .important {
-        color: #336699;
-    }
+
 </style>
-{% endblock %} {% block content %}
-<div id="app">
-  {{ message }}
-</div>
+{% endblock %} 
+{% block content %}
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
-})
 
-<div class="container">
-    <h1>Welcome PD Insights Generator, General Electric</h1>
+        <div class="navbar background-logo">
+                <h1>Welcome to PD Insights Generator</h1>
+        </div>
+
     {% for key, value in data.items() %}
     <div class="row">
-        
-        <!-- DROPDOWN QUESTION -->
-        {%if value.Type=="dropdown" %}
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="menu2" data-toggle="dropdown">Your choice
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
-                    {% for valueA in value.Options %}
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{valueA}}</a></li>
-                    {%endfor%} 
-                </ul>
-            <script>
-                $ (".dropdown-menu li a").click(function(){src=addTextBox.js});
-            </script> 
-            </div>
-        {%endif%}
-       
-        <!-- OPEN QUESTION -->
-        {%if value.Type=="textbox" %}
-            <div class="textbox">
-                
-            </div>
-        {%endif%}
-    </div>    
-    {%endfor%}    
-   
+
+        <p>{{value.Label}}</p>
+        <div id="idd{{value.Num}}">
+            <select v-model="selected" v-on:change="onChange" class="form-control">
+                <option disabled value="">Выберите один из вариантов</option>   
+                {%raw%}
+                    <option v-for="option in options" v-bind:value="option.Value">
+                        {{option.Text}}
+                    </option>
+                {%endraw%}
+            </select> 
+        </div>
+
+
+
+    </div>
+    {%endfor%}
+    <div id="finalText">
+            <button v-on:click= "show=!show" class="btn-block">Generate</button>
+            <transition name="fade">
+                <p>
+                <textarea v-if="show" class="form-control">{%raw%}{{text}}{%endraw%}</textarea>
+                </p>
+            </transition>
+    </div>
+
+
 </div>
 
+
 <!-- SCRIPT SECTION-->
- <script>
-        $(".dropdown-menu li a").click(function () {
-            $(this).parents(".dropdown").find('.btn').html($(this).text());
-            $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
-            if ($(this).text().search("__") >= 0) {
-                console.log($(this).text().search("__"));
-                console.log($(this).parent().html());
+<script>
+    function getValuesByOptionChosen(value) {
+        return value['Parent'] == Parent;
+    }
+
+    function getValuesFromDict(dict) {
+        for(keys in dict){
+            var elements = dict[keys];
+          }
+        return elements;
+    }
+
+
+    var data = JSON.parse('{{ data | tojson }}');
+
+    var list0 = new Vue({
+        el: '#idd0',
+        data: {
+            selected: '',
+            options: data["000"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                list1.update(event.srcElement.value);
+                finalText.updateText(0,this.options[this.selected]);
+            },
+        }
+    })
+
+    var list1 = new Vue({
+        el: '#idd1',
+        data: {
+            selected: '',
+            options: data["001"].Options
+        },
+        methods: {
+            update: function (value) {
+                // 
+                res = {}
+                for (key in data["001"].Options) {
+                    if (data["001"].Options[key]['Parent'] == value) {
+                        res[key] = data["001"].Options[key];
+                    } 
+                }
+
+                this.options = res;
+            },
+            onChange: function(event) {
+                finalText.updateText(1,this.options[this.selected]);
             }
-        });
-        $("#btn-generate-insight").click(function () {
-            $("#form-control-generate-insight").text($(".dropdown-toggle").text());
-        })
-    </script>
+        }
+
+    })
+
+      var finalText= new Vue ({
+        el: "#finalText",
+        data: {
+            arr: ["",""],
+            text: '',
+            show: false
+        },
+        methods: {
+            updateText: function(key, element){
+                this.arr[key]=element["Text"];
+                this.text=this.arr[0]+" "+this.arr[1];
+                
+            },
+            makeTextVisible: function(){
+
+            }
+        }
+    })
+
    
+</script>
 {% endblock %}
