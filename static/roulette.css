@@ -1,0 +1,417 @@
+.slottt-machine-recipe {
+    margin: 0px auto;
+    visibility: hidden;
+  }
+  
+.slottt-machine-recipe__mask {
+      width: 100%;
+      height: 75px; /*150*/
+      overflow: hidden; 
+      position: relative;
+      display: inline-block;
+      margin-bottom: -15px;/*30*/
+}
+  
+.slottt-machine-recipe__items_container {
+    position: absolute;
+}
+
+.slottt-machine-recipe__item {
+    min-height: 75px;
+    max-height: 75px;
+    background-size: contain;
+}
+
+
+.recipe_if, .recipe_then {
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.tagline {
+  font-weight: normal;
+  font-size: 12px; /*24*/
+}
+
+a {
+ font-weight: bold;
+ text-decoration: none;
+ color: #33CCFF;
+}
+
+.button {
+    margin-top: 25px;/*25*/
+}
+
+.default {
+    background-color: white;
+    color: #174577;
+    font-weight: bold;
+}
+
+
+.navbar-brand {
+    font-size: 100%;
+}
+
+.form-control {
+    color: white;
+    font-weight: bold;
+}
+
+body {
+    font-family: "Varela Round";
+    background-image: url(./roulette-bg.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.img-rotate {
+    max-width: 50px;
+}
+
+.roulette-btn {
+    margin-top: 5px;
+}
+
+.roulette-form-control {
+    color: black;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.shadow {
+    color: white;
+    font: bold 52px Helvetica, Arial, Sans-Serif;
+    text-shadow: 1px 1px #174577, 
+                 2px 2px #174577, 
+                 3px 3px #174577, 
+                 4px 4px #174577, 
+                 5px 5px #174577, 
+                 6px 6px #174577;
+    -webkit-transition: all 0.10s ease-out;
+    -moz-transition:    all 0.10s ease-out;
+    -ms-transition:     all 0.10s ease-out;
+    -o-transition:      all 0.10s ease-out;
+    }    
+
+.shadow:active { 
+
+   position: relative; 
+   top: +3px; 
+   left: +3px; 
+
+   text-shadow: 1px 1px #174577, 
+                2px 2px #174577, 
+                3px 3px #174577;
+
+}
+
+
+.shadow-small { 
+    color: white; 
+    font: bold 26px Helvetica, Arial, Sans-Serif;
+    text-shadow: 1px 1px #174577;
+    -webkit-transition: all 0.12s ease-out;
+    -moz-transition:    all 0.12s ease-out;
+    -ms-transition:     all 0.12s ease-out;
+    -o-transition:      all 0.12s ease-out;
+ }
+
+.shadow-tiny {
+    color: white; 
+    font: bold 26px Helvetica, Arial, Sans-Serif;
+    text-shadow: 1px 1px #174577;
+    -webkit-transition: all 0.12s ease-out;
+    -moz-transition:    all 0.12s ease-out;
+    -ms-transition:     all 0.12s ease-out;
+    -o-transition:      all 0.12s ease-out;
+}
+
+.input-shadow {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+
+.spin:hover {
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: swing;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: swing;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 4000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: swing;
+    
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: swing;
+}
+
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+
+/* New */
+  
+.search {
+    width: 100px;
+    height: 100px;
+    margin: 40px auto 0;
+    background-color: rgba(46, 46, 46, 0.36);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+.search:before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 100%;
+    position: relative;
+    background-color: white;
+    transition: all 0.5s ease;
+  }
+
+.search.open {
+    width: 420px;
+    border-radius: 25px;
+  }
+  .search.open:before {
+    height: 60px;
+    margin: 20px 0 20px 30px;
+    position: absolute;
+  }
+  
+.search-box {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    color: #fff;
+    padding: 20px 100px 20px 45px;
+    font-size: 40px;
+    overflow-y: hidden;
+  }
+
+.search-box:focus {
+    outline: none;
+  }
+  
+.search-button {
+    width: 100px;
+    height: 100px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+    cursor: pointer;
+  }
+  
+.search-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    border: 3px solid #ffffff;
+    display: block;
+    position: relative;
+    margin-left: 5px;
+    transition: all 0.5s ease;
+  }
+
+.search-icon:before {
+    content: '';
+    width: 3px;
+    height: 15px;
+    position: absolute;
+    right: -2px;
+    top: 30px;
+    display: block;
+    background-color: #ffffff;
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+  }
+
+.search-icon:after {
+    content: '';
+    width: 3px;
+    height: 15px;
+    position: absolute;
+    right: -12px;
+    top: 40px;
+    display: block;
+    background-color: #ffffff;
+    transform: rotate(-45deg);
+    transition: all 0.5s ease;
+  }
+
+.open .search-icon {
+    margin: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+  }
+
+.open .search-icon:before {
+    transform: rotate(52deg);
+    right: 22px;
+    top: 23px;
+    height: 18px;
+  }
+
+.open .search-icon:after {
+    transform: rotate(-230deg);
+    right: 22px;
+    top: 13px;
+    height: 18px;
+  }
+
+  ::selection {
+  background: rgba(255, 255, 255, 0.48); /* WebKit/Blink Browsers */
+  color: white;
+}
+::-moz-selection {
+    background: rgba(255, 255, 255, 0.48); /* GECKO */
+    color: white;
+}
+
+/* Modal Window */
+
+.modal {
+    position: relative;
+}
+.modal-newsletter {	
+    color: black;
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.modal .close {
+    display: none;
+}
+
+.modal-newsletter .modal-content {
+    padding: 40px;
+    border-radius: 15px;		
+    border: none;
+}
+.modal-newsletter .modal-header {
+    border-bottom: none;   
+    position: relative;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+}
+.modal-newsletter h4 {
+    color: #000;
+    text-align: center;
+    font-size: 30px;
+    margin: 0 0 25px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.modal-newsletter .close {
+    background: #c0c3c8;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    color: #fff;
+    text-shadow: none;
+    opacity: 0.5;
+    width: 22px;
+    height: 22px;
+    border-radius: 20px;
+    font-size: 16px;
+}
+.modal-newsletter .close span {
+    position: relative;
+    top: -1px;
+}
+.modal-newsletter .close:hover {
+    opacity: 0.8;
+}
+.modal-newsletter .icon-box {
+    color: #7265ea;		
+    display: inline-block;
+    z-index: 9;
+    text-align: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+.modal-newsletter .icon-box i {
+    font-size: 110px;
+}
+.modal-newsletter .form-control, .modal-newsletter .btn {
+    min-height: 46px;
+    border-radius: 3px; 
+}
+.modal-newsletter .form-control {
+    box-shadow: none;
+    border-color: #dbdbdb;
+}
+.modal-newsletter .form-control:focus {
+    border-color: #7265ea;
+    box-shadow: 0 0 8px rgba(114, 101, 234, 0.5);
+}
+.modal-newsletter .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #7265ea;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    padding: 6px 20px;
+    min-width: 150px;
+    border: none;
+}
+.modal-newsletter .btn:hover, .modal-newsletter .btn:focus {
+    background: #4e3de4;
+    outline: none;
+}
+.modal-newsletter .input-group {
+    margin: 30px 0 15px;
+    color: black;
+}
+
+.modal-newsletter.form-control {
+    color:black;
+}
+
+.hint-text {
+    margin: 100px auto;
+    text-align: center;
+}

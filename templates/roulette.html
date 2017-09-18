@@ -1,0 +1,149 @@
+{% extends "base_no_bs.html" %} {% block head %} {{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='roulette.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='jQuery.fullPage.css')}}" />
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> {% endblock %} {% block content %}
+<div id="fullpage">
+
+    <!-- First Section -->
+    <section id="section1" class="section">
+        <div class="container">
+            <row>
+                <div class="col-md-offset-3 col-md-6 no-padding">
+                    <form method="POST">
+                        <div class="no-padding">
+
+                            <div class="form-group">
+                                <div class="shadow-small">
+                                    <label for="participants"><span class="glyphicon glyphicon-user"></span> Copy participants from your Outlook</label>
+                                </div>
+                                <div class="search">
+                                    <input type="text" class="search-box" name="participants" id="participants" />
+                                    <span class="search-button">
+                                            <span class="search-icon"></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="shadow-small">
+                                    <label for="participant-entered" class="shadow-small"><span class="glyphicon glyphicon-thumbs-up"></span> You can also add participants by hand<br>(use ',' to separate names)</label>
+                                </div>
+                                <div class="search">
+                                    <input type="text" class="search-box" name="participants-entered" id="participants-entered" />
+                                    <span class="search-button">
+                                                <span class="search-icon"></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-md-6 text-center">
+                                    <input type="submit" class="shadow input-shadow" value="Submit">
+                                </div>
+                            </div>
+
+                    </form>
+                    </div>
+            </row>
+            </div>
+    </section>
+
+    <!-- Second Section -->
+    <section id="section2" class="section">
+        <div class="container">
+            <row>
+                <div class="col-md-offset-3 col-md-6 text-center">
+                    <div class="slottt-machine-recipe">
+                        <row>
+                            <div class="slottt-machine-recipe__mask" id="wordbox">
+                                <div class="slottt-machine-recipe__items_container recipe_if"></div>
+                            </div>
+                        </row>
+                        <row>
+                            <span class="recipe_then">with..</span>
+                        </row>
+                        <row>
+                            <div class="slottt-machine-recipe__mask" id="wordbox2">
+                                <div class="slottt-machine-recipe__items_container recipe_if"></div>
+                            </div>
+                        </row>
+                    </div>
+                    <div class='shadow text-center'>
+                        <div class='btn roulette-btn no-padding' id='btn-rotate'>
+                            <div class="recipe_then">Spin the wheel</div>
+                            <div><img src="{{url_for('static', filename='roulette.svg')}}" class="img-rotate spin" /></div>
+                        </div>
+                    </div>
+                </div>
+            </row>
+    </section>
+
+    <!-- Third Section -->
+    <section id="section3" class="section">
+        <div class="container">
+            <row>
+                <div class="col-md-offset-2 col-md-8 text-center">
+                    <div class="form-group">
+                        <label for="results" class="shadow-small">Select results</label>
+                        <select class="form-control search-box" name="results" id="results" multiple></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="shadow input-shadow" value="Send emails">
+                    </div>
+                </div>
+            </row>
+        </div>
+    </section>
+
+    <section id="section4" class="section">
+        <!-- Modal -->
+        <div id="sendEmailModal" class="modal show">
+            <div class="modal-dialog modal-newsletter">
+                <div class="modal-content">
+                    <form action="/sendemail" method="post">
+                        <div class="modal-header">
+                            <div class="icon-box">
+                                <i class="fa fa-thumbs-o-up "></i>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h4>Send email &amp; save results</h4>
+                            <p>Results are always available at Predix Cloud</p>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <input type="submit" class="btn btn-primary" value="Send Email &amp; Save Results">
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    </section>
+
+    </div>
+
+
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script>
+        var data = {{data|safe }};
+        var wordlist = [];
+        for (let key in data) {
+            wordlist.push(data[key]['name']);
+        }
+    </script>
+    <script type="text/javascript" src="{{url_for('static', filename='roulette.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='jQuery.fullPage.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#fullpage').fullpage({
+                navigation: true,
+                anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage']
+            });
+        });
+    </script>
+    {% endblock %}

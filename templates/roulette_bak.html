@@ -1,0 +1,82 @@
+{% extends "base_no_bs.html" %} {% block head %} {{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='roulette.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='jQuery.fullPage.css')}}" /> {% endblock %} {% block content %}
+<div id="fullpage">
+    <!-- https://codepen.io/deadfrisk/pen/gxyPex -->
+    
+        <row>
+            <div class="col-md-offset-6 col-md-4 no-padding">
+                <form method="POST">
+                    <div class="no-padding">
+                        <div class="form-group">
+                            <label for="participants">Copy-paste participants from your Outlook</label>
+                            <input type="text" class="form-control roulette-form-control" name="participants" id="participants" />
+                        </div>
+                        <div class="form-group">
+                            <label for="participant-entered" class="shadow-no-hover">You can also add participants by hand<br>(use ',' to separate names)</label>
+                            <input type="text" class="form-control roulette-form-control" name="participants-entered" id="participants-entered" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="shadow input-shadow" value="Submit">
+                        </div>
+                </form>
+                </div>
+        </row>
+            <row class="row-first">
+                <div class="col-md-6 no-padding row-first">
+                    <div class="slottt-machine-recipe">
+                        <row>
+                            <div class="slottt-machine-recipe__mask" id="wordbox">
+                                <div class="col-md-offset-2">
+                                    <div class="slottt-machine-recipe__items_container recipe_if"></div>
+                                </div>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-offset-2">
+                                <span class="recipe_then">with..</span>
+                            </div>
+                        </row>
+                        <row>
+                            <div class="col-md-offset-2">
+                                <div class="slottt-machine-recipe__mask" id="wordbox2">
+                                    <div class="slottt-machine-recipe__items_container recipe_if"></div>
+                                </div>
+                            </div>
+                        </row>
+                    </div>
+                </div>
+                <div class="col-md-4 no-padding row-first">
+                    <div class="form-group">
+                        <label for="results"><span class="recipe_if">Results</span></label>
+                        <select class="form-control roulette-form-control" id="results" multiple></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="shadow input-shadow" value="Send emails">
+                    </div>
+                </div>
+            </row>
+        </div>
+        <div class="section">
+            <row>
+                <div class='col-md-offset-2 col-md-6 no-padding shadow'>
+                    <div class='btn roulette-btn no-padding' id='btn-rotate'>
+                        <span><img src="{{url_for('static', filename='roulette.svg')}}" class="img-rotate spin" /></span>
+                        <span class="recipe_then">Rotate</span>
+                    </div>
+                </div>
+            </row>
+        </div>
+    </div>
+
+    <!-- script section -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script>
+        var data = {{data|safe }};
+        var wordlist = [];
+        for (let key in data) {
+            wordlist.push(data[key]['name']);
+        }
+    </script>
+    <script type="text/javascript" src="{{url_for('static', filename='roulette.js')}}"></script>
+    {% endblock %}

@@ -8,7 +8,7 @@
 <div class="container">
     <h1>Welcome PD Insights Generator, General Electric</h1>
     <div class='json_data'>
-        {{ data }}
+        {% for key in data.keys() %}{{key}}{% endfor %}
     </div>
 </div>
 {% endblock %}

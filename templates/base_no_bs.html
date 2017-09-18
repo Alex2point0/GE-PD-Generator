@@ -3,12 +3,12 @@
 
 <head>
     {% block head %}
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- JQUERY UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
-
 
     <!-- BOOTSTRAP -->
     <!-- Latest compiled and minified CSS -->
@@ -30,6 +30,7 @@
 </head>
 
 <body>
+    <!-- NAVBAR -->
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -39,26 +40,19 @@
                     <img style="max-width:100px; margin-top: -7px;"
                          src="https://upload.wikimedia.org/wikipedia/commons/f/ff/General_Electric_logo.svg">
         </a>
-        <div class="navbar-text">{{ title }}</div>
+        <div class="navbar-text shadow">PD Roulette</div>
     </div>
-    <div class="container">
-        <div id="content">
-            {% block content %} Content {% endblock %}
-        </div>
-        <div id="footer">
-            {% block footer %}
-            <div class="footer navbar-fixed-bottom">
-                <div class="container-fluid">
-                <row class="navbar-brand">
-                    <div class="right">
-                    &copy; Copyright 2017 by Oleg Khomenko, Roman Zemlyanskiy, Mikhail Berezovskiy @ GE Moscow
-                    </div>
-                </row>
+    <!-- END NAVBAR-->
+    <!-- CONTENT -->
+    {% block content %} {% endblock %}
+    <!-- END CONTENT-->
+    {% block footer %}
+    <div class="footer navbar-fixed-bottom">
+            <div class="col-md-12 text-right h4">
+                &copy; Copyright 2017 by <strong>Oleg Khomenko</strong>, Roman Zemlyanskiy, Mikhail Berezovskiy @ GE Moscow
             </div>
-            </div>
-            {% endblock %}
-        </div>
     </div>
+    {% endblock %}
 </body>
 
 </html>

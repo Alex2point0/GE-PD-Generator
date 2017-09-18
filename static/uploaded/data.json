@@ -1,17 +1,1 @@
-{
-    "001": {
-        "Label": "Label text",
-        "Type": "dropdown",
-        "Options": [
-            "Option 1",
-            "Option 2",
-            "Option 3"
-        ]    
-    },
-    "002": {
-        "Label": "Label Text 2",
-        "Type": "textbox",
-        "Options":[
-        ]
-    }
-}
+{"1": {"Label": "Dummy", "Num": 0, "Options": [{"Parent": 1, "Text": "Text 1", "Value": 0.0}, {"Parent": 2, "Text": "Text 2", "Value": 1.0}, {"Parent": 3, "Text": "Text 3", "Value": 2.0}, {"Parent": 4, "Text": "Text 4", "Value": 3.0}, {"Parent": 5, "Text": "Text 5", "Value": 4.0}]}, "2": {"Label": "Dummy", "Num": 1, "Options": [{"Parent": 6, "Text": "Text 6", "Value": 0.0}, {"Parent": 7, "Text": "Text 7", "Value": 1.0}, {"Parent": 8, "Text": "Text 8", "Value": 2.0}, {"Parent": 9, "Text": "Text 9", "Value": 3.0}]}, "3": {"Label": "Dummy", "Num": 2, "Options": [{"Parent": 10, "Text": "Text 10", "Value": 0.0}, {"Parent": 11, "Text": "Text 11", "Value": 1.0}, {"Parent": 12, "Text": "Text 12", "Value": 2.0}, {"Parent": 13, "Text": "Text 13", "Value": 3.0}]}, "4": {"Label": "Dummy", "Num": 3, "Options": [{"Parent": 14, "Text": "Text 14", "Value": 0.0}, {"Parent": 15, "Text": "Text 15", "Value": 1.0}, {"Parent": 16, "Text": "Text 16", "Value": 2.0}, {"Parent": 17, "Text": "Text 17", "Value": 3.0}]}, "5": {"Label": "Dummy", "Num": 4, "Options": [{"Parent": 18, "Text": "Text 18", "Value": 0.0}, {"Parent": 19, "Text": "Text 19", "Value": 1.0}, {"Parent": 20, "Text": "Text 20", "Value": 2.0}, {"Parent": 21, "Text": "Text 21", "Value": 3.0}]}, "6": {"Label": "Dummy", "Num": 5, "Options": [{"Parent": 22, "Text": "Text 22", "Value": 0.0}, {"Parent": 23, "Text": "Text 23", "Value": 1.0}, {"Parent": 24, "Text": "Text 24", "Value": 2.0}, {"Parent": 25, "Text": "Text 25", "Value": 3.0}]}, "7": {"Label": "Dummy", "Num": 6, "Options": [{"Parent": 26, "Text": "Text 26", "Value": 0.0}, {"Parent": 27, "Text": "Text 27", "Value": 1.0}, {"Parent": 28, "Text": "Text 28", "Value": 2.0}, {"Parent": 29, "Text": "Text 29", "Value": 3.0}]}, "8": {"Label": "Dummy", "Num": 7, "Options": [{"Parent": 30, "Text": "Text 30", "Value": 0.0}, {"Parent": 31, "Text": "Text 31", "Value": 1.0}, {"Parent": 32, "Text": "Text 32", "Value": 2.0}, {"Parent": 33, "Text": "Text 33", "Value": 3.0}]}}

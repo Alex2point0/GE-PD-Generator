@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block content %}
+<row>
+    <div class="col-md-offset-6 col-md-6">
+        <form method='POST'>
+            <label for="deltaH">Please enter delta H:</label>
+            <input type="number" class="form-control" id="deltaH" name="deltaH">
+            <label for="Q_2">Please enter delta Q_2:</label>
+            <input type="number" class="form-control" id="Q_2" name="Q_2" />
+            <label for="Q_1">Please enter Q_1:</label>
+            <input type="number" class="form-control" id="Q_1" name="Q_1">
+            <label for="G_ex">Please enter G_ex</label>
+            <input type="number" class="form-control" id="G_ex" name="G_ex"/>
+            <label for="G_comp">Please enter G_comp</label>
+            <input type="number" class="form-control" id="G_comp" name="G_comp"/>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </row>
+</div>
+<row>
+    {{ data }}
+</row>
+<script>
+    $('#N_s').jStepper({ minValue: 0, maxValue: 23, minLength: 2 });
+
+</script>
+{% endblock %}

@@ -12,14 +12,21 @@
     /*Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+14,ffffff+14,ffffff+100&1+14,0+100 */
 }
 
-.form-control {
-    background: transparent;
-}
-
-.btn {
-    background: transparent;
-}
 
 .input-field {
     max-width: 25%;
+}
+
+
+/* Typography */
+
+body {
+    font-family: Helvetica, Arial, sans serif;
+    background-color: #174577;
+    color: white;
+}
+
+.page-title {
+    font-family: Helvetica, Arial, sans serif;
+    font-size: 150%;
 }
