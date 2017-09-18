@@ -1,43 +1,122 @@
 {% extends "base.html" %} {% block title %}Index{% endblock %} {% block head %} {{ super() }}
 
 </style>
-{% endblock %} 
-{% block content %}
+{% endblock %} {% block content %}
+<div id="fullpage">
+    <section class="section" id="section1">
+        
+        <div class="container">
+            <div class="navbar background-logo col-md-12 col-md-offset-3">
+                <h1>PD Insights Generator</h1>
+            </div>
+            {% for key, value in data.items() %} 
+            {%if value.Num|int<6 %} 
+            <div class="row">
 
 
-        <div class="navbar background-logo">
-                <h1>Welcome to PD Insights Generator</h1>
+                <p>{{value.Label}}</p><br>
+                <div id="idd{{value.Num}}">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+
+
+
         </div>
-
-    {% for key, value in data.items() %}
-    <div class="row">
-
-        <p>{{value.Label}}</p>
-        <div id="idd{{value.Num}}">
-            <select v-model="selected" v-on:change="onChange" class="form-control">
-                <option disabled value="">Выберите один из вариантов</option>   
-                {%raw%}
-                    <option v-for="option in options" v-bind:value="option.Value">
-                        {{option.Text}}
-                    </option>
-                {%endraw%}
-            </select> 
-        </div>
-
-
+        {%endif%} {%endfor%}
+        
 
     </div>
-    {%endfor%}
-    <div id="finalText">
-            <button v-on:click= "show=!show" class="btn-block">Generate</button>
+    </section>
+
+    <section class="section" id="section1">
+            
+            <div class="container">
+                <div class="navbar background-logo col-md-12 col-md-offset-3">
+                    <h1>PD Insights Generator</h1>
+                </div>
+                {% for key, value in data.items() %} 
+                {%if value.Num|int>5 and value.Num|int<11  %} 
+                <div class="row">
+    
+    
+                    <p>{{value.Label}}</p><br>
+                    <div id="idd{{value.Num}}">
+                        <select v-model="selected" v-on:change="onChange" class="form-control">
+                            <option disabled value="">Выберите один из вариантов</option>   
+                                {%raw%}
+                                    <option v-for="option in options" v-bind:value="option.Value">
+                                        {{option.Text}}
+                                    </option>
+                                {%endraw%}
+                        </select><br>
+                    </div>
+    
+    
+    
+            </div>
+            {%endif%} {%endfor%}
+            
+    
+        </div>
+        </section>
+
+        <section class="section" id="section1">
+                
+                <div class="container">
+                    <div class="navbar background-logo col-md-12 col-md-offset-3">
+                        <h1>PD Insights Generator</h1>
+                    </div>
+                    {% for key, value in data.items() %} 
+                    {%if value.Num|int>10 %} 
+                    <div class="row">
+        
+        
+                        <p>{{value.Label}}</p><br>
+                        <div id="idd{{value.Num}}">
+                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+        
+        
+        
+                </div>
+                {%endif%} {%endfor%}
+                
+        
+            </div>
+            </section>
+    <section class="section" id="section2">
+    <div class="container">
+            <div class="navbar background-logo col-md-12 col-md-offset-3">
+                    <h1>PD Insights Generator</h1>
+                </div>
+        <div id="finalText"><br><br><br><br>
+            <button v-on:click="show=!show" class="btn-block">Generate</button>
             <transition name="fade">
                 <p>
-                <textarea v-if="show" class="form-control">{%raw%}{{text}}{%endraw%}</textarea>
+                    <textarea v-if="show" class="form-control">{%raw%}{{text}}{%endraw%}</textarea>
                 </p>
             </transition>
+        </div>
+
     </div>
 
 
+    </section>
+<!-- FOOTER -->
 </div>
 
 
@@ -48,15 +127,17 @@
     }
 
     function getValuesFromDict(dict) {
-        for(keys in dict){
+        for (keys in dict) {
             var elements = dict[keys];
-          }
+        }
         return elements;
     }
 
 
     var data = JSON.parse('{{ data | tojson }}');
 
+    
+    
     var list0 = new Vue({
         el: '#idd0',
         data: {
@@ -66,7 +147,7 @@
         methods: {
             onChange: function (event) {
                 list1.update(event.srcElement.value);
-                finalText.updateText(0,this.options[this.selected]);
+                finalText.updateText(0, this.options[this.selected]);
             },
         }
     })
@@ -84,37 +165,252 @@
                 for (key in data["001"].Options) {
                     if (data["001"].Options[key]['Parent'] == value) {
                         res[key] = data["001"].Options[key];
-                    } 
+                    }
                 }
 
                 this.options = res;
             },
-            onChange: function(event) {
-                finalText.updateText(1,this.options[this.selected]);
+            onChange: function (event) {
+                finalText.updateText(1, this.options[this.selected]);
             }
         }
 
     })
 
-      var finalText= new Vue ({
+    var list2 = new Vue({
+        el: '#idd2',
+        data: {
+            selected: '',
+            options: data["002"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(2, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list3 = new Vue({
+        el: '#idd3',
+        data: {
+            selected: '',
+            options: data["003"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(3, this.options[this.selected]);
+            }
+        }
+
+    })
+
+    var list4 = new Vue({
+        el: '#idd4',
+        data: {
+            selected: '',
+            options: data["004"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(4, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list5 = new Vue({
+        el: '#idd5',
+        data: {
+            selected: '',
+            options: data["005"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(5, this.options[this.selected]);
+            }
+        }
+
+    })
+
+    var list6 = new Vue({
+        el: '#idd6',
+        data: {
+            selected: '',
+            options: data["006"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(6, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list7 = new Vue({
+        el: '#idd7',
+        data: {
+            selected: '',
+            options: data["007"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(7, this.options[this.selected]);
+            }
+        }
+
+    })
+
+    var list8 = new Vue({
+        el: '#idd8',
+        data: {
+            selected: '',
+            options: data["008"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(8, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list9 = new Vue({
+        el: '#idd9',
+        data: {
+            selected: '',
+            options: data["009"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(9, this.options[this.selected]);
+            }
+        }
+
+    })
+
+    var list10 = new Vue({
+        el: '#idd10',
+        data: {
+            selected: '',
+            options: data["010"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(10, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list11 = new Vue({
+        el: '#idd11',
+        data: {
+            selected: '',
+            options: data["011"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(11, this.options[this.selected]);
+            }
+        }
+
+    })
+
+    var list12 = new Vue({
+        el: '#idd12',
+        data: {
+            selected: '',
+            options: data["012"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(12, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list13 = new Vue({
+        el: '#idd13',
+        data: {
+            selected: '',
+            options: data["013"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(13, this.options[this.selected]);
+            }
+        }
+
+    })
+
+    var list14 = new Vue({
+        el: '#idd14',
+        data: {
+            selected: '',
+            options: data["014"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(14, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list15 = new Vue({
+        el: '#idd15',
+        data: {
+            selected: '',
+            options: data["015"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(15, this.options[this.selected]);
+            }
+        }
+
+    })
+
+    var list16 = new Vue({
+        el: '#idd16',
+        data: {
+            selected: '',
+            options: data["016"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(16, this.options[this.selected]);
+            },
+        }
+    })
+
+    
+
+    var finalText = new Vue({
         el: "#finalText",
         data: {
-            arr: ["",""],
+            arr: ["", ""],
             text: '',
             show: false
         },
         methods: {
-            updateText: function(key, element){
-                this.arr[key]=element["Text"];
-                this.text=this.arr[0]+" "+this.arr[1];
-                
+            updateText: function (key, element) {
+                this.arr[key] = element["Text"];
+                this.text="";
+                for (el in this.arr){
+                    this.text = this.text + " " + this.arr[el];
+                }
+
             },
-            makeTextVisible: function(){
+            makeTextVisible: function () {
 
             }
         }
     })
 
-   
+
+
+
+    $(document).ready(function () {
+        $('#fullpage').fullpage({
+            navigation: true,
+        });
+    });
+
 </script>
 {% endblock %}

@@ -20,23 +20,28 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+
+    <!-- FullPage-->
+    <script src="/static/jquery.fullPage.css"></script>
+    <script src="/static/jquery.fullPage.js"></script>
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
 
 <body>
-    <div class="container">
-        <div id="content">
-            {% block content %} Content {% endblock %}
-        </div>
-        <div id="footer">
-            {% block footer %}
-            <div class="footer">
-                &copy; Copyright 2017 by DTLP Team, General Electric Rus
+
+
+
+
+    {% block content %} Content {% endblock %} {% block footer %}
+    <div id="footer">
+        <div class="footer navbar-fixed-bottom">
+            <div class="col-md-12 text-right">
+                &copy; Copyright 2017 by <strong>Oleg Khomenko</strong>, Roman Zemlyanskiy, Mikhail Berezovskiy @ GE Moscow
             </div>
-            {% endblock %}
         </div>
     </div>
+    {% endblock %}
 </body>
 
 </html>
