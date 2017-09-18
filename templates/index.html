@@ -153,6 +153,7 @@
         methods: {
             onChange: function (event) {
                 list1.update(event.srcElement.value);
+
                 finalText.updateText(0, this.options[this.selected]);
             },
         }
@@ -390,7 +391,7 @@
     var finalText = new Vue({
         el: "#finalText",
         data: {
-            arr: ["", ""],
+            arr: [],
             text: '',
             show: false
         },
@@ -398,6 +399,9 @@
             updateText: function (key, element) {
                 this.arr[key] = element["Text"];
                 this.text="";
+                if (key==0){
+                    this.arr[key]=this.arr[key].replace("___",inputName.returnName());
+                }
                 for (el in this.arr){
                     this.text = this.text + " " + this.arr[el];
                 }
