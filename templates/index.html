@@ -206,6 +206,7 @@
         methods: {
             onChange: function (event) {
                 finalText.updateText(3, this.options[this.selected]);
+                list4.update(event.srcElement.value);
             }
         }
 
@@ -218,8 +219,21 @@
             options: data["5"].Options
         },
         methods: {
+            
+            update: function (value) {
+                // 
+                res = {}
+                for (key in data["5"].Options) {
+                    if (data["5"].Options[key]['Parent'] == value) {
+                        res[key] = data["5"].Options[key];
+                    }
+                }
+
+                this.options = res;
+            },
             onChange: function (event) {
                 finalText.updateText(4, this.options[this.selected]);
+                list5.update(event.srcElement.value);
             },
         }
     })
@@ -228,14 +242,26 @@
         el: '#idd5',
         data: {
             selected: '',
-            options: data["6"].Options
+            options: data["6"].Options,
         },
         methods: {
-            onChange: function (event) {
-                finalText.updateText(5, this.options[this.selected]);
-            }
-        }
+            update: function (value) {
+                // 
+                res = {}
+                for (key in data["6"].Options) {
+                    if (data["6"].Options[key]['Parent'] == value) {
+                        res[key] = data["6"].Options[key];
+                    }
+                }
 
+                this.options = res;
+            },
+            onChange: function (event) {
+                list6.update(event.srcElement.value);
+
+                finalText.updateText(5, this.options[this.selected]);
+            },
+        }
     })
 
     var list6 = new Vue({
@@ -245,8 +271,20 @@
             options: data["7"].Options
         },
         methods: {
+            update: function (value) {
+                // 
+                res = {}
+                for (key in data["7"].Options) {
+                    if (data["7"].Options[key]['Parent'] == value) {
+                        res[key] = data["7"].Options[key];
+                    }
+                }
+
+                this.options = res;
+            },
             onChange: function (event) {
                 finalText.updateText(6, this.options[this.selected]);
+                list7.update(event.srcElement.value);
             },
         }
     })
@@ -258,8 +296,20 @@
             options: data["8"].Options
         },
         methods: {
+            update: function (value) {
+                // 
+                res = {}
+                for (key in data["8"].Options) {
+                    if (data["8"].Options[key]['Parent'] == value) {
+                        res[key] = data["8"].Options[key];
+                    }
+                }
+
+                this.options = res;
+            },
             onChange: function (event) {
                 finalText.updateText(7, this.options[this.selected]);
+                list8.update(event.srcElement.value);
             }
         }
 
@@ -272,8 +322,20 @@
             options: data["9"].Options
         },
         methods: {
+            update: function (value) {
+                // 
+                res = {}
+                for (key in data["9"].Options) {
+                    if (data["9"].Options[key]['Parent'] == value) {
+                        res[key] = data["9"].Options[key];
+                    }
+                }
+
+                this.options = res;
+            },
             onChange: function (event) {
                 finalText.updateText(8, this.options[this.selected]);
+                list9.update(event.srcElement.value);
             },
         }
     })
@@ -285,6 +347,17 @@
             options: data["10"].Options
         },
         methods: {
+            update: function (value) {
+                // 
+                res = {}
+                for (key in data["10"].Options) {
+                    if (data["10"].Options[key]['Parent'] == value) {
+                        res[key] = data["10"].Options[key];
+                    }
+                }
+
+                this.options = res;
+            },
             onChange: function (event) {
                 finalText.updateText(9, this.options[this.selected]);
             }
@@ -382,6 +455,19 @@
         methods: {
             onChange: function (event) {
                 finalText.updateText(16, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list17 = new Vue({
+        el: '#idd17',
+        data: {
+            selected: '',
+            options: data["18"].Options
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(17, this.options[this.selected]);
             },
         }
     })
