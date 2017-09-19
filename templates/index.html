@@ -10,15 +10,15 @@
                 <h1>PD Insights Generator</h1>
             </div>
             <div class="row">
-                <p>Enter the name</p><br>
+                <p>Enter the name</p>
                 <input id="inputName" class="form-control" v-model="name"></input>
-            </div>
+            </div><br>
             {% for key, value in data.items() %} 
-            {%if value.Num|int<5 %} 
+            {%if value.Num|int<3 %} 
             <div class="row">
 
 
-                <p>{{value.Label}}</p><br>
+                <p>{{value.Label}}</p>
                 <div id="idd{{value.Num}}">
                     <select v-model="selected" v-on:change="onChange" class="form-control">
                         <option disabled value="">Выберите один из вариантов</option>   
@@ -43,11 +43,11 @@
             
             <div class="container">
                 {% for key, value in data.items() %} 
-                {%if value.Num|int>4 and value.Num|int<11  %} 
+                {%if value.Num|int>3 and value.Num|int<9  %} 
                 <div class="row">
     
     
-                    <p>{{value.Label}}</p><br>
+                    <p>{{value.Label}}</p>
                     <div id="idd{{value.Num}}">
                         <select v-model="selected" v-on:change="onChange" class="form-control">
                             <option disabled value="">Выберите один из вариантов</option>   
@@ -67,16 +67,15 @@
     
         </div>
         </section>
-
         <section class="section" id="section1">
                 
                 <div class="container">
                     {% for key, value in data.items() %} 
-                    {%if value.Num|int>10 %} 
+                    {%if value.Num|int>8 and value.Num|int<14  %} 
                     <div class="row">
         
         
-                        <p>{{value.Label}}</p><br>
+                        <p>{{value.Label}}</p>
                         <div id="idd{{value.Num}}">
                             <select v-model="selected" v-on:change="onChange" class="form-control">
                                 <option disabled value="">Выберите один из вариантов</option>   
@@ -96,21 +95,41 @@
         
             </div>
             </section>
-    <section class="section" id="section2">
-    <div class="container">
-        <div id="finalText"><br><br><br><br>
-            <button v-on:click="show=!show" class="btn-block">Generate</button>
-            <transition name="fade">
-                <p>
-                    <textarea v-if="show" class="form-control">{%raw%}{{text}}{%endraw%}</textarea>
-                </p>
-            </transition>
-        </div>
 
-    </div>
-
-
-    </section>
+        <section class="section" id="section1">
+                
+                <div class="container">
+                    {% for key, value in data.items() %} 
+                    {%if value.Num|int>13 %} 
+                    <div class="row">
+        
+        
+                        <p>{{value.Label}}</p>
+                        <div id="idd{{value.Num}}">
+                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+        
+        
+        
+                </div>
+                {%endif%} {%endfor%}
+                <div id="finalText"><br><br><br><br>
+                    <button v-on:click="show=!show" class="btn-block">Generate</button>
+                    <transition name="fade">
+                        <p>
+                            <textarea v-if="show" class="form-control">{%raw%}{{text}}{%endraw%}</textarea>
+                        </p>
+                    </transition>
+        
+            </div>
+            </section>
 <!-- FOOTER -->
 </div>
 
