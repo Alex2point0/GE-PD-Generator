@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block title %}Index{% endblock %} {% block head %} {{ super() }}
 
-</style>
+
 {% endblock %} {% block content %}
-<div id="fullpage">
-    <section class="section" id="section1">
+
+    
         
         <div class="container">
             <div class="navbar background-logo col-md-12 col-md-offset-3">
@@ -36,14 +36,18 @@
         {%endif%} {%endfor%}
         
 
-    </div>
-    </section>
+  
+    
 
-    <section class="section" id="section1">
+    
             
             <div class="container">
                 {% for key, value in data.items() %} 
+<<<<<<< HEAD
                 {%if value.Num|int>2 and value.Num|int<9  %} 
+=======
+                {%if value.Num|int>3 and value.Num|int<7  %} 
+>>>>>>> 8b917b1640031ef027b79fa49d56729c3222575b
                 <div class="row">
     
     
@@ -65,13 +69,13 @@
             {%endif%} {%endfor%}
             
     
-        </div>
-        </section>
-        <section class="section" id="section1">
+        
+        
+       
                 
                 <div class="container">
                     {% for key, value in data.items() %} 
-                    {%if value.Num|int>8 and value.Num|int<14  %} 
+                    {%if value.Num|int>6 and value.Num|int<11  %} 
                     <div class="row">
         
         
@@ -93,45 +97,23 @@
                 {%endif%} {%endfor%}
                 
         
-            </div>
-            </section>
+          
+            
 
-        <section class="section" id="section1">
+        
                 
-                <div class="container">
-                    {% for key, value in data.items() %} 
-                    {%if value.Num|int>13 %} 
-                    <div class="row">
-        
-        
-                        <p>{{value.Label}}</p>
-                        <div id="idd{{value.Num}}">
-                            <select v-model="selected" v-on:change="onChange" class="form-control">
-                                <option disabled value="">Выберите один из вариантов</option>   
-                                    {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                    {%endraw%}
-                            </select><br>
-                        </div>
-        
-        
-        
-                </div>
-                {%endif%} {%endfor%}
                 <div id="finalText"><br><br><br><br>
-                    <button v-on:click="show=!show" class="btn-block">Generate</button>
-                    <transition name="fade">
-                        <p>
-                            <textarea v-if="show" class="form-control">{%raw%}{{text}}{%endraw%}</textarea>
-                        </p>
-                    </transition>
+                <button v-on:click="show=!show" class="btn-block">Generate</button>
+                <transition name="fade">
+                    <p>
+                        <textarea v-if="show" class="form-control">{%raw%}{{text}}{%endraw%}</textarea>
+                    </p>
+                </transition>
         
             </div>
-            </section>
+            
 <!-- FOOTER -->
-</div>
+
 
 
 <!-- SCRIPT SECTION-->
