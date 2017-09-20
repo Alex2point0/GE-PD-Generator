@@ -2,9 +2,9 @@
 
 
 {% endblock %} {% block content %}
-
+<div id=fullpage>
     
-        
+    <section id="section1" class="section">    
         <div class="container">
             <div class="navbar background-logo col-md-12 col-md-offset-3">
                 <h1>PD Insights Generator</h1>
@@ -58,124 +58,122 @@
 
 
         </div>
-
-        
-
-  
-    
+    </section>
+ 
+   
 
     
-            
-            <div class="container">
-                <div class="row">
-                    <p>Question 4</p>
-                    <div id="idd3">
-                        <select v-model="selected" v-on:change="onChange" class="form-control">
-                            <option disabled value="">Выберите один из вариантов</option>   
-                                {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                {%endraw%}
-                        </select><br>
-                    </div>
+    <section id="section2" class="section">       
+        <div class="container">
+            <div class="row">
+                <p>Question 4</p>
+                <div id="idd3">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
                 </div>
-    
-                <div class="row">
-                    <p>Question 5</p>
-                    <div id="idd4">
-                        <select v-model="selected" v-on:change="onChange" class="form-control">
-                            <option disabled value="">Выберите один из вариантов</option>   
-                                {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                {%endraw%}
-                        </select><br>
-                    </div>
-                </div>
-                    
-                <div class="row">
-                    <p>Question 6</p>
-                    <div id="idd5">
-                        <select v-model="selected" v-on:change="onChange" class="form-control">
-                            <option disabled value="">Выберите один из вариантов</option>   
-                                {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                {%endraw%}
-                        </select><br>
-                    </div>
-                </div>
-    
-    
             </div>
-           
+
+            <div class="row">
+                <p>Question 5</p>
+                <div id="idd4">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+            </div>
+                
+            <div class="row">
+                <p>Question 6</p>
+                <div id="idd5">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+            </div>
+
+
+        </div>
+    </section>    
             
     
         
         
        
-                
-                <div class="container">
-                    <div class="row">
-                        <p>Question 7</p>
-                        <div id="idd6">
-                            <select v-model="selected" v-on:change="onChange" class="form-control">
-                                <option disabled value="">Выберите один из вариантов</option>   
-                                    {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                    {%endraw%}
-                            </select><br>
-                        </div>
-                    </div>
-        
-                    <div class="row">
-                        <p>Question 8</p>
-                        <div id="idd7">
-                            <select v-model="selected" v-on:change="onChange" class="form-control">
-                                <option disabled value="">Выберите один из вариантов</option>   
-                                    {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                    {%endraw%}
-                            </select><br>
-                        </div>
-                    </div>
-                        
-                    <div class="row">
-                        <p>Question 9</p>
-                        <div id="idd8">
-                            <select v-model="selected" v-on:change="onChange" class="form-control">
-                                <option disabled value="">Выберите один из вариантов</option>   
-                                    {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                    {%endraw%}
-                            </select><br>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                    <p>Question 10</p>
-                    <div id="idd9">
-                        <select v-model="selected" v-on:change="onChange" class="form-control">
-                            <option disabled value="">Выберите один из вариантов</option>   
-                                {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                {%endraw%}
-                        </select><br>
-                    </div>
+    <section id="section3" class="section">        
+        <div class="container">
+            <div class="row">
+                <p>Question 7</p>
+                <div id="idd6">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
                 </div>
+            </div>
 
-                <div class="row">
+            <div class="row">
+                <p>Question 8</p>
+                <div id="idd7">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+            </div>
+                
+            <div class="row">
+                <p>Question 9</p>
+                <div id="idd8">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <p>Question 10</p>
+                <div id="idd9">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+            </div>
+
+            <div class="row">
                 <p>Question 11</p>
                 <div id="idd10">
                     <select v-model="selected" v-on:change="onChange" class="form-control">
@@ -188,29 +186,30 @@
                     </select><br>
                 </div>
             </div>
+
+            <div id="finalText"><br>
+                <button v-on:click="show=!show" class="btn-block">Generate</button>
+                <transition name="fade">
+                    <p>
+                        <textarea v-if="show" class="form-control" rows=6>{%raw%}{{text}}{%endraw%} </textarea>
+                    </p>
+                </transition>
+    
+            </div>
+        </div>
+    </section>
         
-        
-        
-                </div>
-                
+              
         
           
             
 
         
-                
-                <div id="finalText"><br><br><br><br>
-                <button v-on:click="show=!show" class="btn-block">Generate</button>
-                <transition name="fade">
-                    <p>
-                        <textarea v-if="show" class="form-control">{%raw%}{{text}}{%endraw%}</textarea>
-                    </p>
-                </transition>
-        
-            </div>
-            
-<!-- FOOTER -->
+           
+       
 
+            
+</div>
 
 
 <!-- SCRIPT SECTION-->
@@ -250,7 +249,6 @@
         },
         methods: {
             onChange: function (event) {
-                list1.update(event.srcElement.value);
 
                 finalText.updateText(0, this.options[this.selected]);
             },
@@ -264,23 +262,194 @@
             options: data["2"].Options
         },
         methods: {
+
             update: function (value) {
-                // 
                 res = {}
                 for (key in data["2"].Options) {
                     if (data["2"].Options[key]['Parent'] == value) {
                         res[key] = data["2"].Options[key];
                     }
                 }
-
                 this.options = res;
             },
+
             onChange: function (event) {
                 finalText.updateText(1, this.options[this.selected]);
             }
         }
 
     })
+
+    var list2 = new Vue({
+        el: '#idd2',
+        data: {
+            selected: '',
+            options: data["3"].Options,
+            name: ''
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(2, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list3 = new Vue({
+        el: '#idd3',
+        data: {
+            selected: '',
+            options: data["4"].Options,
+            name: ''
+        },
+        methods: {
+            onChange: function (event) {
+                list4.update(event.srcElement.value);
+            },
+        }
+    })
+
+    var list4 = new Vue({
+        el: '#idd4',
+        data: {
+            selected: '',
+            options: data["5"].Options,
+            name: ''
+        },
+        methods: {
+
+            update: function (value) {
+                res = {}
+                for (key in data["5"].Options) {
+                    if (data["5"].Options[key]['Parent'] == value) {
+                        res[key] = data["5"].Options[key];
+                    }
+                }
+                this.options = res;
+            },
+
+            onChange: function (event) {
+                list5.update(event.srcElement.value);
+            },
+        }
+    })
+
+    var list5 = new Vue({
+        el: '#idd5',
+        data: {
+            selected: '',
+            options: data["6"].Options,
+            name: ''
+        },
+        methods: {
+
+            update: function (value) {
+                res = {}
+                for (key in data["6"].Options) {
+                    if (data["6"].Options[key]['Parent'] == value) {
+                        res[key] = data["6"].Options[key];
+                    }
+                }
+                this.options = res;
+            },
+
+            onChange: function (event) {
+                finalText.updateText(5, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list6 = new Vue({
+        el: '#idd6',
+        data: {
+            selected: '',
+            options: data["7"].Options,
+            name: ''
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(6, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list7 = new Vue({
+        el: '#idd7',
+        data: {
+            selected: '',
+            options: data["8"].Options,
+            name: ''
+        },
+        methods: {
+            onChange: function (event) {
+                list8.update(event.srcElement.value);
+            },
+        }
+    })
+
+    var list8 = new Vue({
+        el: '#idd8',
+        data: {
+            selected: '',
+            options: data["9"].Options,
+            name: ''
+        },
+        methods: {
+
+            update: function (value) {
+                res = {}
+                for (key in data["9"].Options) {
+                    if (data["9"].Options[key]['Parent'] == value) {
+                        res[key] = data["9"].Options[key];
+                    }
+                }
+                this.options = res;
+            },
+
+            onChange: function (event) {
+                list9.update(event.srcElement.value);
+            },
+        }
+    })
+
+    var list9 = new Vue({
+        el: '#idd9',
+        data: {
+            selected: '',
+            options: data["10"].Options,
+            name: ''
+        },
+        methods: {
+            
+            update: function (value) {
+                res = {}
+                for (key in data["10"].Options) {
+                    if (data["10"].Options[key]['Parent'] == value) {
+                        res[key] = data["10"].Options[key];
+                    }
+                }
+                this.options = res;
+            },
+
+            onChange: function (event) {
+               finalText.updateText(9, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list10 = new Vue({
+        el: '#idd10',
+        data: {
+            selected: '',
+            options: data["11"].Options,
+            name: ''
+        },
+        methods: {
+            onChange: function (event) {
+                finalText.updateText(10, this.options[this.selected]);
+            },
+        }
+    })
+
 
    
     
