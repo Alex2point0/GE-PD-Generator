@@ -13,13 +13,10 @@
                 <p>Enter the name</p>
                 <input id="inputName" class="form-control" v-model="name"></input>
             </div><br>
-            {% for key, value in data.items() %} 
-            {%if value.Num|int<3 %} 
+            
             <div class="row">
-
-
-                <p>{{value.Label}}</p>
-                <div id="idd{{value.Num}}">
+                <p>Question 1</p>
+                <div id="idd0">
                     <select v-model="selected" v-on:change="onChange" class="form-control">
                         <option disabled value="">Выберите один из вариантов</option>   
                             {%raw%}
@@ -29,11 +26,39 @@
                             {%endraw%}
                     </select><br>
                 </div>
+            </div>
 
+            <div class="row">
+                <p>Question 2</p>
+                <div id="idd1">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+            </div>
+                
+            <div class="row">
+                <p>Question 3</p>
+                <div id="idd2">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+            </div>
 
 
         </div>
-        {%endif%} {%endfor%}
+
         
 
   
@@ -42,13 +67,9 @@
     
             
             <div class="container">
-                {% for key, value in data.items() %} 
-                {%if value.Num|int>2 and value.Num|int<7  %} 
                 <div class="row">
-    
-    
-                    <p>{{value.Label}}</p>
-                    <div id="idd{{value.Num}}">
+                    <p>Question 4</p>
+                    <div id="idd3">
                         <select v-model="selected" v-on:change="onChange" class="form-control">
                             <option disabled value="">Выберите один из вариантов</option>   
                                 {%raw%}
@@ -58,11 +79,39 @@
                                 {%endraw%}
                         </select><br>
                     </div>
+                </div>
     
+                <div class="row">
+                    <p>Question 5</p>
+                    <div id="idd4">
+                        <select v-model="selected" v-on:change="onChange" class="form-control">
+                            <option disabled value="">Выберите один из вариантов</option>   
+                                {%raw%}
+                                    <option v-for="option in options" v-bind:value="option.Value">
+                                        {{option.Text}}
+                                    </option>
+                                {%endraw%}
+                        </select><br>
+                    </div>
+                </div>
+                    
+                <div class="row">
+                    <p>Question 6</p>
+                    <div id="idd5">
+                        <select v-model="selected" v-on:change="onChange" class="form-control">
+                            <option disabled value="">Выберите один из вариантов</option>   
+                                {%raw%}
+                                    <option v-for="option in options" v-bind:value="option.Value">
+                                        {{option.Text}}
+                                    </option>
+                                {%endraw%}
+                        </select><br>
+                    </div>
+                </div>
     
     
             </div>
-            {%endif%} {%endfor%}
+           
             
     
         
@@ -70,13 +119,9 @@
        
                 
                 <div class="container">
-                    {% for key, value in data.items() %} 
-                    {%if value.Num|int>6 and value.Num|int<11  %} 
                     <div class="row">
-        
-        
-                        <p>{{value.Label}}</p>
-                        <div id="idd{{value.Num}}">
+                        <p>Question 7</p>
+                        <div id="idd6">
                             <select v-model="selected" v-on:change="onChange" class="form-control">
                                 <option disabled value="">Выберите один из вариантов</option>   
                                     {%raw%}
@@ -86,11 +131,67 @@
                                     {%endraw%}
                             </select><br>
                         </div>
+                    </div>
+        
+                    <div class="row">
+                        <p>Question 8</p>
+                        <div id="idd7">
+                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+                    </div>
+                        
+                    <div class="row">
+                        <p>Question 9</p>
+                        <div id="idd8">
+                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                    <p>Question 10</p>
+                    <div id="idd9">
+                        <select v-model="selected" v-on:change="onChange" class="form-control">
+                            <option disabled value="">Выберите один из вариантов</option>   
+                                {%raw%}
+                                    <option v-for="option in options" v-bind:value="option.Value">
+                                        {{option.Text}}
+                                    </option>
+                                {%endraw%}
+                        </select><br>
+                    </div>
+                </div>
+
+                <div class="row">
+                <p>Question 11</p>
+                <div id="idd10">
+                    <select v-model="selected" v-on:change="onChange" class="form-control">
+                        <option disabled value="">Выберите один из вариантов</option>   
+                            {%raw%}
+                                <option v-for="option in options" v-bind:value="option.Value">
+                                    {{option.Text}}
+                                </option>
+                            {%endraw%}
+                    </select><br>
+                </div>
+            </div>
         
         
         
                 </div>
-                {%endif%} {%endfor%}
                 
         
           
