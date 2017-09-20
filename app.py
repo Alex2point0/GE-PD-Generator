@@ -139,7 +139,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('index'))
-port=int(os.getenv("PORT"))
+#port=int(os.getenv("PORT"))
 
 # This one is a test zone
 @app.route('/test')
@@ -148,4 +148,4 @@ def test():
     return render_template('test.html', data=data)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', debug=True)
