@@ -1,5 +1,5 @@
 ---
 applications:
-- name: ge-generator
+- name: test-pd-generator
   memory: 128M
 
