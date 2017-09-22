@@ -151,12 +151,15 @@ $(function () {
       if ($(this).parent().find("input").attr("id") == 'participants') {
         var participants = $(this).parent().find("input").val();
         var regex = /.*\(/;
-        alert(participants.split("; ").map(function (x) {
+        var participants = participants.split("; ").map(function (x) {
           if (x.match(regex)) {
             console.log(x.match(regex)[0].slice(0,-1));
-            return x.match(regex)[0].slice(0,-1);
+            return `<option>${x.match(regex)[0].slice(0,-1)}</option>`;
           }
-        }));
+        });
+
+        $("#participants-selected").append(participants);
+
       }
       else if ($(this).parent().find("input").attr("id") == 'participants-entered') {
         $("#participants-selected").append(`<option>${$(this).parent().find("input").val()}</option>`);
