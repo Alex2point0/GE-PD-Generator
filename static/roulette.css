@@ -22,7 +22,6 @@
     background-size: contain;
 }
 
-
 .recipe_if, .recipe_then {
     color: white;
     font-weight: bold;
@@ -31,25 +30,12 @@
 
 .tagline {
   font-weight: normal;
-  font-size: 12px; /*24*/
-}
-
-a {
- font-weight: bold;
- text-decoration: none;
- color: #33CCFF;
+  font-size: 12px;
 }
 
 .button {
-    margin-top: 25px;/*25*/
+    margin-top: 25px;
 }
-
-.default {
-    background-color: white;
-    color: #174577;
-    font-weight: bold;
-}
-
 
 .navbar-brand {
     font-size: 100%;
@@ -61,6 +47,7 @@ a {
 }
 
 body {
+    display: none;
     font-family: "Varela Round";
     background-image: url(./roulette-bg.jpg);
     background-repeat: no-repeat;
@@ -68,10 +55,6 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-.img-rotate {
-    max-width: 50px;
 }
 
 .roulette-btn {
@@ -118,7 +101,8 @@ body {
 
 .shadow-small { 
     color: white; 
-    font: bold 26px Helvetica, Arial, Sans-Serif;
+    font-weight: bold;
+    font-size: 26px;
     text-shadow: 1px 1px #174577;
     -webkit-transition: all 0.12s ease-out;
     -moz-transition:    all 0.12s ease-out;
@@ -126,21 +110,15 @@ body {
     -o-transition:      all 0.12s ease-out;
  }
 
-.shadow-tiny {
-    color: white; 
-    font: bold 26px Helvetica, Arial, Sans-Serif;
-    text-shadow: 1px 1px #174577;
-    -webkit-transition: all 0.12s ease-out;
-    -moz-transition:    all 0.12s ease-out;
-    -ms-transition:     all 0.12s ease-out;
-    -o-transition:      all 0.12s ease-out;
-}
-
 .input-shadow {
     background-color: transparent;
     border-color: transparent;
 }
 
+
+.spin {
+    max-width: 50px;
+}
 
 .spin:hover {
     -webkit-animation-name: spin;
@@ -207,14 +185,15 @@ body {
   }
 
 .search.open {
-    width: 420px;
+    width: 100%;
     border-radius: 25px;
   }
-  .search.open:before {
+
+.search.open:before {
     height: 60px;
     margin: 20px 0 20px 30px;
     position: absolute;
-  }
+}
   
 .search-box {
     width: 100%;
@@ -330,12 +309,14 @@ body {
     border-radius: 15px;		
     border: none;
 }
+
 .modal-newsletter .modal-header {
     border-bottom: none;   
     position: relative;
     text-align: center;
     border-radius: 5px 5px 0 0;
 }
+
 .modal-newsletter h4 {
     color: #000;
     text-align: center;
@@ -344,6 +325,7 @@ body {
     font-weight: bold;
     text-transform: capitalize;
 }
+
 .modal-newsletter .close {
     background: #c0c3c8;
     position: absolute;
@@ -414,4 +396,8 @@ body {
 .hint-text {
     margin: 100px auto;
     text-align: center;
+}
+
+#participants-selected {
+    background: transparent;
 }

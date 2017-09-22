@@ -17,6 +17,18 @@ Array.prototype.shuffle = function () {
   return this;
 }
 
+
+// ANIMATE.CSS HELPER
+$.fn.extend({
+  animateCss: function (animationName) {
+    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+    this.addClass('animated ' + animationName).one(animationEnd, function () {
+      $(this).removeClass('animated ' + animationName);
+    });
+    return this;
+  }
+});
+
 // EndBy
 
 // Vars and Constants
@@ -84,7 +96,7 @@ function animate() {
     rotateContents($wordbox2, wordIndex2);
     $.fn.fullpage.moveSectionDown();
   });
-  
+
   return winners; // Return Winners to store result
 }
 
@@ -121,10 +133,10 @@ $(function () {
     var winners = animate(); // Два победителя
 
     // Пишем победителей в модальное окно
-    $("#section4").find("h4").html("Congratulations!"); 
-    $("#section4").find("p").html(
-    "<i class='fa fa-user-o'/> <b>" + winners[0] + "</b> was selected to send PD Insight to <i class='fa fa-user-o' /> <b>" + winners[1] + "</b>");
-    $('#results').append("<option>" + winners[0] + " to " + winners[1] + "</option>") // Пишем победителей в список победителей
+    $("#section4").find("h4").html("Congratulations!");
+    $("#section4").find("h3").html(
+      "<i class='fa fa-user-o'/> <b>" + winners[0] + "</b><br/>was selected to send PD Insight to<br><i class='fa fa-user-o' /> <b>" + winners[1] + "</b>");
+    $('#results').append("<option><div class='transparent'>" + winners[0] + " to " + winners[1] + "</div></option>") // Пишем победителей в список победителей
   }
   );
 
@@ -135,9 +147,35 @@ $(function () {
 
   // Чтобы красиво раскрывалось
   $('.search-button').click(function () {
-    $(this).parent().toggleClass('open');
+    if ($(this).parent().hasClass("open")) {
+      if ($(this).parent().find("input").attr("id") == 'participants') {
+        var participants = $(this).parent().find("input").val();
+        var regex = /.*\(/;
+        alert(participants.split("; ").map(function (x) {
+          if (x.match(regex)) {
+            console.log(x.match(regex)[0].slice(0,-1));
+            return x.match(regex)[0].slice(0,-1);
+          }
+        }));
+      }
+      else if ($(this).parent().find("input").attr("id") == 'participants-entered') {
+        $("#participants-selected").append(`<option>${$(this).parent().find("input").val()}</option>`);
+      }
+      else {
+        console.log("Don't know what to do with this input");
+      }
+    }
+
+    else {
+      $(this).parent().toggleClass('open');
+    }
   });
+
+  $('.search-button')
+
+  $("#btn-sendEmail").click(function () {
+    $.fn.fullpage.moveSectionDown();
+
+
+  })
 })
-
-
-

@@ -1,7 +1,7 @@
 {% extends "base_no_bs.html" %} {% block head %} {{super()}}
 <link rel="stylesheet" href="{{url_for('static', filename='roulette.css')}}">
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='jQuery.fullPage.css')}}" />
-<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> {% endblock %} {% block content %}
 <div id="fullpage">
@@ -10,13 +10,13 @@
     <section id="section1" class="section">
         <div class="container">
             <row>
-                <div class="col-md-offset-3 col-md-6 no-padding">
+                <div class="col-md-offset-2 col-md-8 text-center">
                     <form method="POST">
                         <div class="no-padding">
 
                             <div class="form-group">
                                 <div class="shadow-small">
-                                    <label for="participants"><span class="glyphicon glyphicon-user"></span> Copy participants from your Outlook</label>
+                                    <label for="participants"><span class="fa fa-address-card-o"></span> Paste participants from clipboard</label>
                                 </div>
                                 <div class="search">
                                     <input type="text" class="search-box" name="participants" id="participants" />
@@ -28,7 +28,7 @@
 
                             <div class="form-group">
                                 <div class="shadow-small">
-                                    <label for="participant-entered" class="shadow-small"><span class="glyphicon glyphicon-thumbs-up"></span> You can also add participants by hand<br>(use ',' to separate names)</label>
+                                    <label for="participants-entered" class="shadow-small"><span class="fa fa-keyboard-o"></span> Add participants</label>
                                 </div>
                                 <div class="search">
                                     <input type="text" class="search-box" name="participants-entered" id="participants-entered" />
@@ -36,6 +36,12 @@
                                                 <span class="search-icon"></span>
                                     </span>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="participants-selected" class="shadow-small">Select participants below</label>
+                                <select class="form-control" id="participants-selected" multiple>
+                                    </select>
                             </div>
 
                             <div class="form-group">
@@ -73,7 +79,7 @@
                     <div class='shadow text-center'>
                         <div class='btn roulette-btn no-padding' id='btn-rotate'>
                             <div class="recipe_then">Spin the wheel</div>
-                            <div><img src="{{url_for('static', filename='roulette.svg')}}" class="img-rotate spin" /></div>
+                            <div><img src="{{url_for('static', filename='roulette.svg')}}" class="spin" /></div>
                         </div>
                     </div>
                 </div>
@@ -86,11 +92,11 @@
             <row>
                 <div class="col-md-offset-2 col-md-8 text-center">
                     <div class="form-group">
-                        <label for="results" class="shadow-small">Select results</label>
-                        <select class="form-control search-box" name="results" id="results" multiple></select>
+                        <label for="results" class="shadow-small">Select the result</label>
+                        <select class="form-control search-box" name="results" id="results"></select>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="shadow input-shadow" value="Send emails">
+                        <input type="submit" class="shadow input-shadow" value="Send emails" id="btn-sendEmail">
                     </div>
                 </div>
             </row>
@@ -111,7 +117,7 @@
                         </div>
                         <div class="modal-body text-center">
                             <h4>Send email &amp; save results</h4>
-                            <p>Results are always available at Predix Cloud</p>
+                            <h3>Results are always available at Predix Cloud</h3>
                             <div class="input-group">
                                 <span class="input-group-btn">
                                     <input type="submit" class="btn btn-primary" value="Send Email &amp; Save Results">
@@ -137,12 +143,36 @@
         }
     </script>
     <script type="text/javascript" src="{{url_for('static', filename='roulette.js')}}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='jQuery.fullPage.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.js"></script>
     <script>
         $(document).ready(function () {
+            $("body").show();
+
             $('#fullpage').fullpage({
                 navigation: true,
-                anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage']
+                anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
+
+                afterLoad: function (anchorLink, index) {
+                    var loadedSection = $(this);
+
+                    //using anchorLink
+                    if (anchorLink == 'secondPage') {
+                        loadedSection.find("#btn-rotate").animateCss("tada");
+                        console.log(index);
+                    }
+
+                    if (anchorLink = 'fourthPage') {
+                        loadedSection.find(".fa").animateCss("swing");
+                    }
+                },
+
+                onLeave: function (index, nextIndex, direction) {
+                    var leavingSection = $(this);
+
+                    leavingSection.animateCss("fadeOut");
+                    $(`.section:eq(${nextIndex - 1})`).animateCss("fadeIn");
+
+                }
             });
         });
     </script>
