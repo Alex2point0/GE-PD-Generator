@@ -64,9 +64,9 @@
 
     
     <section id="section2" class="section ">
-        <div id=changeChooseType>       
-            <div v-if="ChooseType ==='dropdown'">
-                <div class="container  logic-field">
+        <div class="container">       
+            <div class="row">
+                <div class = "col-sm-5">
                     <div class="row">
                         <p>Question 4</p>
                         <div id="idd3">
@@ -97,7 +97,7 @@
                         
                     <div class="row">
                         <p>Question 6</p>
-                        <div id="idd5">
+                        <div id="idd50">
                             <select v-model="selected" v-on:change="onChange" class="form-control">
                                 <option disabled value="">Выберите один из вариантов</option>   
                                     {%raw%}
@@ -108,14 +108,30 @@
                             </select><br>
                         </div>
                     </div>
-
-
                 </div>
+                <div class = "col-sm-2"></div>
+                <div class = "col-sm-5">
+                    <div class="row">
+                        <p>Hashtag</p>
+                        <input id="inputHash" class="form-control" v-model="hash"  v-on:input= "hashChanged"></input><br>
+                    </div>
+                    <div class="row" id="idd51">
+                        <p>Choose your frase</p>
+                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                                    <option disabled value="">Выберите один из вариантов</option>   
+                                        {%raw%}
+                                            <option v-for="option in options" v-bind:value="option.Value">
+                                                {{option.Text}}
+                                            </option>
+                                        {%endraw%}
+                                </select><br>
+
+                    </div>
+                    
+                </div>
+
+
             </div>
-            <div v-else="">
-                Privet
-            </div>
-            <button @click="changeChoosingType">Change choosing method</button>
         </div>
     </section>    
             
@@ -223,17 +239,7 @@
 
 <!-- SCRIPT SECTION-->
 <script>
-    new Vue({
-        el:'#changeChooseType',
-        data:{
-            ChooseType: "dropdown"
-        },
-        methods: {
-            changeChoosingType: function () {
-                return this.ChooseType = this.ChooseType === 'dropdown' ? 'hash' : 'dropdown'
-            }
-        }
-    })
+   
 
 
 
@@ -260,6 +266,21 @@
         methods: {
             returnName: function() {
                 return this.name;
+            }
+        }
+    })
+
+    var inputHash=new Vue({
+        el: '#inputHash',
+        data: {
+            hash: '',
+        },
+        methods: {
+            returnHash: function() {
+                return this.hash;
+            },
+            hashChanged: function(){
+                list51.update(this.hash.split(' '));
             }
         }
     })
@@ -328,7 +349,11 @@
         methods: {
             onChange: function (event) {
                 list4.update(event.srcElement.value);
+                alert("list4");
             },
+            Method1 : function () {
+                alert("adsadsada");
+            }
         }
     })
 
@@ -358,7 +383,7 @@
     })
 
     var list5 = new Vue({
-        el: '#idd5',
+        el: '#idd50',
         data: {
             selected: '',
             options: data["6"].Options,
@@ -374,6 +399,40 @@
                     }
                 }
                 this.options = res;
+            },
+
+            onChange: function (event) {
+                finalText.updateText(5, this.options[this.selected]);
+            },
+        }
+    })
+
+    var list51 = new Vue({
+        el: '#idd51',
+        data: {
+            selected: '',
+            options: data["6"].Options,
+            name: '',
+            test: {}
+        },
+        methods: {
+
+            update: function (value) {
+                var res1 = {};
+                var res = data["6"]["Options"].slice();
+                this.test=res;
+                alert(res.length);
+                for (item in value){
+                    for (key in res) {
+                        //alert(key);
+                        if (String(res[key]['Hash']).indexOf(value[item]) !=-1) {
+                            res1[key]=res[key];
+                            //alert(String(res[key]['Hash']).indexOf(value[item]));
+                            //alert(key);
+                        }
+                    }
+                }
+                this.options = res1;
             },
 
             onChange: function (event) {
@@ -502,7 +561,7 @@
             }
         }
     })
-
+    
 
 
 
