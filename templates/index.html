@@ -63,51 +63,59 @@
    
 
     
-    <section id="section2" class="section ">       
-        <div class="container  logic-field">
-            <div class="row">
-                <p>Question 4</p>
-                <div id="idd3">
-                    <select v-model="selected" v-on:change="onChange" class="form-control">
-                        <option disabled value="">Выберите один из вариантов</option>   
-                            {%raw%}
-                                <option v-for="option in options" v-bind:value="option.Value">
-                                    {{option.Text}}
-                                </option>
-                            {%endraw%}
-                    </select><br>
+    <section id="section2" class="section ">
+        <div id=changeChooseType>       
+            <div v-if="ChooseType ==='dropdown'">
+                <div class="container  logic-field">
+                    <div class="row">
+                        <p>Question 4</p>
+                        <div id="idd3">
+                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <p>Question 5</p>
+                        <div id="idd4">
+                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+                    </div>
+                        
+                    <div class="row">
+                        <p>Question 6</p>
+                        <div id="idd5">
+                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
-
-            <div class="row">
-                <p>Question 5</p>
-                <div id="idd4">
-                    <select v-model="selected" v-on:change="onChange" class="form-control">
-                        <option disabled value="">Выберите один из вариантов</option>   
-                            {%raw%}
-                                <option v-for="option in options" v-bind:value="option.Value">
-                                    {{option.Text}}
-                                </option>
-                            {%endraw%}
-                    </select><br>
-                </div>
+            <div v-else="">
+                Privet
             </div>
-                
-            <div class="row">
-                <p>Question 6</p>
-                <div id="idd5">
-                    <select v-model="selected" v-on:change="onChange" class="form-control">
-                        <option disabled value="">Выберите один из вариантов</option>   
-                            {%raw%}
-                                <option v-for="option in options" v-bind:value="option.Value">
-                                    {{option.Text}}
-                                </option>
-                            {%endraw%}
-                    </select><br>
-                </div>
-            </div>
-
-
+            <button @click="changeChoosingType">Change choosing method</button>
         </div>
     </section>    
             
@@ -215,6 +223,21 @@
 
 <!-- SCRIPT SECTION-->
 <script>
+    new Vue({
+        el:'#changeChooseType',
+        data:{
+            ChooseType: "dropdown"
+        },
+        methods: {
+            changeChoosingType: function () {
+                return this.ChooseType = this.ChooseType === 'dropdown' ? 'hash' : 'dropdown'
+            }
+        }
+    })
+
+
+
+
     function getValuesByOptionChosen(value) {
         return value['Parent'] == Parent;
     }
@@ -486,6 +509,7 @@
     $(document).ready(function () {
         $('#fullpage').fullpage({
             navigation: true,
+            slidesNavigation: true
         });
     });
 
