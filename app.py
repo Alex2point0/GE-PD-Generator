@@ -74,25 +74,28 @@ def upload_file():
             # PANDAS
             # Now let's prepare file 
             df = pd.read_excel(app.config['UPLOAD_FOLDER'] + '/' + filename)
-            df.columns = ['qID', 'Text', 'Parent']
-            df.loc[:,'Label'] = 'Dummy'
 
-            def prepare_json_from_xlsx(df):
+            def prepare_json_from_xlsx(d):
+                sep_idx = d[d['QuestionID'] == 'SEPARATOR'].index[0]
+                labels = d[d.index < sep_idx].set_index('QuestionID').Text
+                d = d[d.index > sep_idx]
+                
                 data = {}
-                for i, q in enumerate(df.qID.unique()):
-                    df.loc[df.qID == q,'Value'] = np.arange(df[df.qID == q].shape[0], dtype='int')
+                for i, q in enumerate(d.QuestionID.unique()):
+                    d.loc[df.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
                     data[str(q)] = {
-                        'Label': df.loc[df.qID == q, 'Label'].iloc[0],
+                        'Label': labels[q],
                         'Num': i,
-                        'Options': [{'Parent': row[2], 'Text': row[1], 'Value': row[4]}
-                                    for row 
-                                    in df.loc[df.qID == q].values]
-                    }
+                        'Options': [
+                            {'Parent': row[1], 'Text': row[0], 'Value': row[2], 'Hashtag': row[3]}
+                            for row in d.loc[d.QuestionID == q].values]
+                        }
+                        
                 return data
-
 
             res = prepare_json_from_xlsx(df)
             
+            # Save
             with open(app.config['UPLOAD_FOLDER'] + '/' + filename, 'w') as outfile:
                 json.dump(res, outfile)
 
@@ -179,6 +182,7 @@ def roulette():
 
     if request.method == 'GET':
         data = {}
+        scroll = None
         for i in range(10):
             data[i] = {
                 'name': 'Person #' + str(i),
@@ -191,32 +195,42 @@ def roulette():
         participants = request.form['participants']
         participants = participants.split(";")
         participants = [p for p in participants if '~CORP' not in p]
+
+        participants_selected = request.form.getlist('participants-selected')
+        print(participants_selected)
         
         data = {}
-        for i, p in enumerate(participants):
-            data[i] = {}
-            
-            # Parsing name
-            name = re.search(r'.*\(', p)
-            if name:
-                data[i]['name'] = name.group()[:-1]
+        if participants_selected:
+            for i in range(len(participants_selected)):
+                data[i] = {}
+                data[i]['name'] = participants_selected[i]
+                data[i]['email'] = None
+                scroll = 'secondPage'
+        else:
+            for i, p in enumerate(participants):
+                data[i] = {}
                 
-            # Parsing email
-            email = re.search(r'<.+@.+>', p)
-            if email:
-                data[i]['email'] = email.group()[1:-1]
+                # Parsing name
+                name = re.search(r'.*\(', p)
+                if name:
+                    data[i]['name'] = name.group()[:-1]
+                    
+                # Parsing email
+                email = re.search(r'<.+@.+>', p)
+                if email:
+                    data[i]['email'] = email.group()[1:-1]
 
-        # Adding Entered values to Data
-        participants_entered = request.form['participants-entered']
-        if participants_entered:
-            participants_entered = participants_entered.split(",")
-            for i in range(len(participants_entered) - 1):
-                idx = i + len(data.keys())
-                data[idx] = {}
-                data[idx]['name'] = participants_entered[i]
-                data[idx]['email'] = None
+            # Adding Entered values to Data
+            participants_entered = request.form['participants-entered']
+            if participants_entered:
+                participants_entered = participants_entered.split(",")
+                for i in range(len(participants_entered) - 1):
+                    idx = i + len(data.keys())
+                    data[idx] = {}
+                    data[idx]['name'] = participants_entered[i]
+                    data[idx]['email'] = None
 
-    return render_template('roulette.html', data=json.dumps(data))
+    return render_template('roulette.html', data=json.dumps(data), scroll=scroll)
 
 if __name__ == '__main__':
     port = int(os.getenv("PORT"))
