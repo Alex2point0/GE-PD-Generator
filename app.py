@@ -71,25 +71,28 @@ def upload_file():
             # PANDAS
             # Now let's prepare file 
             df = pd.read_excel(app.config['UPLOAD_FOLDER'] + '/' + filename)
-            df.columns = ['qID', 'Text', 'Parent']
-            df.loc[:,'Label'] = 'Dummy'
 
-            def prepare_json_from_xlsx(df):
+            def prepare_json_from_xlsx(d):
+                sep_idx = d[d['QuestionID'] == 'SEPARATOR'].index[0]
+                labels = d[d.index < sep_idx].set_index('QuestionID').Text
+                d = d[d.index > sep_idx]
+                
                 data = {}
-                for i, q in enumerate(df.qID.unique()):
-                    df.loc[df.qID == q,'Value'] = np.arange(df[df.qID == q].shape[0], dtype='int')
+                for i, q in enumerate(d.QuestionID.unique()):
+                    d.loc[df.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
                     data[str(q)] = {
-                        'Label': df.loc[df.qID == q, 'Label'].iloc[0],
+                        'Label': labels[q],
                         'Num': i,
-                        'Options': [{'Parent': row[2], 'Text': row[1], 'Value': row[4]}
-                                    for row 
-                                    in df.loc[df.qID == q].values]
-                    }
+                        'Options': [
+                            {'Parent': row[2], 'Text': row[1], 'Value': row[4], 'Hashtag': row[3].split(",")}
+                            for row in d.loc[d.QuestionID == q].values]
+                        }
+                        
                 return data
-
 
             res = prepare_json_from_xlsx(df)
             
+            # Save
             with open(app.config['UPLOAD_FOLDER'] + '/' + filename, 'w') as outfile:
                 json.dump(res, outfile)
 
@@ -139,7 +142,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('index'))
-port=int(os.getenv("PORT"))
+#port=int(os.getenv("PORT"))
 
 # This one is a test zone
 @app.route('/test')
@@ -148,4 +151,4 @@ def test():
     return render_template('test.html', data=data)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', debug=True)

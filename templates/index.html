@@ -113,7 +113,7 @@
                 <div class = "col-sm-5">
                     <div class="row">
                         <p>Hashtag</p>
-                        <input id="inputHash" class="form-control" v-model="hash"  v-on:input= "hashChanged"></input><br>
+                        <input id="inputHashtag" class="form-control" v-model="hashtag"  v-on:input= "hashtagChanged"></input><br>
                     </div>
                     <div class="row" id="idd51">
                         <p>Choose your frase</p>
@@ -270,17 +270,17 @@
         }
     })
 
-    var inputHash=new Vue({
-        el: '#inputHash',
+    var inputHashtag=new Vue({
+        el: '#inputHashtag',
         data: {
-            hash: '',
+            hashtag: '',
         },
         methods: {
-            returnHash: function() {
-                return this.hash;
+            returnHashtag: function() {
+                return this.hashtag;
             },
-            hashChanged: function(){
-                list51.update(this.hash.split(' '));
+            hashtagChanged: function(){
+                list51.update(this.hashtag.split(' '));
             }
         }
     })
@@ -349,10 +349,6 @@
         methods: {
             onChange: function (event) {
                 list4.update(event.srcElement.value);
-                alert("list4");
-            },
-            Method1 : function () {
-                alert("adsadsada");
             }
         }
     })
@@ -402,6 +398,7 @@
             },
 
             onChange: function (event) {
+                list51.selected='';
                 finalText.updateText(5, this.options[this.selected]);
             },
         }
@@ -418,17 +415,16 @@
         methods: {
 
             update: function (value) {
-                var res1 = {};
+                var res1= {Point:"Empty"};
                 var res = data["6"]["Options"].slice();
                 this.test=res;
-                alert(res.length);
                 for (item in value){
+                    if (res1["Point"]!="Empty"){res=res1;}
+                    res1 = {};
                     for (key in res) {
-                        //alert(key);
-                        if (String(res[key]['Hash']).indexOf(value[item]) !=-1) {
+                       // alert(String(res[key]['Hashtag'])+"  "+value[item]);
+                        if (String(res[key]['Hashtag']).indexOf(value[item]) !=-1) {
                             res1[key]=res[key];
-                            //alert(String(res[key]['Hash']).indexOf(value[item]));
-                            //alert(key);
                         }
                     }
                 }
@@ -436,6 +432,7 @@
             },
 
             onChange: function (event) {
+                list5.selected='';
                 finalText.updateText(5, this.options[this.selected]);
             },
         }
