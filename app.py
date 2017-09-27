@@ -78,15 +78,27 @@ def upload_file():
                 d = d[d.index > sep_idx]
                 
                 data = {}
-                for i, q in enumerate(d.QuestionID.unique()):
-                    d.loc[df.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
-                    data[str(q)] = {
-                        'Label': labels[q],
-                        'Num': i,
-                        'Options': [
-                            {'Parent': row[2], 'Text': row[1], 'Value': row[4], 'Hashtag': row[3].split(",")}
-                            for row in d.loc[d.QuestionID == q].values]
+                for i, q in enumerate(labels.index.unique()):
+                    if d[d.QuestionID == q].shape[0] == 0:
+                        data[str(q)] = {
+                            'Label': labels[q],
+                            'Num': i,
+                            'Options': [
+                                {'Parent': '*',
+                                'Text': '*',
+                                'Value': '*',
+                                'Hashtag': '*'}
+                            ]
                         }
+                    else:
+                        d.loc[df.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
+                        data[str(q)] = {
+                            'Label': labels[q],
+                            'Num': i,
+                            'Options': [
+                                {'Parent': row[2], 'Text': row[1], 'Value': row[4], 'Hashtag': row[3].split(",")}
+                                for row in d.loc[d.QuestionID == q].values]
+                            }
                         
                 return data
 

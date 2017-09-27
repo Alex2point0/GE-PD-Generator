@@ -10,12 +10,11 @@
                 <h1>PD Insights Generator</h1>
             </div>
             <div class="row">
-                <p>Enter the name</p>
+                <p id="label1">{%raw%}{{label1}}{%endraw%}</p>
                 <input id="inputName" class="form-control" v-model="name"></input>
             </div><br>
-            
             <div class="row">
-                <p>Question 1</p>
+                <p id="label2">{%raw%}{{label2}}{%endraw%}</p>
                 <div id="idd0">
                     <select v-model="selected" v-on:change="onChange" class="form-control">
                         <option disabled value="">Выберите один из вариантов</option>   
@@ -29,7 +28,7 @@
             </div>
 
             <div class="row">
-                <p>Question 2</p>
+                <p id="label3">{%raw%}{{label3}}{%endraw%}</p>
                 <div id="idd1">
                     <select v-model="selected" v-on:change="onChange" class="form-control">
                         <option disabled value="">Выберите один из вариантов</option>   
@@ -43,7 +42,7 @@
             </div>
                 
             <div class="row">
-                <p>Question 3</p>
+                <p id="label4">{%raw%}{{label4}}{%endraw%}</p>
                 <div id="idd2">
                     <select v-model="selected" v-on:change="onChange" class="form-control">
                         <option disabled value="">Выберите один из вариантов</option>   
@@ -68,7 +67,7 @@
             <div class="row">
                 <div class = "col-sm-5">
                     <div class="row">
-                        <p>Question 4</p>
+                        <p id="label5">{%raw%}{{label5}}{%endraw%}</p>
                         <div id="idd3">
                             <select v-model="selected" v-on:change="onChange" class="form-control">
                                 <option disabled value="">Выберите один из вариантов</option>   
@@ -82,7 +81,7 @@
                     </div>
 
                     <div class="row">
-                        <p>Question 5</p>
+                        <p id="label6">{%raw%}{{label6}}{%endraw%}</p>
                         <div id="idd4">
                             <select v-model="selected" v-on:change="onChange" class="form-control">
                                 <option disabled value="">Выберите один из вариантов</option>   
@@ -96,7 +95,7 @@
                     </div>
                         
                     <div class="row">
-                        <p>Question 6</p>
+                        <p id="label7">{%raw%}{{label7}}{%endraw%}</p>
                         <div id="idd50">
                             <select v-model="selected" v-on:change="onChange" class="form-control">
                                 <option disabled value="">Выберите один из вариантов</option>   
@@ -112,11 +111,11 @@
                 <div class = "col-sm-2"></div>
                 <div class = "col-sm-5">
                     <div class="row">
-                        <p>Hashtag</p>
+                        <p id="label8">{%raw%}{{label8}}{%endraw%}</p>
                         <input id="inputHashtag" class="form-control" v-model="hashtag"  v-on:input= "hashtagChanged"></input><br>
                     </div>
                     <div class="row" id="idd51">
-                        <p>Choose your frase</p>
+                            <p id="label9">{%raw%}{{label9}}{%endraw%}</p>
                             <select v-model="selected" v-on:change="onChange" class="form-control">
                                     <option disabled value="">Выберите один из вариантов</option>   
                                         {%raw%}
@@ -142,7 +141,7 @@
     <section id="section3" class="section">        
         <div class="container">
             <div class="row">
-                <p>Question 7</p>
+                <p id="label10">{%raw%}{{label10}}{%endraw%}</p>
                 <div id="idd6">
                     <select v-model="selected" v-on:change="onChange" class="form-control">
                         <option disabled value="">Выберите один из вариантов</option>   
@@ -156,7 +155,7 @@
             </div>
             <div class= "container logic-field">
                 <div class="row">
-                    <p>Question 8</p>
+                    <p id="label11">{%raw%}{{label11}}{%endraw%}</p>
                     <div id="idd7">
                         <select v-model="selected" v-on:change="onChange" class="form-control">
                             <option disabled value="">Выберите один из вариантов</option>   
@@ -170,7 +169,7 @@
                 </div>
                     
                 <div class="row">
-                    <p>Question 9</p>
+                    <p id="label12">{%raw%}{{label12}}{%endraw%}</p>
                     <div id="idd8">
                         <select v-model="selected" v-on:change="onChange" class="form-control">
                             <option disabled value="">Выберите один из вариантов</option>   
@@ -184,7 +183,7 @@
                 </div>
 
                 <div class="row">
-                    <p>Question 10</p>
+                    <p id="label13">{%raw%}{{label13}}{%endraw%}</p>
                     <div id="idd9">
                         <select v-model="selected" v-on:change="onChange" class="form-control">
                             <option disabled value="">Выберите один из вариантов</option>   
@@ -199,7 +198,7 @@
             </div>
 
             <div class="row">
-                <p>Question 11</p>
+                <p id="label14">{%raw%}{{label14}}{%endraw%}</p>
                 <div id="idd10">
                     <select v-model="selected" v-on:change="onChange" class="form-control">
                         <option disabled value="">Выберите один из вариантов</option>   
@@ -239,10 +238,6 @@
 
 <!-- SCRIPT SECTION-->
 <script>
-   
-
-
-
 
     function getValuesByOptionChosen(value) {
         return value['Parent'] == Parent;
@@ -257,6 +252,76 @@
 
 
     var data = JSON.parse('{{ data | tojson }}');
+
+    new Vue({
+        el: '#label1',
+        data: {label1: data["1"]['Label']}
+    })
+
+    new Vue({
+        el: '#label2',
+        data: {label2: data["2"]['Label']}
+    })
+
+    new Vue({
+        el: '#label3',
+        data: {label3: data["3"]['Label']}
+    })
+
+    new Vue({
+        el: '#label4',
+        data: {label4: data["4"]['Label']}
+    })
+
+    new Vue({
+        el: '#label5',
+        data: {label5: data["5"]['Label']}
+    })
+
+    new Vue({
+        el: '#label6',
+        data: {label6: data["6"]['Label']}
+    })
+
+    new Vue({
+        el: '#label7',
+        data: {label7: data["7"]['Label']}
+    })
+
+    new Vue({
+        el: '#label8',
+        data: {label8: data["8"]['Label']}
+    })
+
+    new Vue({
+        el: '#label9',
+        data: {label9: data["9"]['Label']}
+    })
+
+    new Vue({
+        el: '#label10',
+        data: {label10: data["10"]['Label']}
+    })
+
+    new Vue({
+        el: '#label11',
+        data: {label11: data["11"]['Label']}
+    })
+
+    new Vue({
+        el: '#label12',
+        data: {label12: data["12"]['Label']}
+    })
+
+    new Vue({
+        el: '#label13',
+        data: {label13: data["13"]['Label']}
+    })
+
+    new Vue({
+        el: '#label14',
+        data: {label14: data["14"]['Label']}
+    })
 
     var inputName=new Vue({
         el: '#inputName',
