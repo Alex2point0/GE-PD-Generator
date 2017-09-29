@@ -91,6 +91,7 @@ def upload_file():
                             ]
                         }
                     else:
+                        d.loc[:, ['Text', 'Parent', 'Hashtag']].fillna("*", inplace=True)
                         d.loc[df.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
                         data[str(q)] = {
                             'Label': labels[q],
@@ -102,12 +103,13 @@ def upload_file():
                         
                 return data
 
-            res = prepare_json_from_xlsx(df)
-            
-            # Save
-            with open(app.config['UPLOAD_FOLDER'] + '/' + filename, 'w') as outfile:
-                json.dump(res, outfile)
-
+            try:
+                res = prepare_json_from_xlsx(df)
+                # Save
+                with open(app.config['UPLOAD_FOLDER'] + '/' + filename, 'w') as outfile:
+                    json.dump(res, outfile)
+            except:
+                print("Error")
             ## END PANDAS
             return redirect(url_for('uploaded_file',
                                     filename=filename))
