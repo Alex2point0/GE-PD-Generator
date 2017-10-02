@@ -92,7 +92,7 @@ def upload_file():
                         }
                     else:
                         d.loc[:, ['Text', 'Parent', 'Hashtag']].fillna("*", inplace=True)
-                        d.loc[df.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
+                        d.loc[d.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
                         data[str(q)] = {
                             'Label': labels[q],
                             'Num': i,
