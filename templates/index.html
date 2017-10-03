@@ -7,7 +7,8 @@
     <section id="section1" class="section">    
         <div class="container">
             <div class="navbar background-logo col-md-12 col-md-offset-3">
-                <h1>PD Insights Generator</h1>
+                <h1>PD@GE: Insights Draft Assistant</h1>
+                <h2>Step1: Construct greeting.</h2>
             </div>
             <div class="row">
                 <p id="label1">{%raw%}{{label1}}{%endraw%}</p>
@@ -62,8 +63,12 @@
    
 
     
-    <section id="section2" class="section ">
+    <section id="section2" class="section "><br>
         <div class="container">       
+            <div class="navbar background-logo col-md-12 col-md-offset-3">
+                <h1>PD@GE: Insights Draft Assistant</h1>
+                <h2>Step1: Construct greeting.</h2>
+            </div>
             <div class="row">
                 <div class = "col-sm-5">
                     <div class="row">
@@ -128,8 +133,13 @@
                     </div>
                     
                 </div>
-
-
+            </div>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                <button type="button", class="btn btn-primary btn-block">Next step</button>
+                </div>
+                <div class="col-md-5"></div>
             </div>
         </div>
     </section>    
@@ -140,6 +150,10 @@
        
     <section id="section3" class="section">        
         <div class="container">
+            <div class="navbar background-logo col-md-12 col-md-offset-3">
+                <h1>PD@GE: Insights Draft Assistant</h1>
+                <h2>Step1: Construct greeting.</h2>
+            </div>
             <div class="row">
                 <p id="label10">{%raw%}{{label10}}{%endraw%}</p>
                 <div id="idd6">
@@ -210,19 +224,28 @@
                     </select><br>
                 </div>
             </div>
-
-            <div id="finalText"><br>
-                <button v-on:click="show=!show" class="btn-block">Generate</button>
-                <transition name="fade">
-                    <p>
-                        <textarea v-if="show" class="form-control" rows=6>{%raw%}{{text}}{%endraw%} </textarea>
-                    </p>
-                </transition>
-    
-            </div>
         </div>
     </section>
+    
+    <section id="section4" class= "section"<br>
+        <div class="container">
+            <div class="row">
+
+            </div>
+            <div class= "row">
+                <div id="finalText"><br>
+                    <button v-on:click="show=!show" class="btn-block">Generate</button>
+                    <transition name="fade">
+                        <p>
+                            <textarea v-if="show" class="form-control" rows=6>{%raw%}{{text}}{%endraw%} </textarea>
+                        </p>
+                    </transition>
         
+                </div>
+            </div>
+        </div>
+
+    </section>
               
         
           
@@ -629,8 +652,7 @@
 
     $(document).ready(function () {
         $('#fullpage').fullpage({
-            navigation: true,
-            slidesNavigation: true
+            anchors: ['firstPage', 'secondPage', '3rdPage'],
         });
     });
 

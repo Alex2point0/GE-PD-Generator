@@ -7,7 +7,7 @@
     background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0) 30%),
     -webkit-linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.01) 30%),
     url(./background.png) no-repeat;
-    height: 246px;
+    height: 230px;
 
 
     /*Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+14,ffffff+14,ffffff+100&1+14,0+100 */
@@ -21,9 +21,7 @@
     background: transparent;
 }
 
-.btn {
-    background: transparent;
-}
+
 
 .input-field {
     max-width: 25%;
