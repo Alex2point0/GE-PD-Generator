@@ -6,14 +6,17 @@
     
     <section id="section1" class="section">    
         <div class="container">
+            
             <div class="navbar background-logo col-md-12 col-md-offset-3">
                 <h1>PD@GE: Insights Draft Assistant</h1>
                 <h2>Step1: Construct greeting.</h2>
             </div>
+            
             <div class="row">
                 <p id="label1">{%raw%}{{label1}}{%endraw%}</p>
                 <input id="inputName" class="form-control" v-model="name"></input>
             </div><br>
+            
             <div class="row">
                 <p id="label2">{%raw%}{{label2}}{%endraw%}</p>
                 <div id="idd0">
@@ -54,6 +57,14 @@
                             {%endraw%}
                     </select><br>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <button type="button1" class="btn btn-primary btn-block slideDown" id="button1" href="#">Next step</button>
+                </div>
+                <div class="col-md-5"></div>
             </div>
 
 
@@ -137,7 +148,7 @@
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-2">
-                <button type="button", class="btn btn-primary btn-block">Next step</button>
+                    <button id="button1", class="btn btn-primary btn-block slideDown">Next step</button>
                 </div>
                 <div class="col-md-5"></div>
             </div>
@@ -224,24 +235,44 @@
                     </select><br>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-2">
+                    <button id="button1", class="btn btn-primary btn-block slideDown">Next step</button>
+                </div>
+                <div class="col-md-5"></div>
+            </div>
+
         </div>
     </section>
     
     <section id="section4" class= "section"<br>
         <div class="container">
+            <div class="navbar background-logo col-md-12 col-md-offset-3">
+                <h1>PD@GE: Insights Draft Assistant</h1>
+                <h2>Step1: Construct greeting.</h2>
+            </div>
             <div class="row">
 
             </div>
             <div class= "row">
                 <div id="finalText"><br>
-                    <button v-on:click="show=!show" class="btn-block">Generate</button>
                     <transition name="fade">
                         <p>
-                            <textarea v-if="show" class="form-control" rows=6>{%raw%}{{text}}{%endraw%} </textarea>
+                            <textarea class="form-control" id="finalTextBox" rows=6>{%raw%}{{text}}{%endraw%} </textarea>
                         </p>
                     </transition>
         
                 </div>
+            </div>
+            <div class = "row">
+                    <div class="col-md-6">
+                        <button id="BackToStart", class="btn btn-primary btn-block">Start from beginning</button>
+                    </div>
+                    <div class="col-md-6" id="CopyToClipboard">
+                        <button v-on:click="Copy" class="btn btn-primary btn-block">Copy to Clipboard</button>
+                    </div>
             </div>
         </div>
 
@@ -640,21 +671,36 @@
                     this.text = this.text + " " + this.arr[el];
                 }
 
-            },
-            makeTextVisible: function () {
-
             }
         }
     })
-    
+
+    var CopyToClipboard = new Vue ({
+        el: '#CopyToClipboard',
+        methods: {
+            Copy: function(){
+                document.getElementById("finalTextBox").select();
+                var successful = document.execCommand('copy');
+                alert('Copied to clipboard')
+            }
+        }
+    })    
 
 
 
     $(document).ready(function () {
         $('#fullpage').fullpage({
-            anchors: ['firstPage', 'secondPage', '3rdPage'],
+            anchors: ['firstPage', 'secondPage', '3rdPage']
         });
     });
+
+    $('.slideDown').click(function(){
+        $.fn.fullpage.moveSectionDown()
+    });
+
+    $('#BackToStart').click(function() {
+        $.fn.fullpage.moveTo('firstPage')
+    })
 
 </script>
 {% endblock %}
