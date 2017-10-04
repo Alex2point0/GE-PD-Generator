@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     {% block head %}
 
@@ -11,6 +10,9 @@
     <!-- JQUERY UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
+
+    <!-- JQUERY VALIDATE -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
 
     <!-- BOOTSTRAP -->
     <!-- Latest compiled and minified CSS -->
@@ -24,7 +26,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-    
+
     <!-- User defined -->
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
 
@@ -51,9 +53,9 @@
     <!-- END CONTENT-->
     {% block footer %}
     <div class="footer navbar-fixed-bottom">
-            <div class="col-md-12 text-right h4">
-                &copy; Copyright 2017 by <strong>Oleg Khomenko</strong>, Roman Zemlyanskiy, Mikhail Berezovskiy @ GE Russia/CIS
-            </div>
+        <div class="col-md-12 text-right h4">
+            &copy; Copyright 2017 by <strong>Oleg Khomenko</strong>, Roman Zemlyanskiy, Mikhail Berezovskiy @ GE Russia/CIS
+        </div>
     </div>
     {% endblock %}
 </body>

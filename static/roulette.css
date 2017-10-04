@@ -46,6 +46,10 @@
     font-weight: bold;
 }
 
+.form-control.white {
+    color: black;
+}
+
 body {
     display: none;
     font-family: "Varela Round";
@@ -73,7 +77,7 @@ body {
 
 .shadow {
     color: white;
-    font: bold 52px Helvetica, Arial, Sans-Serif;
+    font: bold 300% Helvetica, Arial, Sans-Serif;
     text-shadow: 1px 1px #174577, 
                  2px 2px #174577, 
                  3px 3px #174577, 
@@ -102,7 +106,7 @@ body {
 .shadow-small { 
     color: white; 
     font-weight: bold;
-    font-size: 26px;
+    font-size: 200%;
     text-shadow: 1px 1px #174577;
     -webkit-transition: all 0.12s ease-out;
     -moz-transition:    all 0.12s ease-out;
@@ -167,7 +171,7 @@ body {
 .search {
     width: 100px;
     height: 100px;
-    margin: 40px auto 0;
+    margin: 10px auto 0;
     background-color: rgba(46, 46, 46, 0.36);
     position: relative;
     overflow: hidden;
@@ -280,14 +284,7 @@ body {
     height: 18px;
   }
 
-  ::selection {
-  background: rgba(255, 255, 255, 0.48); /* WebKit/Blink Browsers */
-  color: white;
-}
-::-moz-selection {
-    background: rgba(255, 255, 255, 0.48); /* GECKO */
-    color: white;
-}
+
 
 /* Modal Window */
 
@@ -320,6 +317,15 @@ body {
 .modal-newsletter h4 {
     color: #000;
     text-align: center;
+    font-size: 30px;
+    margin: 0 0 25px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.text-left h3 {
+    color: #000;
+    text-align: left;
     font-size: 30px;
     margin: 0 0 25px;
     font-weight: bold;
@@ -391,6 +397,13 @@ body {
 
 .modal-newsletter.form-control {
     color:black;
+}
+
+.email {
+    border-style: dashed;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: #7265ea;
 }
 
 .hint-text {

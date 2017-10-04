@@ -7,6 +7,8 @@ General Electric PD Generator
 import os
 import re
 import json
+import csv
+import datetime 
 from flask import Flask, render_template, request, redirect, url_for, request, session, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from functools import wraps
@@ -14,14 +16,6 @@ import pandas as pd
 import numpy as np
 
 app = Flask(__name__)
-
-
-# Classes
-class Question:
-    def __init__(self):
-        self.type = 'question_with_options'
-        self.label = 'Label'
-        self.options = ['Thanks for __', 'Body el2']
 
 
 # Constants
@@ -154,29 +148,33 @@ def test():
     data = None
     return render_template('test.html', data=data)
 
-### EC SELECTION
-@app.route('/ecselection', methods=['GET', 'POST'])
-def ecselection():
-    NS = 1600
-    ETA_EX = 85
-    ETA_COMP = 75
-
-    data = None
-    if request.method == 'POST':
+@app.route('/save', methods=['POST'])
+def save():
+    try: # Trying open request
         data = request.form
-        
-        N = (37 * NS * float(data['deltaH'])**.75) / (data['Q_1'] ** 0.5)
-        D2_ex = 5.6 * (10**5) * (float(data['deltaH']) ** .5) / N
-        W = (float(data['G_ex']) * float(data['deltaH']) * ETA_EX) - 5
-        deltaH_comp = W * ETA_COMP / float(data['G_comp'])
-        D2_comp = 9 * 10**5 * deltaH_comp**.5 / N
-        FI = 6.76 * 10**6 * float(data['Q_1']) / (N * D2_comp**3)
-        data = [N, D2_ex, W, deltaH_comp, D2_comp, FI]
+        personFrom = data['personFrom']
+        personTo = data['personTo']
+        participants = data.getlist('participants[]')
+        sso = data['sso']
+    except Exception as e:
+        print(e)
+        return json.dumps({'success':False, 'error': 'couldnt parse data'}), 400, {'ContentType':'application/json'}
 
-    return render_template('ecselection.html', data=data)
+    try: # Trying write csv-file to store results
+        with open(app.config['UPLOAD_FOLDER'] + '/' + 'roulette.csv', 'a', newline='') as f:
+            csvwriter = csv.writer(f, delimiter=',')
+            print(participants)
+            csvwriter.writerow([datetime.datetime.now(), personFrom, personTo, sso, "\t".join(participants)])
+            print("Results were saved\t",[datetime.datetime.now(), personFrom, personTo, sso, "\t".join(participants)])
+    except Exception as e:
+        print(e)
+        return json.dumps({'success':False, 'error': 'couldnt save data'}), 400, {'ContentType':'application/json'}
 
-### -- EC SELECTION
+    return json.dumps({'success':True,}), 200, {'ContentType':'application/json'}
 
+
+
+# Roulette
 @app.route('/roulette', methods=['GET', 'POST'])
 def roulette():
 

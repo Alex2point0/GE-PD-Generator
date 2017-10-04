@@ -46,6 +46,72 @@ function buildSlotItem(text) {
     .text(text)
 }
 
+function generateEmailText(personFrom, personTo, time) {
+  // Greeting
+  $("#sendEmailModal-after").find(".modal-body").find("h3").text(`Hello ${personFrom}!`);
+
+  // Main text
+  var emailBody = $("#sendEmailModal-after").find(".modal-body").find(".modal-text").html();
+  emailBody = emailBody.replace("%time%", time);
+  emailBody = emailBody.replace("%personTo%", personTo);
+
+  // Update text
+  $("#sendEmailModal-after").find(".modal-body").find(".modal-text").html(emailBody);
+
+  $("#sendEmailModal").toggleClass("show");
+  $("#sendEmailModal-after").toggleClass("show");
+  
+  var mailto = $("#send-email-button").attr("href");
+  mailto = mailto.replace("%personTo%", personTo.replace(" ", "%20"));
+  mailto = mailto.replace("%personFrom%", personFrom.replace(" ", "%20"));
+  mailto = mailto.replace("%time%", time);
+
+  // Update Text
+  $("#send-email-button").attr("href", mailto);
+}
+
+function saveRouletteResults(form, field) {
+  // only if everything is OK with SSO (9 digits)
+  if (validateForm(form, field) == true) {
+    var personFrom = $("#results").val().match(/^.*(?=( to ))/)[0];
+    var personTo = $("#results").val().match(/ to (.*)$/)[1];
+    var sso = document.forms[form][field].value;
+    var list_of_participants = wordlist;
+
+    // Generate time
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd<10) {dd = '0'+dd;} 
+    if (mm<10) {mm = '0'+mm;} 
+    today = mm + '/' + dd + '/' + yyyy;
+
+    $.post('save', {
+      'personFrom': personFrom,
+      'personTo': personTo,
+      'sso': sso,
+      'time': today,
+      'participants': list_of_participants}, generateEmailText(personFrom, personTo, today)).fail(function(){console.log("error");})
+  }
+
+  // always block submition of the form
+  return false;
+}
+
+
+// Validate Forms
+function validateForm(form, field) {
+  var x = document.forms[form][field].value;
+  
+  // For SSO
+  if (field == 'sso' && x.match(/^\d{9}$/)) {
+    return true;
+  }
+
+  return false;
+}
+
 function buildSlotContents($container, wordlist) {
   $items = wordlist.map(buildSlotItem);
   $container.append($items);
@@ -134,7 +200,7 @@ $(function () {
 
     // Пишем победителей в модальное окно
     $("#section4").find("h4").html("Congratulations!");
-    $("#section4").find("h3").html(
+    $("#section4").find("h2").html(
       "<i class='fa fa-user-o'/> <b>" + winners[0] + "</b><br/>was selected to send PD Insight to<br><i class='fa fa-user-o' /> <b>" + winners[1] + "</b>");
     $('#results').append("<option><div class='transparent'>" + winners[0] + " to " + winners[1] + "</div></option>") // Пишем победителей в список победителей
   }
@@ -174,11 +240,10 @@ $(function () {
     }
   });
 
-  $('.search-button')
 
   $("#btn-sendEmail").click(function () {
     $.fn.fullpage.moveSectionDown();
-
-
+    $("#sendEmailModal").addClass("show");
+    $("#sendEmailModal-after").removeClass("show");
   })
 })

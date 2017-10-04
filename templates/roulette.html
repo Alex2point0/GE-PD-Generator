@@ -3,7 +3,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> {% endblock %} {% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"
+/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
+{% endblock %} {% block content %}
 <div id="fullpage">
 
     <!-- First Section -->
@@ -28,7 +32,7 @@
 
                             <div class="form-group">
                                 <div class="shadow-small">
-                                    <label for="participants-entered" class="shadow-small"><span class="fa fa-keyboard-o"></span> Add participants</label>
+                                    <label for="participants-entered"><span class="fa fa-keyboard-o"></span> Add participants</label>
                                 </div>
                                 <div class="search">
                                     <input type="text" class="search-box" name="participants-entered" id="participants-entered" />
@@ -40,13 +44,15 @@
 
                             <div class="form-group">
                                 <label for="participants-selected" class="shadow-small">Select participants below</label>
-                                <select class="form-control" id="participants-selected" multiple>
+                                <select class="form-control" name="participants-selected" id="participants-selected" multiple>
                                     </select>
                             </div>
 
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-6 text-center">
-                                    <input type="submit" class="shadow input-shadow" value="Submit">
+                                    <input type="submit" class="shadow input-shadow" value="Submit selected">
+                                    <span class="fa fa-cloud-upload shadow input-shadow"></span>
+                                    </input>
                                 </div>
                             </div>
 
@@ -68,7 +74,7 @@
                             </div>
                         </row>
                         <row>
-                            <span class="recipe_then">with..</span>
+                            <span class="recipe_then">gives insight to..</span>
                         </row>
                         <row>
                             <div class="slottt-machine-recipe__mask" id="wordbox2">
@@ -104,37 +110,68 @@
     </section>
 
     <section id="section4" class="section">
-        <!-- Modal -->
+        <!-- Before ajax -->
         <div id="sendEmailModal" class="modal show">
             <div class="modal-dialog modal-newsletter">
                 <div class="modal-content">
-                    <form action="/sendemail" method="post">
+                    <form name="sendEmail" onsubmit="return saveRouletteResults('sendEmail', 'sso')">
                         <div class="modal-header">
                             <div class="icon-box">
-                                <i class="fa fa-thumbs-o-up "></i>
+                                <i class="fa fa-thumbs-o-up"></i>
                             </div>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
                         </div>
                         <div class="modal-body text-center">
                             <h4>Send email &amp; save results</h4>
-                            <h3>Results are always available at Predix Cloud</h3>
+                            <h2>Results are always available at Predix Cloud</h2>
+                            <div class="form-group">
+                                <label for="sso">Enter your SSO<br>(will be used to keep history @ Predix):</label>
+                                <input class="form-control white" id="sso" name="sso" required pattern="^\d{9}$">
+                            </div>
                             <div class="input-group">
                                 <span class="input-group-btn">
-                                    <input type="submit" class="btn btn-primary" value="Send Email &amp; Save Results">
+                                    <input type="submit" class="btn btn-primary" value="Generate Email &amp; Save Results" id="btn-generateEmail">
                                 </span>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
+        </div>
+        <!-- After ajax -->
+        <div id="sendEmailModal-after" class="modal">
+            <div class="modal-dialog modal-newsletter">
+                <div class="modal-content">
+                    <form name="sendEmail" onsubmit="return saveRouletteResults('sendEmail', 'sso')">
+                        <div class="modal-header">
+                            <div class="icon-box">
+                                <i class="fa fa-envelope-open"></i>
+                                <div><br><b>copy</b> text below and <b>press</b> <em>send email</em></div>
+                            </div>
+                        </div>
+                        <div class="modal-body email">
+                            <h3>Hello %personFrom%</h3>
+                            <div class="modal-text text-left">On <b>%time%</b> you were chosen by PD Roulette to share your Insight with <b>%personTo%</b>.
+                                Your Insight can describe the employee's overall performance or his/her contribution to the
+                                particular project.
+                                <p><em>Please follow the link to share your Insight.</em>
+                                    <br><a href="https://pd.ge.com/insights/add">Link to PD</p>
+                            </div>
+                        </div>
+                        <br>
+                        <p class="text-center h2"><a href="mailto:%personFrom%?subject=You%20were%20chosen%20by%20PD%20Roulette%20at%20%time%%20to%20send%20insight%20to%20%personTo%&body=Paste%20text%20here" id="send-email-button">Send email</a></p>
+                    </form>
+                    </div>
+                    </div>
+                </div>
     </section>
 
     </div>
 
 
 
-    <!-- Scripts -->
+    <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <!-- Data from Jinja & Flask -->
     <script>
         var data = {{data|safe }};
         var wordlist = [];
@@ -142,11 +179,16 @@
             wordlist.push(data[key]['name']);
         }
     </script>
+    <!-- Roulette.js -->
     <script type="text/javascript" src="{{url_for('static', filename='roulette.js')}}"></script>
+    <!-- fullPage.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.js"></script>
     <script>
         $(document).ready(function () {
             $("body").show();
+            $(".search").delay(300).queue(function () {
+                $(this).addClass("open");
+            });
 
             $('#fullpage').fullpage({
                 navigation: true,
@@ -158,11 +200,14 @@
                     //using anchorLink
                     if (anchorLink == 'secondPage') {
                         loadedSection.find("#btn-rotate").animateCss("tada");
-                        console.log(index);
                     }
 
-                    if (anchorLink = 'fourthPage') {
+                    if (anchorLink == 'fourthPage') {
                         loadedSection.find(".fa").animateCss("swing");
+                    }
+
+                    if (anchorLink == 'firstPage') {
+                        loadedSection.find(".search").addClass("open");
                     }
                 },
 
@@ -172,8 +217,18 @@
                     leavingSection.animateCss("fadeOut");
                     $(`.section:eq(${nextIndex - 1})`).animateCss("fadeIn");
 
+                    if (index == 1) {
+                        leavingSection.find(".search").removeClass("open");
+                        console.log("asdas");
+                    }
+
                 }
             });
         });
     </script>
-    {% endblock %}
+    {% if scroll %}
+    <script>
+        var scroll = '{{scroll}}'
+        document.location.hash = '#' + '{{ scroll }}';
+    </script>
+    {% endif %} {% endblock %}
