@@ -6,58 +6,65 @@
     
     <section id="section1" class="section">    
         <div class="container">
-            
-            <div class="navbar background-logo col-md-12 col-md-offset-3">
-                <h1>PD@GE: Insights Draft Assistant</h1>
-                <h2>Step1: Construct greeting.</h2>
-            </div>
-            
             <div class="row">
-                <p id="label1">{%raw%}{{label1}}{%endraw%}</p>
-                <input id="inputName" class="form-control" v-model="name"></input>
-            </div><br>
-            
-            <div class="row">
-                <p id="label2">{%raw%}{{label2}}{%endraw%}</p>
-                <div id="idd0">
-                    <select v-model="selected" v-on:change="onChange" class="form-control">
-                        <option disabled value="">Выберите один из вариантов</option>   
-                            {%raw%}
-                                <option v-for="option in options" v-bind:value="option.Value">
-                                    {{option.Text}}
-                                </option>
-                            {%endraw%}
-                    </select><br>
+                <div class="navbar background-logo col-md-12 col-md-offset-3">
+                    <h1>PD@GE: Insights Draft Assistant</h1>
+                    <h2>Step1: Construct greeting. CONTINUE or CONSIDER</h2>
                 </div>
             </div>
+            <div class="row">
+                <div class="container">
+                    <div class="col-md-7 mid">
+                        <div class="row">
+                            <p id="label1">{%raw%}{{label1}}{%endraw%}</p>
+                            <input id="inputName" class="form-control input" v-model="name" type= "text"></input>
+                        </div><br>
+                        
+                        <div class="row">
+                            
+                            <p id="label2">{%raw%}{{label2}}{%endraw%}</p>
+                            <div id="idd0">
+                                <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                    <option disabled value="">Выберите один из вариантов</option>   
+                                        {%raw%}
+                                            <option v-for="option in options" v-bind:value="option.Value">
+                                                {{option.Text}}
+                                            </option>
+                                        {%endraw%}
+                                </select><br>
+                            </div>
+                        </div>
 
-            <div class="row">
-                <p id="label3">{%raw%}{{label3}}{%endraw%}</p>
-                <div id="idd1">
-                    <select v-model="selected" v-on:change="onChange" class="form-control">
-                        <option disabled value="">Выберите один из вариантов</option>   
-                            {%raw%}
-                                <option v-for="option in options" v-bind:value="option.Value">
-                                    {{option.Text}}
-                                </option>
-                            {%endraw%}
-                    </select><br>
+                        <div class="row">
+                            <p id="label3">{%raw%}{{label3}}{%endraw%}</p>
+                            <div id="idd1">
+                                <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                    <option disabled value="">Выберите один из вариантов</option>   
+                                        {%raw%}
+                                            <option v-for="option in options" v-bind:value="option.Value">
+                                                {{option.Text}}
+                                            </option>
+                                        {%endraw%}
+                                </select><br>
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <p id="label4">{%raw%}{{label4}}{%endraw%}</p>
+                            <div id="idd2">
+                                <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                    <option disabled value="">Выберите один из вариантов</option>   
+                                        {%raw%}
+                                            <option v-for="option in options" v-bind:value="option.Value">
+                                                {{option.Text}}
+                                            </option>
+                                        {%endraw%}
+                                </select><br>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-                
-            <div class="row">
-                <p id="label4">{%raw%}{{label4}}{%endraw%}</p>
-                <div id="idd2">
-                    <select v-model="selected" v-on:change="onChange" class="form-control">
-                        <option disabled value="">Выберите один из вариантов</option>   
-                            {%raw%}
-                                <option v-for="option in options" v-bind:value="option.Value">
-                                    {{option.Text}}
-                                </option>
-                            {%endraw%}
-                    </select><br>
-                </div>
-            </div>
+            </div><br>
 
             <div class="row">
                 <div class="col-md-5"></div>
@@ -76,63 +83,19 @@
     
     <section id="section2" class="section "><br>
         <div class="container">       
-            <div class="navbar background-logo col-md-12 col-md-offset-3">
-                <h1>PD@GE: Insights Draft Assistant</h1>
-                <h2>Step1: Construct greeting.</h2>
+            <div class="row">
+                <div class="navbar background-logo col-md-12 col-md-offset-2">
+                    <h1>PD@GE: Insights Draft Assistant</h1>
+                    <h2>Step2: Select behaviour to be continued/considered.</h2>
+                </div>
             </div>
             <div class="row">
-                <div class = "col-sm-5">
-                    <div class="row">
-                        <p id="label5">{%raw%}{{label5}}{%endraw%}</p>
-                        <div id="idd3">
-                            <select v-model="selected" v-on:change="onChange" class="form-control">
-                                <option disabled value="">Выберите один из вариантов</option>   
-                                    {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                    {%endraw%}
-                            </select><br>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <p id="label6">{%raw%}{{label6}}{%endraw%}</p>
-                        <div id="idd4">
-                            <select v-model="selected" v-on:change="onChange" class="form-control">
-                                <option disabled value="">Выберите один из вариантов</option>   
-                                    {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                    {%endraw%}
-                            </select><br>
-                        </div>
-                    </div>
-                        
-                    <div class="row">
-                        <p id="label7">{%raw%}{{label7}}{%endraw%}</p>
-                        <div id="idd50">
-                            <select v-model="selected" v-on:change="onChange" class="form-control">
-                                <option disabled value="">Выберите один из вариантов</option>   
-                                    {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                    {%endraw%}
-                            </select><br>
-                        </div>
-                    </div>
-                </div>
-                <div class = "col-sm-2"></div>
-                <div class = "col-sm-5">
-                    <div class="row">
-                        <p id="label8">{%raw%}{{label8}}{%endraw%}</p>
-                        <input id="inputHashtag" class="form-control" v-model="hashtag"  v-on:input= "hashtagChanged"></input><br>
-                    </div>
-                    <div class="row" id="idd51">
-                            <p id="label9">{%raw%}{{label9}}{%endraw%}</p>
-                            <select v-model="selected" v-on:change="onChange" class="form-control">
+                <div class = "container mid">
+                    <div class = "col-sm-5">
+                        <div class="row">
+                            <p id="label5">{%raw%}{{label5}}{%endraw%}</p>
+                            <div id="idd3">
+                                <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
                                     <option disabled value="">Выберите один из вариантов</option>   
                                         {%raw%}
                                             <option v-for="option in options" v-bind:value="option.Value">
@@ -140,9 +103,59 @@
                                             </option>
                                         {%endraw%}
                                 </select><br>
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <p id="label6">{%raw%}{{label6}}{%endraw%}</p>
+                            <div id="idd4">
+                                <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                    <option disabled value="">Выберите один из вариантов</option>   
+                                        {%raw%}
+                                            <option v-for="option in options" v-bind:value="option.Value">
+                                                {{option.Text}}
+                                            </option>
+                                        {%endraw%}
+                                </select><br>
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <p id="label7">{%raw%}{{label7}}{%endraw%}</p>
+                            <div id="idd50">
+                                <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                    <option disabled value="">Выберите один из вариантов</option>   
+                                        {%raw%}
+                                            <option v-for="option in options" v-bind:value="option.Value">
+                                                {{option.Text}}
+                                            </option>
+                                        {%endraw%}
+                                </select><br>
+                            </div>
+                        </div>
                     </div>
-                    
+                    <div class = "col-sm-2">
+                        <img src="../static/images/or.png"></img>
+                    </div>
+                    <div class = "col-sm-5">
+                        <div class="row">
+                            <p id="label8">{%raw%}{{label8}}{%endraw%}</p>
+                            <input id="inputHashtag" class="form-control" v-model="hashtag"  v-on:input= "hashtagChanged"></input><br>
+                        </div>
+                        <div class="row" id="idd51">
+                                <p id="label9">{%raw%}{{label9}}{%endraw%}</p>
+                                <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                        <option disabled value="">Выберите один из вариантов</option>   
+                                            {%raw%}
+                                                <option v-for="option in options" v-bind:value="option.Value">
+                                                    {{option.Text}}
+                                                </option>
+                                            {%endraw%}
+                                    </select><br>
+
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -161,79 +174,82 @@
        
     <section id="section3" class="section">        
         <div class="container">
-            <div class="navbar background-logo col-md-12 col-md-offset-3">
-                <h1>PD@GE: Insights Draft Assistant</h1>
-                <h2>Step1: Construct greeting.</h2>
-            </div>
             <div class="row">
-                <p id="label10">{%raw%}{{label10}}{%endraw%}</p>
-                <div id="idd6">
-                    <select v-model="selected" v-on:change="onChange" class="form-control">
-                        <option disabled value="">Выберите один из вариантов</option>   
-                            {%raw%}
-                                <option v-for="option in options" v-bind:value="option.Value">
-                                    {{option.Text}}
-                                </option>
-                            {%endraw%}
-                    </select><br>
+                <div class="navbar background-logo col-md-12 col-md-offset-3">
+                    <h1>PD@GE: Insights Draft Assistant</h1>
+                    <h2>Step3: Select potential positive impact of your</h2>
+                    <h2>continue/consider and generate insight</h2>
                 </div>
             </div>
-            <div class= "container logic-field">
-                <div class="row">
-                    <p id="label11">{%raw%}{{label11}}{%endraw%}</p>
-                    <div id="idd7">
-                        <select v-model="selected" v-on:change="onChange" class="form-control">
-                            <option disabled value="">Выберите один из вариантов</option>   
-                                {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                {%endraw%}
-                        </select><br>
+            <div class="container">
+                <div class="col-md-7 mid">
+                    <div class="row">
+                        <p id="label10">{%raw%}{{label10}}{%endraw%}</p>
+                        <div id="idd6">
+                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
                     </div>
-                </div>
-                    
-                <div class="row">
-                    <p id="label12">{%raw%}{{label12}}{%endraw%}</p>
-                    <div id="idd8">
-                        <select v-model="selected" v-on:change="onChange" class="form-control">
-                            <option disabled value="">Выберите один из вариантов</option>   
-                                {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                {%endraw%}
-                        </select><br>
+                    <div class="row">
+                        <p id="label11">{%raw%}{{label11}}{%endraw%}</p>
+                        <div id="idd7">
+                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+                    </div>     
+                    <div class="row">
+                        <p id="label12">{%raw%}{{label12}}{%endraw%}</p>
+                        <div id="idd8">
+                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p id="label13">{%raw%}{{label13}}{%endraw%}</p>
+                        <div id="idd9">
+                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p id="label14">{%raw%}{{label14}}{%endraw%}</p>
+                        <div id="idd10">
+                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                <option disabled value="">Выберите один из вариантов</option>   
+                                    {%raw%}
+                                        <option v-for="option in options" v-bind:value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    {%endraw%}
+                            </select><br>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <p id="label13">{%raw%}{{label13}}{%endraw%}</p>
-                    <div id="idd9">
-                        <select v-model="selected" v-on:change="onChange" class="form-control">
-                            <option disabled value="">Выберите один из вариантов</option>   
-                                {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                {%endraw%}
-                        </select><br>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <p id="label14">{%raw%}{{label14}}{%endraw%}</p>
-                <div id="idd10">
-                    <select v-model="selected" v-on:change="onChange" class="form-control">
-                        <option disabled value="">Выберите один из вариантов</option>   
-                            {%raw%}
-                                <option v-for="option in options" v-bind:value="option.Value">
-                                    {{option.Text}}
-                                </option>
-                            {%endraw%}
-                    </select><br>
-                </div>
             </div>
 
             <div class="row">
@@ -251,7 +267,7 @@
         <div class="container">
             <div class="navbar background-logo col-md-12 col-md-offset-3">
                 <h1>PD@GE: Insights Draft Assistant</h1>
-                <h2>Step1: Construct greeting.</h2>
+                <h2>Bring it to PD</h2>
             </div>
             <div class="row">
 
@@ -527,7 +543,7 @@
         el: '#idd51',
         data: {
             selected: '',
-            options: data["6"].Options,
+            options: '',
             name: '',
             test: {}
         },
@@ -690,7 +706,7 @@
 
     $(document).ready(function () {
         $('#fullpage').fullpage({
-            anchors: ['firstPage', 'secondPage', '3rdPage']
+            anchors: ['firstPage', 'secondPage', 'thirdPage','fourthPage']
         });
     });
 
@@ -699,7 +715,23 @@
     });
 
     $('#BackToStart').click(function() {
-        $.fn.fullpage.moveTo('firstPage')
+        inputName.name='';
+        inputHashtag.hashtag='';
+        list0.selected='';
+        list1.selected='';
+        list2.selected='';
+        list3.selected='';
+        list4.selected='';
+        list5.selected='';
+        list51.selected='';
+        list6.selected='';
+        list7.selected='';
+        list8.selected='';
+        list9.selected='';
+        list10.selected='';
+        finalText.arr=[];
+        finalText.text='';
+        $.fn.fullpage.moveTo('firstPage');
     })
 
 </script>

@@ -4,13 +4,7 @@
 
 .background-logo {
     background-size: auto;
-   /* background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0) 30%),
-    -webkit-linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.01) 30%),
-    url(./background.png) no-repeat;
-    height: 230px;
-
-
-    /*Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+14,ffffff+14,ffffff+100&1+14,0+100 */
+    color: #FFFFFF;
 }
 
 .important {
@@ -21,23 +15,37 @@
     background: transparent;
 }
 
+body {
+    background: url(./images/backPicture.jpg);
+    background-size: 100% 100%;
+}
+
+.mid{
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
+}
+.row {
+    /* margin-right: -15px; */
+    /* margin-left: -15px; */
+    margin: 10px 5px 15px 20px;
+}
 
 
 .input-field {
     max-width: 25%;
 }
 
-.fade-enter-active, .fade-leave-active {
-    transition: opacity .5s
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
-    opacity: 0
-  }
+#inputName{
+    background-color: #FFFFFF !important
+}
 
-  section {background-size: cover; background-position: center center;}
+#finalTextBox{
+    background-color: #FFFFFF !important
+}
 
-  .logic-field {
-      background-size: cover;
-      background: radial-gradient(ellipse, #5AADF1, #FFFFFF);
+#inputHashtag{
+    background-color: #FFFFFF !important
+}
 
-  }
+
+section {background-size: cover; background-position: center center;}
