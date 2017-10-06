@@ -38,7 +38,7 @@ wordlist1.shuffle();
 var wordlist2 = wordlist.slice();
 wordlist2.shuffle();
 
-var ANIMATION_TIME = 6000;
+var ANIMATION_TIME = 600;
 
 // Functions
 function buildSlotItem(text) {
@@ -46,7 +46,7 @@ function buildSlotItem(text) {
     .text(text)
 }
 
-function generateEmailText(personFrom, personTo, time) {
+function generateEmailText(personFrom, personTo, time, sso) {
   // Greeting
   $("#sendEmailModal-after").find(".modal-body").find("h3").text(`Hello ${personFrom}!`);
 
@@ -60,10 +60,11 @@ function generateEmailText(personFrom, personTo, time) {
 
   $("#sendEmailModal").toggleClass("show");
   $("#sendEmailModal-after").toggleClass("show");
-  
+
   var mailto = $("#send-email-button").attr("href");
   mailto = mailto.replace("%personTo%", personTo.replace(" ", "%20"));
   mailto = mailto.replace("%personFrom%", personFrom.replace(" ", "%20"));
+  mailto = mailto.replace("%personTo%", personTo.replace(" ", "%20"));
   mailto = mailto.replace("%time%", time);
 
   // Update Text
@@ -73,29 +74,34 @@ function generateEmailText(personFrom, personTo, time) {
 function saveRouletteResults(form, field) {
   // only if everything is OK with SSO (9 digits)
   if (validateForm(form, field) == true) {
-    var personFrom = $("#results").val().match(/^.*(?=( to ))/)[0];
-    var personTo = $("#results").val().match(/ to (.*)$/)[1];
+    let regexPersonFrom = /^.*(?=( to ))/;
+    let regexPersonTo = / to (.*)$/;
+
+    var personFrom = $("#results").text().match(regexPersonFrom)[0];
+    var personTo = $("#results").text().match(regexPersonTo)[1];
     var sso = document.forms[form][field].value;
     var list_of_participants = wordlist;
 
     // Generate time
     var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
+    var mm = today.getMonth() + 1; //January is 0!
     var yyyy = today.getFullYear();
-    if (dd<10) {dd = '0'+dd;} 
-    if (mm<10) {mm = '0'+mm;} 
+    if (dd < 10) { dd = '0' + dd; }
+    if (mm < 10) { mm = '0' + mm; }
     today = mm + '/' + dd + '/' + yyyy;
 
+    // Finally send request
     $.post('save', {
       'personFrom': personFrom,
       'personTo': personTo,
       'sso': sso,
       'time': today,
-      'participants': list_of_participants}, generateEmailText(personFrom, personTo, today)).fail(function(){console.log("error");})
+      'participants': list_of_participants
+    }, generateEmailText(personFrom, personTo, today)).fail(function () { console.log("error"); })
   }
 
-  // always block submition of the form
+  // always return false to block submition of the form
   return false;
 }
 
@@ -103,7 +109,7 @@ function saveRouletteResults(form, field) {
 // Validate Forms
 function validateForm(form, field) {
   var x = document.forms[form][field].value;
-  
+
   // For SSO
   if (field == 'sso' && x.match(/^\d{9}$/)) {
     return true;
@@ -142,7 +148,7 @@ function randomSlotttIndex(max) {
   return (randIndex > 10) ? randIndex : randomSlotttIndex(max);
 }
 
-function animate() {
+function animate(callback) {
   winners = wordlist.shuffle().slice(0, 2);
 
   var wordIndex = $wordbox.children().map(function (i, el) {
@@ -160,16 +166,13 @@ function animate() {
 
   $wordbox2.animate({ top: -wordIndex2 * 75 }, ANIMATION_TIME * 1.3, 'swing', function () {
     rotateContents($wordbox2, wordIndex2);
-    $.fn.fullpage.moveSectionDown();
+    $("#section2").find(".container:eq(0)").hide();
+    $("#section2").find(".container:eq(1)").show();
   });
+
 
   return winners; // Return Winners to store result
 }
-
-
-// Скрываем показывем элементы
-
-
 
 
 $(function () {
@@ -199,12 +202,18 @@ $(function () {
     var winners = animate(); // Два победителя
 
     // Пишем победителей в модальное окно
-    $("#section4").find("h4").html("Congratulations!");
-    $("#section4").find("h2").html(
+    $("#section3").find("h4").html("Congratulations!");
+    $("#section3").find("h2").html(
       "<i class='fa fa-user-o'/> <b>" + winners[0] + "</b><br/>was selected to send PD Insight to<br><i class='fa fa-user-o' /> <b>" + winners[1] + "</b>");
-    $('#results').append("<option><div class='transparent'>" + winners[0] + " to " + winners[1] + "</div></option>") // Пишем победителей в список победителей
+    $('#results').text(winners[0] + " to " + winners[1]); // Пишем победителей в список победителей
   }
   );
+
+  $("#btn-spinAgain").click(function () {
+    $("#section2").find(".container:eq(1)").hide();
+    $("#section2").find(".container:eq(0)").show();
+    $("#btn-rotate").click();
+  });
 
   // Крутим-вертим колесо
   $("img").click(function () {
@@ -215,21 +224,25 @@ $(function () {
   $('.search-button').click(function () {
     if ($(this).parent().hasClass("open")) {
       if ($(this).parent().find("input").attr("id") == 'participants') {
+
+        var selectize_tags = $("#participants-selected")[0].selectize
+
         var participants = $(this).parent().find("input").val();
         var regex = /.*\(/;
         var participants = participants.split("; ").map(function (x) {
           if (x.match(regex)) {
-            console.log(x.match(regex)[0].slice(0,-1));
-            return `<option>${x.match(regex)[0].slice(0,-1)}</option>`;
+            var name = x.match(regex)[0].slice(0, -1);
+            return { value: name, text: name };
           }
         });
 
-        $("#participants-selected").append(participants);
+        // Add options
+        selectize_tags.addOption(participants);
 
+        // Then add this options as selected
+        participants.map(function (x) { selectize_tags.addItem(x['value'])});
       }
-      else if ($(this).parent().find("input").attr("id") == 'participants-entered') {
-        $("#participants-selected").append(`<option>${$(this).parent().find("input").val()}</option>`);
-      }
+
       else {
         console.log("Don't know what to do with this input");
       }

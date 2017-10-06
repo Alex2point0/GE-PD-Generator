@@ -161,11 +161,20 @@ def save():
         return json.dumps({'success':False, 'error': 'couldnt parse data'}), 400, {'ContentType':'application/json'}
 
     try: # Trying write csv-file to store results
+
+        # Add Headers if file doesn't exist
+        if not os.path.isfile(app.config['UPLOAD_FOLDER'] + '/' + 'roulette.csv'):
+            with open(app.config['UPLOAD_FOLDER'] + '/' + 'roulette.csv', 'a', newline='') as f:
+                csvwriter = csv.writer(f, delimiter=',')
+                csvwriter.writerow(['time','person_from','person_to', 'sso', 'participants'])
+
+        # Write file
         with open(app.config['UPLOAD_FOLDER'] + '/' + 'roulette.csv', 'a', newline='') as f:
             csvwriter = csv.writer(f, delimiter=',')
             print(participants)
-            csvwriter.writerow([datetime.datetime.now(), personFrom, personTo, sso, "\t".join(participants)])
-            print("Results were saved\t",[datetime.datetime.now(), personFrom, personTo, sso, "\t".join(participants)])
+            participants = sorted(participants)
+            csvwriter.writerow([datetime.datetime.now(), personFrom, personTo, sso, ", ".join(participants)])
+            print("Results were saved\t", [datetime.datetime.now(), personFrom, personTo, sso, "\t".join(participants)])
     except Exception as e:
         print(e)
         return json.dumps({'success':False, 'error': 'couldnt save data'}), 400, {'ContentType':'application/json'}
@@ -183,7 +192,7 @@ def roulette():
         scroll = None
         for i in range(10):
             data[i] = {
-                'name': 'Person #' + str(i),
+                'name': 'Second Name, First Name #' + str(i),
                 'email': 'Email #' + str(i)
             }
 
