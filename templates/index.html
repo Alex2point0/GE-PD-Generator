@@ -2,23 +2,38 @@
 
 
 {% endblock %} {% block content %}
+<nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+                <ul id="imageGallery">
+                        <a href="../static/images/help.png">
+                            <button type="button"class="btn btn-primary">Help</button>
+                        </a>
+                    </ul>
+          </div>
+        </div>
+      </nav>
+
 <div id=fullpage>
+    
     
     <section id="section1" class="section">    
         <div class="container">
-            <div class="row">
-                <div class="navbar background-logo col-md-12 col-md-offset-3">
+            <div class="row top-header">
+                <div class="col-md-1"></div>
+                <div class="navbar background-logo col-md-10">
                     <h1>PD@GE: Insights Draft Assistant</h1>
-                    <h2>Step1: Construct greeting. CONTINUE or CONSIDER</h2>
+                    <h2 class="small-header">Step1: Construct greeting. CONTINUE or CONSIDER</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="container">
-                    <div class="col-md-7 mid">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5  mid">
                         <div class="row">
                             <p id="label1">{%raw%}{{label1}}{%endraw%}</p>
                             <input id="inputName" class="form-control input" v-model="name" type= "text"></input>
-                        </div><br>
+                        </div>
                         
                         <div class="row">
                             
@@ -63,6 +78,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5 intro-text">
+                        <p>It's a tool to help you express your feedack, friendly advice, "CONTINUE" or "CONSIDER" to your manager, teammate, peer or juniour employee</p>
+                        <p>No more suffers while seeking for the right words... no more struggles to make it impactful and polite</p>
+                        <p>Just follow 3 easy steps to construct impactful insight, modify it to your taste and bring it to PD</p>
+                    </div>
                 </div>
             </div><br>
 
@@ -83,10 +104,11 @@
     
     <section id="section2" class="section "><br>
         <div class="container">       
-            <div class="row">
-                <div class="navbar background-logo col-md-12 col-md-offset-2">
+            <div class="row top-header">
+                <div class="col-md-1"></div>
+                <div class="navbar background-logo col-md-10">
                     <h1>PD@GE: Insights Draft Assistant</h1>
-                    <h2>Step2: Select behaviour to be continued/considered.</h2>
+                    <h2 class="small-header">Step2: Select behaviour to be continued/considered.</h2>
                 </div>
             </div>
             <div class="row">
@@ -134,7 +156,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class = "col-sm-2">
+                    <div class = "col-sm-2 or-image">
                         <img src="../static/images/or.png"></img>
                     </div>
                     <div class = "col-sm-5">
@@ -174,15 +196,17 @@
        
     <section id="section3" class="section">        
         <div class="container">
-            <div class="row">
-                <div class="navbar background-logo col-md-12 col-md-offset-3">
+            <div class="row top-header">
+                <div class="col-md-1"></div>
+                <div class="navbar background-logo col-md-10">
                     <h1>PD@GE: Insights Draft Assistant</h1>
-                    <h2>Step3: Select potential positive impact of your</h2>
-                    <h2>continue/consider and generate insight</h2>
+                    <h2 class="small-header">Step3: Select potential positive impact of your</h2>
+                    <h2 class="small-header">continue/consider and generate insight</h2>
                 </div>
             </div>
             <div class="container">
-                <div class="col-md-7 mid">
+                <div class="col-md-1"></div>
+                <div class="col-md-5 mid">
                     <div class="row">
                         <p id="label10">{%raw%}{{label10}}{%endraw%}</p>
                         <div id="idd6">
@@ -193,7 +217,7 @@
                                             {{option.Text}}
                                         </option>
                                     {%endraw%}
-                            </select><br>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -206,7 +230,7 @@
                                             {{option.Text}}
                                         </option>
                                     {%endraw%}
-                            </select><br>
+                            </select>
                         </div>
                     </div>     
                     <div class="row">
@@ -219,7 +243,7 @@
                                             {{option.Text}}
                                         </option>
                                     {%endraw%}
-                            </select><br>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -232,7 +256,7 @@
                                             {{option.Text}}
                                         </option>
                                     {%endraw%}
-                            </select><br>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -245,7 +269,7 @@
                                             {{option.Text}}
                                         </option>
                                     {%endraw%}
-                            </select><br>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -255,7 +279,7 @@
             <div class="row">
                 <div class="col-md-5"></div>
                 <div class="col-md-2">
-                    <button id="button1", class="btn btn-primary btn-block slideDown">Next step</button>
+                    <button id="button1", class="btn btn-primary btn-block slideDown">Generate</button>
                 </div>
                 <div class="col-md-5"></div>
             </div>
@@ -265,9 +289,10 @@
     
     <section id="section4" class= "section"<br>
         <div class="container">
-            <div class="navbar background-logo col-md-12 col-md-offset-3">
+            <div class="col-md-1"></div>
+            <div class="navbar background-logo col-md-11">
                 <h1>PD@GE: Insights Draft Assistant</h1>
-                <h2>Bring it to PD</h2>
+                <h2 class="small-header">Bring it to PD</h2>
             </div>
             <div class="row">
 
@@ -293,16 +318,7 @@
         </div>
 
     </section>
-              
-        
-          
-            
-
-        
-           
-       
-
-            
+ 
 </div>
 
 
@@ -697,7 +713,10 @@
             Copy: function(){
                 document.getElementById("finalTextBox").select();
                 var successful = document.execCommand('copy');
-                alert('Copied to clipboard')
+                bootbox.alert({
+                    message: "Copied to clipboard",
+                    backdrop: true
+                });
             }
         }
     })    
@@ -706,7 +725,8 @@
 
     $(document).ready(function () {
         $('#fullpage').fullpage({
-            anchors: ['firstPage', 'secondPage', 'thirdPage','fourthPage']
+            anchors: ['firstPage', 'secondPage', 'thirdPage','fourthPage'],
+            menu: '#imageGallery'
         });
     });
 
@@ -734,5 +754,38 @@
         $.fn.fullpage.moveTo('firstPage');
     })
 
+    var $overlay = $('<div id="overlay"></div>');
+    var $image = $("<img>");
+    var $caption = $("<p></p>");
+    
+    //An image to overlay
+    $overlay.append($image);
+    
+    //A caption to overlay
+    $overlay.append($caption);
+    
+    //Add overlay
+    $("body").append($overlay);
+    
+    //Capture the click event on a link to an image
+    $("#imageGallery a").click(function(event){
+      event.preventDefault();
+      var imageLocation = $(this).attr("href");
+      //Update overlay with the image linked in the link
+      $image.attr("src", imageLocation);
+      
+      //Show the overlay.
+      $overlay.show();
+      
+      //Get child's alt attribute and set caption
+      var captionText = $(this).children("img").attr("alt");
+      $caption.text(captionText);
+    });
+    
+    //When overlay is clicked
+    $overlay.click(function(){
+      //Hide the overlay
+      $overlay.hide();
+    });
 </script>
 {% endblock %}
