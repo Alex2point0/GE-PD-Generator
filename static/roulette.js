@@ -38,7 +38,7 @@ wordlist1.shuffle();
 var wordlist2 = wordlist.slice();
 wordlist2.shuffle();
 
-var ANIMATION_TIME = 600;
+var ANIMATION_TIME = 6000;
 
 // Functions
 function buildSlotItem(text) {
@@ -203,9 +203,9 @@ $(function () {
 
     // Пишем победителей в модальное окно
     $("#section3").find("h4").html("Congratulations!");
-    $("#section3").find("h2").html(
-      "<i class='fa fa-user-o'/> <b>" + winners[0] + "</b><br/>was selected to send PD Insight to<br><i class='fa fa-user-o' /> <b>" + winners[1] + "</b>");
-    $('#results').text(winners[0] + " to " + winners[1]); // Пишем победителей в список победителей
+    $("#section3").find("h2").html("<i class='fa fa-user-o'/> <b>" + winners[0] + "</b><br/>was selected to send PD Insight to<br><i class='fa fa-user-o' /> <b>" + winners[1] + "</b>");
+    // Пишем победителей в список победителей
+    $('#results').html(`<span id="personFrom"><i class="fa fa-paper-plane-o" /> ${winners[0]}</span><br> to <br><span id="personTo"><i class="fa fa-hand-spock-o" /> ${winners[1]}</span>`);
   }
   );
 

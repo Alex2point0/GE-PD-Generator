@@ -187,6 +187,13 @@ def save():
 @app.route('/roulette', methods=['GET', 'POST'])
 def roulette():
 
+    # Count how many lines are in CSV file
+    try:
+        with open(app.config['UPLOAD_FOLDER'] + '/' + 'roulette.csv', 'r') as f:
+            total_spins = sum(1 for row in f)
+    except:
+        total_spins = None
+
     if request.method == 'GET':
         data = {}
         scroll = None
@@ -237,7 +244,7 @@ def roulette():
                     data[idx]['name'] = participants_entered[i]
                     data[idx]['email'] = None
 
-    return render_template('roulette.html', data=json.dumps(data), scroll=scroll)
+    return render_template('roulette.html', data=json.dumps(data), scroll=scroll, total_spins=total_spins)
 
 if __name__ == '__main__':
     port = int(os.getenv("PORT"))

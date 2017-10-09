@@ -19,6 +19,7 @@
 .slottt-machine-recipe__item {
     min-height: 75px;
     max-height: 75px;
+    text-align: left;
     background-size: contain;
 }
 
@@ -59,6 +60,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    color: white;
 }
 
 .roulette-btn {
@@ -410,19 +412,11 @@ body {
     margin: 100px auto;
     text-align: center;
 }
-
-.selectize-control.single .selectize-input:after {
-    background: transparent;
-  }
-
-.selectize-control.single .selectize-input.dropdown-active:after {
-    background: transparent;
-  }
   
-.selectize-input {
-    background: transparent;
-  }
-
 #containerResults {
     display: none;
+}
+
+.modal-newsletter .icon-box .inline i {
+    font-size: inherit;
 }
