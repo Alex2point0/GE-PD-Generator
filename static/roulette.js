@@ -42,8 +42,7 @@ var ANIMATION_TIME = 6000;
 
 // Functions
 function buildSlotItem(text) {
-  return $('<div>').addClass('slottt-machine-recipe__item')
-    .text(text)
+  return $('<div>').addClass('slottt-machine-recipe__item').text(text)
 }
 
 function generateEmailText(personFrom, personTo, time, sso) {
@@ -74,11 +73,11 @@ function generateEmailText(personFrom, personTo, time, sso) {
 function saveRouletteResults(form, field) {
   // only if everything is OK with SSO (9 digits)
   if (validateForm(form, field) == true) {
-    let regexPersonFrom = /^.*(?=( to ))/;
-    let regexPersonTo = / to (.*)$/;
+    // let regexPersonFrom = /^.*(?=( to ))/;
+    // let regexPersonTo = / to (.*)$/;
 
-    var personFrom = $("#results").text().match(regexPersonFrom)[0];
-    var personTo = $("#results").text().match(regexPersonTo)[1];
+    var personFrom = $("#personFrom").text();
+    var personTo = $("#personTo").text();
     var sso = document.forms[form][field].value;
     var list_of_participants = wordlist;
 
@@ -240,7 +239,7 @@ $(function () {
         selectize_tags.addOption(participants);
 
         // Then add this options as selected
-        participants.map(function (x) { selectize_tags.addItem(x['value'])});
+        participants.map(function (x) { selectize_tags.addItem(x['value']) });
       }
 
       else {
