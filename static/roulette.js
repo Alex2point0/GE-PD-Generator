@@ -59,6 +59,7 @@ function generateEmailText(personFrom, personTo, time, sso) {
 
   $("#sendEmailModal").toggleClass("show");
   $("#sendEmailModal-after").toggleClass("show");
+  $("#sso").val("");
 
   var mailto = $("#send-email-button").attr("href");
   mailto = mailto.replace("%personTo%", personTo.replace(" ", "%20"));
@@ -202,7 +203,7 @@ $(function () {
 
     // Пишем победителей в модальное окно
     $("#section3").find("h4").html("Congratulations!");
-    $("#section3").find("h2").html("<i class='fa fa-user-o'/> <b>" + winners[0] + "</b><br/>was selected to send PD Insight to<br><i class='fa fa-user-o' /> <b>" + winners[1] + "</b>");
+    $("#section3").find("h2").html("<i class='fa fa-user-o'/> <b>" + winners[0] + "</b><br/>was selected to give PD Insight to<br><i class='fa fa-user-o' /> <b>" + winners[1] + "</b>");
     // Пишем победителей в список победителей
     $('#results').html(`<span id="personFrom"><i class="fa fa-paper-plane-o" /> ${winners[0]}</span><br> to <br><span id="personTo"><i class="fa fa-hand-spock-o" /> ${winners[1]}</span>`);
   }
