@@ -1,6 +1,6 @@
 Flask
 pandas
-numpy<<<<<<< HEAD
+<<<<<<< HEAD
 numpy
 =======
 numpy
