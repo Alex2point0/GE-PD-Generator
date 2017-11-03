@@ -75,6 +75,7 @@ def upload_file():
                 d = d[d.index > sep_idx]
                 
                 data = {}
+<<<<<<< HEAD
                 for i, q in enumerate(d.QuestionID.unique()):
                     d.loc[df.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
                     data[str(q)] = {
@@ -93,6 +94,40 @@ def upload_file():
             with open(app.config['UPLOAD_FOLDER'] + '/' + filename, 'w') as outfile:
                 json.dump(res, outfile)
 
+=======
+                for i, q in enumerate(labels.index.unique()):
+                    if d[d.QuestionID == q].shape[0] == 0:
+                        data[str(q)] = {
+                            'Label': labels[q],
+                            'Num': i,
+                            'Options': [
+                                {'Parent': '*',
+                                'Text': '*',
+                                'Value': '*',
+                                'Hashtag': '*'}
+                            ]
+                        }
+                    else:
+                        d.loc[:, ['Text', 'Parent', 'Hashtag']].fillna("*", inplace=True)
+                        d.loc[d.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
+                        data[str(q)] = {
+                            'Label': labels[q],
+                            'Num': i,
+                            'Options': [
+                                {'Parent': row[2], 'Text': row[1], 'Value': row[4], 'Hashtag': row[3].split(",")}
+                                for row in d.loc[d.QuestionID == q].values]
+                            }
+                        
+                return data
+
+            try:
+                res = prepare_json_from_xlsx(df)
+                # Save
+                with open(app.config['UPLOAD_FOLDER'] + '/' + filename, 'w') as outfile:
+                    json.dump(res, outfile)
+            except:
+                print("Error")
+>>>>>>> FrontEnd
             ## END PANDAS
             return redirect(url_for('uploaded_file',
                                     filename=filename))
@@ -140,7 +175,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('index'))
-
+#port=int(os.getenv("PORT"))
 
 # This one is a test zone
 @app.route('/test')
