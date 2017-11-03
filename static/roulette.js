@@ -38,7 +38,7 @@ wordlist1.shuffle();
 var wordlist2 = wordlist.slice();
 wordlist2.shuffle();
 
-var ANIMATION_TIME = 600;
+var ANIMATION_TIME = 6000;
 
 // Functions
 function buildSlotItem(text) {

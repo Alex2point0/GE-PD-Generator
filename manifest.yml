@@ -1,5 +1,5 @@
 ---
 applications:
-- name: ge-pd-generator
+- name: ge-pd-roulette 
   memory: 512M
 
