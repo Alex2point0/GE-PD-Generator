@@ -3,6 +3,13 @@
 
 <head>
     {% block head %}
+<<<<<<< HEAD
+=======
+    <title>PD Generator</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Nosifer" rel="stylesheet">
+>>>>>>> FrontEnd
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- JQUERY UI -->
@@ -18,18 +25,34 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
-
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+    <!-- Vue.js -->
+    <script src="https://unpkg.com/vue"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
     <!-- User defined -->
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+=======
+    <!-- BOOTBOX-->
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <!-- BaugetteBox-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.9.1/baguetteBox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.9.1/baguetteBox.min.js" async></script>
+    <!-- FullPage-->
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <script src="/static/jquery.fullPage.css"></script>
+    <script src="/static/jquery.fullPage.js"></script>
+>>>>>>> FrontEnd
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -55,10 +78,21 @@
                     </div>
                 </row>
             </div>
+=======
+
+
+
+
+    {% block content %} Content {% endblock %} {% block footer %}
+    <div id="footer">
+        <div class="footer navbar-fixed-bottom">
+            <div class="col-md-12 text-right">
+                &copy; Copyright 2017 by Oleg Khomenko, Roman Zemlyanskiy, Mikhail Berezovskiy @ GE Moscow
+>>>>>>> FrontEnd
             </div>
-            {% endblock %}
         </div>
     </div>
+    {% endblock %}
 </body>
 
 </html>
