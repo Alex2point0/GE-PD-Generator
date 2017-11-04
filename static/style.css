@@ -1,33 +1,36 @@
+body {
+    background: #AA076B;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #61045F, #AA076B);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #61045F, #AA076B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    color: white;
+    font-family: "Varela Round";
+}
+
+input.font-size-100 {
+    font-size: 100%;
+    color: black;
+}
+
+
 .top-buffer {
         margin-top: 20px;
     }
 
-.background-logo {
-    background-size: auto inherit;
-    background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 0.01) 30%),
-    -webkit-linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.01) 30%),
-    url(../img/GE_Background.png) no-repeat;
-
-
-    /*Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+14,ffffff+14,ffffff+100&1+14,0+100 */
+select {
+    color: black;
 }
-
 
 .input-field {
     max-width: 25%;
 }
 
+
 .footer {
     color: white;
 }
 
-/* Typography */
 
 .page-title {
     font-family: Helvetica, Arial, sans serif;
     font-size: 150%;
-}
-
-input.font-size-100 {
-    font-size: 100%;
 }

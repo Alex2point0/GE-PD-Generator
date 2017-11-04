@@ -132,11 +132,11 @@ os.environ['USER'] = 'admin'
 os.environ['PASS'] = 'admin'
 
 
-@app.route('/')
+@app.route('/ig')
 def index():
     with open(app.static_folder + '/uploaded/data.json', 'r') as json_data:
         d = json.load(json_data)
-    return render_template('index.html', data=d)
+    return render_template('ig.html', data=d)
 
 
 @app.route('/login', methods=['GET', 'POST'])
