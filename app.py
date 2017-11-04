@@ -75,26 +75,6 @@ def upload_file():
                 d = d[d.index > sep_idx]
                 
                 data = {}
-<<<<<<< HEAD
-                for i, q in enumerate(d.QuestionID.unique()):
-                    d.loc[df.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
-                    data[str(q)] = {
-                        'Label': labels[q],
-                        'Num': i,
-                        'Options': [
-                            {'Parent': row[1], 'Text': row[0], 'Value': row[2], 'Hashtag': row[3]}
-                            for row in d.loc[d.QuestionID == q].values]
-                        }
-                        
-                return data
-
-            res = prepare_json_from_xlsx(df)
-            
-            # Save
-            with open(app.config['UPLOAD_FOLDER'] + '/' + filename, 'w') as outfile:
-                json.dump(res, outfile)
-
-=======
                 for i, q in enumerate(labels.index.unique()):
                     if d[d.QuestionID == q].shape[0] == 0:
                         data[str(q)] = {
@@ -127,7 +107,6 @@ def upload_file():
                     json.dump(res, outfile)
             except:
                 print("Error")
->>>>>>> FrontEnd
             ## END PANDAS
             return redirect(url_for('uploaded_file',
                                     filename=filename))
