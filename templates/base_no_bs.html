@@ -3,9 +3,6 @@
 
 <head>
     {% block head %}
-
-    <!-- ANIMATE CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- JQUERY UI -->
@@ -24,6 +21,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 
+    <!-- FONTS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <!-- ANIMATE CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
     <!-- User defined -->
     {% block stylesheets %}
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" /> {% endblock stylesheets %}
@@ -45,12 +46,12 @@
     <link rel="manifest" href="{{url_for('static', filename='manifest.json')}}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{url_for('static', filename='ms-icon-144x144.png')}}">
-    <meta name="theme-color" content="#ffffff"> {% block title %}{% endblock %} {% endblock %}
+    <meta name="theme-color" content="#ffffff"> {% block title %}{% endblock title %} {% endblock head %}
 </head>
 
 <body>
     <!-- NAVBAR -->
-    <!-- Image and text -->
+    {% block navbar %}
     <nav class="navbar-fixed-top navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -69,7 +70,7 @@
                     <a href="/ig">PD Insights Generator</a>
                 </li>
                 <li>
-                    <a href="#">HR Bot</a>
+                    <a href="/hrbot">HR Bot</a>
                 </li>
                 {% if total_spins %}
                 <li>
@@ -79,6 +80,7 @@
             </ul>
         </div>
     </nav>
+    {% endblock %}
     <!-- END NAVBAR-->
     <!-- CONTENT -->
     {% block content %} {% endblock %}
@@ -92,6 +94,7 @@
     </div>
     {% endblock %}
     <script>
+        // This one is used for making navbar elements active
         $(document).ready(function () {
             $('li.active').removeClass('active');
             $('a[href="' + location.pathname + '"]').closest('li').addClass('active');

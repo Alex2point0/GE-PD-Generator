@@ -1,28 +1,33 @@
-{% extends "base.html" %} {% block title %} GE PD Tools {% endblock title %} {% block content %}
+{% extends "base_no_bs.html" %} {% block content %}
 <div class="container">
-    <div class="col-md-8">
-        <h1>
-            <strong>
-                Welcome to GE PD Tools!
-                <br>
-                <br>
-                <div class="animated1">We developed multiple tools to improve your personal experience,
-                    <br>while working at GE Russia/CIS</div>
-            </strong>
-        </h1>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center">
+            <h1>
+                <strong>
+                    Welcome to GE PD Tools!
+                </strong>
+            </h1>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h1>
-            <br>
-            <br>
-            <a href="/ig" class="animated2">Insights Generator</a>
-            <br>
-            <a href="/roulette" class="animated3">Roulette</a>
-            <br>
-            <a href="/hrbot" class="animated4">HR Bot</a>
-        </h1>
+    <div class="row">
+        <div class="col-md-8">
+            <h1>
+                <strong>
+                    <div class="animated1">We developed multiple tools to improve your personal experience,
+                        <br>while working at GE Russia/CIS
+                    </div>
+                </strong>
+            </h1>
+        </div>
+        <div class="col-md-4">
+            <h1>
+                <ul>
+                    <li><a href="/ig" class="animated2">Insights Generator</a></li>
+                    <li><a href="/roulette" class="animated3">Roulette</a></li>
+                    <li><a href="/hrbot" class="animated4">HR Bot (soon)</a></li>
+                </ul>
+            </h1>
+        </div>
     </div>
 </div>
-<script>
-    $(".animated1").find()
-</script> {% endblock %}
+{% endblock %}

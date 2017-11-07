@@ -8,7 +8,7 @@ import os
 import re
 import json
 import csv
-import datetime
+import datetime 
 from flask import Flask, render_template, request, redirect, url_for, request, session, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from functools import wraps
@@ -66,14 +66,14 @@ def upload_file():
             file.save(app.config['UPLOAD_FOLDER'] + '/' + filename)
 
             # PANDAS
-            # Now let's prepare file
+            # Now let's prepare file 
             df = pd.read_excel(app.config['UPLOAD_FOLDER'] + '/' + filename)
 
             def prepare_json_from_xlsx(d):
                 sep_idx = d[d['QuestionID'] == 'SEPARATOR'].index[0]
                 labels = d[d.index < sep_idx].set_index('QuestionID').Text
                 d = d[d.index > sep_idx]
-
+                
                 data = {}
                 for i, q in enumerate(labels.index.unique()):
                     if d[d.QuestionID == q].shape[0] == 0:
@@ -82,25 +82,22 @@ def upload_file():
                             'Num': i,
                             'Options': [
                                 {'Parent': '*',
-                                 'Text': '*',
-                                 'Value': '*',
-                                 'Hashtag': '*'}
+                                'Text': '*',
+                                'Value': '*',
+                                'Hashtag': '*'}
                             ]
                         }
                     else:
-                        d.loc[:, ['Text', 'Parent', 'Hashtag']].fillna(
-                            "*", inplace=True)
-                        d.loc[d.QuestionID == q, 'Value'] = np.arange(
-                            d[d.QuestionID == q].shape[0], dtype='int')
+                        d.loc[:, ['Text', 'Parent', 'Hashtag']].fillna("*", inplace=True)
+                        d.loc[d.QuestionID == q,'Value'] = np.arange(d[d.QuestionID == q].shape[0], dtype='int')
                         data[str(q)] = {
                             'Label': labels[q],
                             'Num': i,
                             'Options': [
-                                {'Parent': row[2], 'Text': row[1], 'Value': row[4], 'Hashtag': row[3].split(
-                                    ",")}
+                                {'Parent': row[2], 'Text': row[1], 'Value': row[4], 'Hashtag': row[3].split(",")}
                                 for row in d.loc[d.QuestionID == q].values]
-                        }
-
+                            }
+                        
                 return data
 
             try:
@@ -110,7 +107,7 @@ def upload_file():
                     json.dump(res, outfile)
             except:
                 print("Error")
-            # END PANDAS
+            ## END PANDAS
             return redirect(url_for('uploaded_file',
                                     filename=filename))
         else:
@@ -125,11 +122,12 @@ def uploaded_file(filename):
                                filename)
 
 
-app.secret_key = 'SECRETKEY'
+app.secret_key = 'ge pd generator'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 os.environ['USER'] = 'admin'
 os.environ['PASS'] = 'admin'
+
 
 @app.route('/')
 def index():
@@ -141,7 +139,6 @@ def ig():
     with open(app.static_folder + '/uploaded/data.json', 'r') as json_data:
         d = json.load(json_data)
     return render_template('ig.html', data=d)
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -161,20 +158,11 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('index'))
-# port=int(os.getenv("PORT"))
-
-# This one is a test zone
-
-
-@app.route('/test')
-def test():
-    data = None
-    return render_template('test.html', data=data)
 
 
 @app.route('/save', methods=['POST'])
 def save():
-    try:  # Trying open request
+    try: # Trying open request
         data = request.form
         personFrom = data['personFrom']
         personTo = data['personTo']
@@ -182,31 +170,29 @@ def save():
         sso = data['sso']
     except Exception as e:
         print(e)
-        return json.dumps({'success': False, 'error': 'couldnt parse data'}), 400, {'ContentType': 'application/json'}
+        return json.dumps({'success':False, 'error': 'couldnt parse data'}), 400, {'ContentType':'application/json'}
 
-    try:  # Trying write csv-file to store results
+    try: # Trying write csv-file to store results
 
         # Add Headers if file doesn't exist
         if not os.path.isfile(app.config['UPLOAD_FOLDER'] + '/' + 'roulette.csv'):
             with open(app.config['UPLOAD_FOLDER'] + '/' + 'roulette.csv', 'a', newline='') as f:
                 csvwriter = csv.writer(f, delimiter=',')
-                csvwriter.writerow(
-                    ['time', 'person_from', 'person_to', 'sso', 'participants'])
+                csvwriter.writerow(['time','person_from','person_to', 'sso', 'participants'])
 
         # Write file
         with open(app.config['UPLOAD_FOLDER'] + '/' + 'roulette.csv', 'a', newline='') as f:
             csvwriter = csv.writer(f, delimiter=',')
             print(participants)
             participants = sorted(participants)
-            csvwriter.writerow(
-                [datetime.datetime.now(), personFrom, personTo, sso, ", ".join(participants)])
-            print("Results were saved\t", [datetime.datetime.now(
-            ), personFrom, personTo, sso, "\t".join(participants)])
+            csvwriter.writerow([datetime.datetime.now(), personFrom, personTo, sso, ", ".join(participants)])
+            print("Results were saved\t", [datetime.datetime.now(), personFrom, personTo, sso, "\t".join(participants)])
     except Exception as e:
         print(e)
-        return json.dumps({'success': False, 'error': 'couldnt save data'}), 400, {'ContentType': 'application/json'}
+        return json.dumps({'success':False, 'error': 'couldnt save data'}), 400, {'ContentType':'application/json'}
 
-    return json.dumps({'success': True, }), 200, {'ContentType': 'application/json'}
+    return json.dumps({'success':True,}), 200, {'ContentType':'application/json'}
+
 
 
 # Roulette
@@ -238,7 +224,7 @@ def roulette():
 
         participants_selected = request.form.getlist('participants-selected')
         print(participants_selected)
-
+        
         data = {}
         if participants_selected:
             for i in range(len(participants_selected)):
@@ -249,12 +235,12 @@ def roulette():
         else:
             for i, p in enumerate(participants):
                 data[i] = {}
-
+                
                 # Parsing name
                 name = re.search(r'.*\(', p)
                 if name:
                     data[i]['name'] = name.group()[:-1]
-
+                    
                 # Parsing email
                 email = re.search(r'<.+@.+>', p)
                 if email:
@@ -272,6 +258,9 @@ def roulette():
 
     return render_template('roulette.html', data=json.dumps(data), scroll=scroll, total_spins=total_spins)
 
+@app.route('/hrbot')
+def hrbot():
+    return render_template('hrbot.html')
 
 if __name__ == '__main__':
     port = int(os.getenv("PORT"))

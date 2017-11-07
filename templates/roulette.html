@@ -1,6 +1,5 @@
 {% extends "base_no_bs.html" %} {% block head %} {{super()}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.css" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"
 />
@@ -230,7 +229,7 @@
                 plugins: ['remove_button'],
                 delimiter: ';',
                 persist: false,
-                placeholder: "Copy participants from your Outlook or Add them manually",
+                placeholder: "Copy participants from your Outlook",
                 create: function (input) {
                     return {
                         value: input,

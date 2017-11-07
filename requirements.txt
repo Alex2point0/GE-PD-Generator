@@ -1,8 +1,4 @@
 Flask
 pandas
-<<<<<<< HEAD
-numpy
-=======
 numpy
 xlrd
->>>>>>> FrontEnd

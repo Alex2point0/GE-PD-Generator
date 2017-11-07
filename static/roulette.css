@@ -38,10 +38,6 @@
     margin-top: 25px;
 }
 
-.navbar-brand {
-    font-size: 100%;
-}
-
 .form-control {
     color: white;
     font-weight: bold;
@@ -49,17 +45,6 @@
 
 .form-control.white {
     color: black;
-}
-
-body {
-    display: none;
-    font-family: "Varela Round";
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    color: white;
 }
 
 .roulette-btn {
@@ -303,10 +288,16 @@ body {
 }
 
 .modal-newsletter .modal-content {
-    padding: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
     border-radius: 15px;		
     border: none;
 }
+
+.modal-content a:link { color: #174577; }
+.modal-content a:visited { color: #174577; }
+.modal-content a:hover { color: #174577; }
+.modal-content a:active { color: #174577; }
 
 .modal-newsletter .modal-header {
     border-bottom: none;   
