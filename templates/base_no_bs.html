@@ -20,16 +20,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-        crossorigin="anonymous">
-
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
 
     <!-- User defined -->
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" />
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" /> {% endblock stylesheets %}
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{url_for('static', filename='apple-icon-57x57.png')}}">
@@ -41,30 +38,45 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{{url_for('static', filename='apple-icon-144x144.png')}}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{url_for('static', filename='apple-icon-152x152.png')}}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='apple-icon-180x180.png')}}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{url_for('static', filename='android-icon-192x192.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{url_for('static', filename='android-icon-192x192.png')}}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon-32x32.png')}}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{url_for('static', filename='favicon-96x96.png')}}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon-16x16.png')}}">
     <link rel="manifest" href="{{url_for('static', filename='manifest.json')}}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{url_for('static', filename='ms-icon-144x144.png')}}">
-    <meta name="theme-color" content="#ffffff">
-
-    {% block title %}{% endblock %}
-    {% endblock %}
+    <meta name="theme-color" content="#ffffff"> {% block title %}{% endblock %} {% endblock %}
 </head>
 
 <body>
     <!-- NAVBAR -->
     <!-- Image and text -->
-    <nav class="navbar-fixed-top navbar-light bg-faded">
+    <nav class="navbar-fixed-top navbar-default">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/General_Electric_logo.svg" width="50" height="50" class="d-inline-block align-top" alt="">
-        </a>
-            <a href="/roulette" class="navbar-text shadow">PD Roulette</a> {% if total_spins %}
-            <div class="navbar-text navbar-right">Total Spins stored: {{ total_spins }} </div>
-            {% endif %}
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="{{url_for('static', filename='ge-logo.svg')}}" width="25" height="25">
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/roulette">PD Roulette</a>
+                </li>
+                <li>
+                    <a href="/ig">PD Insights Generator</a>
+                </li>
+                <li>
+                    <a href="#">HR Bot</a>
+                </li>
+                {% if total_spins %}
+                <li>
+                    <div class="navbar-text">Total Spins stored: {{ total_spins }} </div>
+                </li>
+                {% endif %}
+            </ul>
         </div>
     </nav>
     <!-- END NAVBAR-->
@@ -74,10 +86,17 @@
     {% block footer %}
     <div class="footer navbar-fixed-bottom">
         <div class="col-md-12 text-right h4">
-            &copy; Copyright 2017 by <strong>Oleg Khomenko</strong>, Roman Zemlyanskiy, Mikhail Berezovskiy @ GE Russia/CIS
+            &copy; Copyright 2017 by
+            <strong>Oleg Khomenko</strong>, Roman Zemlyanskiy @ GE Russia/CIS
         </div>
     </div>
     {% endblock %}
+    <script>
+        $(document).ready(function () {
+            $('li.active').removeClass('active');
+            $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+        });
+    </script>
 </body>
 
 </html>

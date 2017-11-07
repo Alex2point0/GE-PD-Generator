@@ -54,7 +54,6 @@
 body {
     display: none;
     font-family: "Varela Round";
-    background-image: url(./roulette-bg.jpg);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -419,4 +418,12 @@ body {
 
 .modal-newsletter .icon-box .inline i {
     font-size: inherit;
+}
+
+#btn-spinAgain {
+    font-size: 100%;
+}
+
+a.modal {
+    color: black;
 }

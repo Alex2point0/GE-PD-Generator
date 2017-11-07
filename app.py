@@ -125,15 +125,19 @@ def uploaded_file(filename):
                                filename)
 
 
-app.secret_key = 'ge pd generator'
+app.secret_key = 'SECRETKEY'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 os.environ['USER'] = 'admin'
 os.environ['PASS'] = 'admin'
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 
 @app.route('/ig')
-def index():
+def ig():
     with open(app.static_folder + '/uploaded/data.json', 'r') as json_data:
         d = json.load(json_data)
     return render_template('ig.html', data=d)
