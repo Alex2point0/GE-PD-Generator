@@ -5,7 +5,7 @@
 />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css" />
 <link rel="stylesheet" href="{{url_for('static', filename='roulette.css')}}"> {% block title %}
-<title>PD Roulette</title>
+<title>PD WoF</title>
 {% endblock %} {% endblock %} {% block content %}
 <div id="fullpage">
 
@@ -40,7 +40,7 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-6 text-center">
-                                    <input type="submit" class="shadow input-shadow" value="Go to Roulette!" onsubmit="return () => {return false;}">
+                                    <input type="submit" class="shadow input-shadow" value="I'm Ready!" onsubmit="return () => {return false;}">
                                 </div>
                             </div>
 
@@ -171,7 +171,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
     <!-- Data from Jinja & Flask -->
     <script>
-        var data = {{data|safe }};
+        var data = {{ data|safe }};
         var wordlist = [];
         for (let key in data) {
             wordlist.push(data[key]['name']);

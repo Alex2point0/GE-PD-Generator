@@ -125,8 +125,11 @@ def uploaded_file(filename):
 app.secret_key = 'ge pd generator'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-os.environ['USER'] = 'admin'
-os.environ['PASS'] = 'admin'
+if not os.getenv('USER'):
+    os.environ['USER'] = 'admin'
+
+if not os.getenv('PASS'):
+    os.environ['PASS'] = 'admin'
 
 
 @app.route('/')

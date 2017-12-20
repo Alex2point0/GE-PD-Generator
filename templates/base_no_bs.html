@@ -28,7 +28,6 @@
     <!-- User defined -->
     {% block stylesheets %}
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" /> {% endblock stylesheets %}
-
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{{url_for('static', filename='apple-icon-57x57.png')}}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{url_for('static', filename='apple-icon-60x60.png')}}">
@@ -58,13 +57,13 @@
                 <a class="navbar-brand" href="#">
                     <img src="{{url_for('static', filename='ge-logo.svg')}}" width="25" height="25">
                 </a>
-            </div>
+            </dif>
             <ul class="nav navbar-nav">
                 <li>
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/roulette">PD Roulette</a>
+                    <a href="/roulette">PD Wheel of Fortune</a>
                 </li>
                 <li>
                     <a href="/ig">PD Insights Generator</a>
@@ -87,9 +86,9 @@
     <!-- END CONTENT-->
     {% block footer %}
     <div class="footer navbar-fixed-bottom">
-        <div class="col-md-12 text-right h4">
-            &copy; Copyright 2017 by
-            <strong>Oleg Khomenko</strong>, Roman Zemlyanskiy @ GE Russia/CIS
+        <div class="col-md-12 text-right">
+            &copy; 2017 by
+            <strong>Oleg Khomenko</strong>, oleg.khomenko@ge.com, GE Russia/CIS
         </div>
     </div>
     {% endblock %}

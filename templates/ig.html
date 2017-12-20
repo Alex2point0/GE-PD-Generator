@@ -2,178 +2,117 @@
 <title>Insight Generator</title>{% endblock %} {% block head %} {{ super() }}
 <!-- Vue.js -->
 <script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
 <!-- BOOTBOX-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
-<!-- BaugetteBox-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.9.1/baguetteBox.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.9.1/baguetteBox.min.js" async></script>
+<!-- Selectize.js-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/css/selectize.default.min.css" />
+
 <!-- FullPage-->
 <script src="/static/jquery.fullPage.css"></script>
 <script src="/static/jquery.fullPage.js"></script>
-<link rel="stylesheet" href="{{url_for('static', filename='ig.css')}}"> 
-{% endblock %} {% block content %}
-<div class="container">
+<link rel="stylesheet" href="{{url_for('static', filename='ig.css')}}"> {% endblock %} {% block content %} {%raw%}
+<div id="app">
     <div id="fullpage">
+
         <section id="section1" class="section">
             <div class="container">
-                <div class="row top-header">
+                <div class="row">
                     <div class="navbar background-logo col-md-10">
                         <h2 class="small-header">Step 1: Construct greeting. CONTINUE or CONSIDER</h2>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="container">
-                        <div class="col-md-5 mid">
-                            <div class="row">
-                                <p id="label1">{%raw%}{{label1}}{%endraw%}</p>
-                                <input id="inputName" class="form-control input" v-model="name" type="text"></input>
-                            </div>
-                            <div class="row">
-                                <p id="label2">{%raw%}{{label2}}{%endraw%}</p>
-                                <div id="uid0">
-                                    <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                        <option disabled value="">Choose an option</option>
-                                        {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                        {%endraw%}
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <p id="label3">{%raw%}{{label3}}{%endraw%}</p>
-                                <div id="uid1">
-                                    <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                        <option disabled value="">Choose an option</option>
-                                        {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                        {%endraw%}
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <p id="label4">{%raw%}{{label4}}{%endraw%}</p>
-                                <div id="uid2">
-                                    <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                        <option disabled value="">Choose an option</option>
-                                        {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                        {%endraw%}
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5 intro-text description">
-                            <p>It's a tool to help you express your feedack, friendly advice, "CONTINUE" or "CONSIDER" to your
-                                manager, teammate, peer or juniour employee</p>
-                            <p>No more suffers while seeking for the right words... no more struggles to make it impactful and
-                                polite
-                            </p>
-                            <p>Just follow 3 easy steps to construct impactful insight, modify it to your taste and bring it
-                                to PD</p>
-                        </div>
+                    <div class="col-md-offset-3 col-md-6">
+                        <p>It's a tool to help you express your feedack, friendly advice, "CONTINUE" or "CONSIDER" to your people
+                            leader, teammate, peer or juniour employee</p>
+                        <p>No more suffers while seeking for the right words... no more struggles to make it impactful and polite
+                        </p>
+                        <p>Just follow 3 easy steps to construct impactful insight, modify it to your taste and bring it to
+                            PD
+                        </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-2">
-                        <button type="button1" class="btn btn-primary btn-block slideDown" id="button1" href="#">Next step</button>
+                    <p id="label0">{{label0}}</p>
+                    <input id="inputName" class="form-control input" @change="updateName" v-model="name" type="text"></input>
+                </div>
+                <div class="row">
+                    <p id="label3">{{label3}}</p>
+                    <div id="uid2">
+                        <select v-model="selected" @change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                        <option disabled value="">Choose an option</option>
+                                        <option v-for="option in options" :value="option.Value">
+                                            {{option.Text}}
+                                        </option>
+                                    </select>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <button class="btn btn-primary btn-block slideDown">Next step</button>
                     </div>
                 </div>
             </div>
         </section>
+
         <section id="section2" class="section">
-            <br>
             <div class="container">
                 <div class="row">
                     <h2 class="small-header">Step 2: Select behaviour to be continued/considered</h2>
                 </div>
                 <div class="row">
-                    <div class="container mid">
-                        <div class="col-sm-5">
-                            <div class="row">
-                                <p id="label5">{%raw%}{{label5}}{%endraw%}</p>
-                                <div id="uid3">
-                                    <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                    <p id="label4">{{label4}}</p>
+                    <div id="uid3">
+                        <select v-model="selected" @change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
                                         <option disabled value="">Choose an option</option>
-                                        {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
+                                        <option v-for="option in options" :value="option.Value">
                                             {{option.Text}}
                                         </option>
-                                        {%endraw%}
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <p id="label6">{%raw%}{{label6}}{%endraw%}</p>
-                                <div id="uid4">
-                                    <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                        <option disabled value="">Choose an option</option>
-                                        {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                        {%endraw%}
-                                    </select>
-                                    <br>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <p id="label7">{%raw%}{{label7}}{%endraw%}</p>
-                                <div id="uid50">
-                                    <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                        <option disabled value="">Choose an option</option>
-                                        {%raw%}
-                                        <option v-for="option in options" v-bind:value="option.Value">
-                                            {{option.Text}}
-                                        </option>
-                                        {%endraw%}
-                                    </select>
-                                    <br>
-                                </div>
+                        </select>
+                        <br>
+                    </div>
+                </div>
+                <!-- BUCKETS WITH BELIEFS -->
+                <div id="buckets">
+                    <div class="row">
+                        <div :class="'col-md-2 bucket' + ind" v-if="private.buckets!=null" v-for="(bucket, ind) in private.buckets">
+                            <small>{{bucket.name}}</small>
+                            <div v-for="(belief, index) in bucket.beliefs">
+                                <input type="radio" :id="belief.name" :value="belief.name" v-model="private.selected" @change="onChange">
+                                <label :for="belief.name"><small>{{belief.name}}</small></label>
                             </div>
                         </div>
-                        <div class="col-sm-2">
-                            or
-                        </div>
-                        <div class="col-sm-5">
-                            <div class="row">
-                                <p id="label8">{%raw%}{{label8}}{%endraw%}</p>
-                                <input id="inputHashtag" class="form-control" v-model="hashtag" v-on:input="hashtagChanged"></input>
-                                <br>
-                            </div>
-                            <div class="row" id="uid51">
-                                <p id="label9">{%raw%}{{label9}}{%endraw%}</p>
-                                <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                    <option disabled value="">Choose an option</option>
-                                    {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                    {%endraw%}
-                                </select>
-                                <br>
-
-                            </div>
-
+                        <div class="col-md-2">
+                            <h3>Selected Belief:</h3> {{private.selected}}
                         </div>
                     </div>
                 </div>
+                <br>
+                <!-- SELECT SPECIFIC BEHAVIOUR CONTINUE / CONSIDER-->
                 <div class="row">
-                    <div class="col-md-2">
-                        <button id="button1" , class="btn btn-primary btn-block slideDown">Next step</button>
+                    <p id="label7">{{label7}}</p>
+                    <div id="uid50">
+                        <select v-model="selected" @change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                            <option disabled value="">Choose an option</option>
+                                            <option v-for="option in options" :value="option.Value">
+                                                {{option.Text}}
+                                            </option>
+                                 </select>
+                        <br>
+                    </div>
+                </div>
+                <!-- HASH TAGS -->
+                <div class="row display-none">
+                    <p id="label8">{{label8}}</p>
+                    <v-select multiple v-model="selected" id="vselect" :options="options"></v-select>
+                    <br>
+                </div>
+                <!-- BTN, NEXT STEP -->
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <button class="btn btn-primary btn-block slideDown">Next step</button>
                     </div>
                 </div>
             </div>
@@ -186,569 +125,483 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="row">
-                        <p id="label10">{%raw%}{{label10}}{%endraw%}</p>
-                        <div id="uid6">
-                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                    <!-- Select specific behaviour anchor which should be impacted by your insight -->
+                    <p id="label10">{{label10}}</p>
+                    <div id="uid9">
+                        <select v-model="selected" @change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
                                     <option disabled value="">Choose an option</option>
-                                    {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
+                                    <option v-for="option in options" :value="option.Value">
                                         {{option.Text}}
                                     </option>
-                                    {%endraw%}
                                 </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <p id="label11">{%raw%}{{label11}}{%endraw%}</p>
-                        <div id="uid7">
-                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                    <option disabled value="">Choose an option</option>
-                                    {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                    {%endraw%}
-                                </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <p id="label12">{%raw%}{{label12}}{%endraw%}</p>
-                        <div id="uid8">
-                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                    <option disabled value="">Choose an option</option>
-                                    {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                    {%endraw%}
-                                </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <p id="label13">{%raw%}{{label13}}{%endraw%}</p>
-                        <div id="uid9">
-                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                    <option disabled value="">Choose an option</option>
-                                    {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                    {%endraw%}
-                                </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <p id="label14">{%raw%}{{label14}}{%endraw%}</p>
-                        <div id="uid10">
-                            <select v-model="selected" v-on:change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
-                                    <option disabled value="">Choose an option</option>
-                                    {%raw%}
-                                    <option v-for="option in options" v-bind:value="option.Value">
-                                        {{option.Text}}
-                                    </option>
-                                    {%endraw%}
-                                </select>
-                        </div>
                     </div>
                 </div>
+                <br>
                 <div class="row">
-                    <div class="col-md-2">
-                        <button id="button1" class="btn btn-primary btn-block slideDown">Generate</button>
+                    <!-- Select closing phrase -->
+                    <p id="label14">{{label14}}</p>
+                    <div id="uid10">
+                        <select v-model="selected" @change="onChange" class="btn btn-secondary btn-block dropdown-toggle">
+                                    <option disabled value="">Choose an option</option>
+                                    <option v-for="option in options" :value="option.Value">
+                                        {{option.Text}}
+                                    </option>
+                                </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-4">
+                        <button class="btn btn-primary btn-block slideDown">Generate</button>
                     </div>
                 </div>
         </section>
-
         <section id="section4" class="section"><br>
             <div class="container">
-                <div class="navbar background-logo col-md-11">
-                    <h2>Bring it to PD</h2>
-                </div>
+                <h2>Step 4: Edit it & Bring it to PD</h2>
                 <div class="row">
                     <div id="finalText">
                         <transition name="fade">
                             <p>
-                                <textarea class="form-control" id="finalTextBox" rows=6>{%raw%}{{text}}{%endraw%} </textarea>
+                                <textarea class="form-control" id="finalTextBox" rows=6>{{text}}</textarea>
                             </p>
                         </transition>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button id="BackToStart" , class="btn btn-primary btn-block">Start from beginning</button>
+                        <button id="backToStart" class="btn btn-primary btn-block">Start from beginning</button>
                     </div>
                     <div class="col-md-6" id="CopyToClipboard">
-                        <button v-on:click="Copy" class="btn btn-primary btn-block">Copy to Clipboard</button>
+                        <button @click="Copy" class="btn btn-primary btn-block">Copy to Clipboard</button>
                     </div>
                 </div>
             </div>
         </section>
         </div>
+    </div>
+</div>
+<!-- SCRIPT SECTION-->
+{%endraw%}
+<div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
+    <script>
+        function getValuesByOptionChosen(value) {
+            return value['Parent'] == Parent;
+        }
 
-
-        <!-- SCRIPT SECTION-->
-        <script>
-            function getValuesByOptionChosen(value) {
-                return value['Parent'] == Parent;
+        function getValuesFromDict(dict) {
+            for (keys in dict) {
+                var elements = dict[keys];
             }
+            return elements;
+        }
 
-            function getValuesFromDict(dict) {
-                for (keys in dict) {
-                    var elements = dict[keys];
-                }
-                return elements;
+        // Get random Sample from Array
+        function randomSample(object) {
+            var keys = Object.keys(object);
+            return object[keys[Math.floor(keys.length * Math.random())]];
+        };
+
+
+        // Prepare Data from JSON
+        var data = JSON.parse('{{ data | tojson }}');
+
+        var bucketsfull = [
+            {
+                name: 'CUSTOMERS DETERMINE OUR SUCCESS',
+                beliefs: [
+                    { name: 'Passionate Customer Connection', value: 0 },
+                    { name: 'Make Customer Priorities Your Priorities', value: 1 },
+                    { name: 'Communication and Validation with Customer', value: 2 },
+                    { name: 'Make it easy for Customer to do business', value: 3 }
+                ]
+            },
+            {
+                name: 'LEARN AND ADAPT TO WIN',
+                beliefs: [
+                    { name: 'Fail fast and be resilient', value: 8 },
+                    { name: 'Welcome change', value: 9 },
+                    { name: 'Evolve', value: 10 },
+                    { name: 'Outcomes even over process', value: 11 }
+                ]
+            },
+            {
+                name: 'STAY LEAN TO GO FAST',
+                beliefs: [
+                    { name: 'Focus on what\u2019s most critical', value: 4 },
+                    { name: 'Default to simplicity', value: 5 },
+                    { name: 'Be lean & flexible', value: 6 },
+                    { name: 'Act with urgency', value: 7 }
+                ]
+            },
+            {
+                name: 'EMPOWER AND INSPIRE EACH OTHER',
+                beliefs: [
+                    { name: 'Embrace empowerment/Empower others', value: 12 },
+                    { name: 'Speak up - Listen up', value: 13 },
+                    { name: 'Add value to the team', value: 14 },
+                    { name: 'Exceptional team player/Promote development', value: 15 }
+                ]
+            },
+            {
+                name: 'DELIVER RESULTS IN AN UNCERTAIN WORLD',
+                beliefs: [
+                    { name: 'Be bold', value: 16 },
+                    { name: 'Play to win', value: 17 },
+                    { name: 'Take action', value: 18 },
+                    { name: 'Visionary', value: 19 },
+                ]
             }
+        ]
+
+        {% for i in range(0, 15) %}            
+        new Vue({
+            el: '#label{{i}}',
+            data: {
+                "label{{i}}": data[{{i }}]['Label']
+                }
+            });
+        {% endfor %}
+
+        // Init. First field for First/Last Names
+        var inputName = new Vue({
+            el: '#inputName',
+            data: {
+                name: ''
+            },
+            methods: {
+                updateName: function (event) {
+                    finalText.updateText(0, greetings.getGreetings(this.name));
+                }
+            }
+        });
 
 
-            var data = JSON.parse('{{ data | tojson }}');
+        // Vue Select
+        Vue.component('v-select', VueSelect.VueSelect);
+        new Vue({
+            el: '#vselect',
+            data: {
+                selected: '',
+                options: ['#Helped', '#Motivates', '#Inspires', '#SupportsMe', '#Listens to people']
+            }
+        });
 
-            new Vue({
-                el: '#label1',
-                data: { label1: data["1"]['Label'] }
-            })
 
-            new Vue({
-                el: '#label2',
-                data: { label2: data["2"]['Label'] }
-            })
 
-            new Vue({
-                el: '#label3',
-                data: { label3: data["3"]['Label'] }
-            })
 
-            new Vue({
-                el: '#label4',
-                data: { label4: data["4"]['Label'] }
-            })
+        var greetings = new Vue({
+            // greetings
+            data: {
+                options: data[1].Options,
+                selected: ''
+            },
+            methods: {
+                getGreetings: function (name) {
+                    return this.selected['Text'].replace("___", name);
+                }
+            },
+            created: function () {
+                this.selected = randomSample(this.options);
+            },
+        })
 
-            new Vue({
-                el: '#label5',
-                data: { label5: data["5"]['Label'] }
-            })
 
-            new Vue({
-                el: '#label6',
-                data: { label6: data["6"]['Label'] }
-            })
+        var firstConnectorPhrase = new Vue({
+            data: {
+                selected: '',
+                options: data[2].Options
+            },
+            created: function () {
+                this.selected = randomSample(this.options);
+            }
+        })
 
-            new Vue({
-                el: '#label7',
-                data: { label7: data["7"]['Label'] }
-            })
+        var secondConnectorPhrase = new Vue({
+            data: {
+                selected: '',
+                options: data[13].Options
+            },
+            created: function () {
+                this.selected = randomSample(this.options);
+            }
+        })
 
-            new Vue({
-                el: '#label8',
-                data: { label8: data["8"]['Label'] }
-            })
-
-            new Vue({
-                el: '#label9',
-                data: { label9: data["9"]['Label'] }
-            })
-
-            new Vue({
-                el: '#label10',
-                data: { label10: data["10"]['Label'] }
-            })
-
-            new Vue({
-                el: '#label11',
-                data: { label11: data["11"]['Label'] }
-            })
-
-            new Vue({
-                el: '#label12',
-                data: { label12: data["12"]['Label'] }
-            })
-
-            new Vue({
-                el: '#label13',
-                data: { label13: data["13"]['Label'] }
-            })
-
-            new Vue({
-                el: '#label14',
-                data: { label14: data["14"]['Label'] }
-            })
-
-            var inputName = new Vue({
-                el: '#inputName',
-                data: {
-                    name: ''
+        var list2 = new Vue({
+            // Select the CONTINUE or CONSIDER phrase
+            el: '#uid2',
+            data: {
+                selected: '',
+                options: data[3].Options,
+            },
+            methods: {
+                onChange: function (event) {
+                    finalText.updateText(2, this.options[this.selected].Text);
                 },
-                methods: {
-                    returnName: function () {
-                        return this.name;
+            }
+        })
+
+        var list3 = new Vue({
+            // Select the role of person you want to give insight
+            el: '#uid3',
+            data: {
+                selected: '',
+                options: data[4].Options,
+            },
+            methods: {
+                onChange: function (event) {
+                    list4.update(event.srcElement.value);
+                }
+            }
+        })
+
+        var list4 = new Vue({
+            el: '#uid4',
+            data: {
+                selected: '',
+                options: data[5].Options,
+                name: ''
+            },
+            methods: {
+
+                update: function (value) {
+                    res = {}
+                    for (key in data[5].Options) {
+                        if (data[5].Options[key]['Parent'] == value) {
+                            res[key] = data[5].Options[key];
+                        }
                     }
-                }
-            })
-
-            var inputHashtag = new Vue({
-                el: '#inputHashtag',
-                data: {
-                    hashtag: '',
+                    this.options = res;
                 },
-                methods: {
-                    returnHashtag: function () {
-                        return this.hashtag;
-                    },
-                    hashtagChanged: function () {
-                        list51.update(this.hashtag.split(' '));
+
+                onChange: function (event) {
+                    list5.update(event.srcElement.value);
+                },
+            }
+        })
+
+        //Select specific behaviour to CONTINUE/CONSIDER
+        var list5 = new Vue({
+            el: '#uid50',
+            data: {
+                selected: '',
+                options: data["6"].Options
+            },
+            methods: {
+
+                update: function (value) {
+                    res = {}
+                    for (key in data["6"].Options) {
+                        if (data["6"].Options[key]['Parent'] == value) {
+                            res[key] = data["6"].Options[key];
+                        }
                     }
-                }
-            })
-
-            var list0 = new Vue({
-                el: '#uid0',
-                data: {
-                    selected: '',
-                    options: data["1"].Options,
-                    name: ''
+                    this.options = res;
                 },
-                methods: {
-                    onChange: function (event) {
 
-                        finalText.updateText(0, this.options[this.selected]);
-                    },
-                }
-            })
-
-            var list1 = new Vue({
-                el: '#uid1',
-                data: {
-                    selected: '',
-                    options: data["2"].Options
+                onChange: function (event) {
+                    finalText.updateText(5, this.options[this.selected].Text);
                 },
-                methods: {
+            }
+        })
 
-                    update: function (value) {
-                        res = {}
-                        for (key in data["2"].Options) {
-                            if (data["2"].Options[key]['Parent'] == value) {
-                                res[key] = data["2"].Options[key];
-                            }
+        var list6 = new Vue({
+            el: '#uid6',
+            data: {
+                selected: '',
+                options: data["7"].Options,
+                name: ''
+            },
+            methods: {
+                onChange: function (event) {
+                    finalText.updateText(6, this.options[this.selected].Text);
+                },
+            }
+        })
+
+        var beliefs = new Vue({
+            data: {
+                selected: '',
+                options: data["9"].Options,
+                filterValue: ''
+            },
+            methods: {
+                update: function (value) {
+                    res = {};
+                    for (key in data["9"].Options) {
+                        if (data["9"].Options[key]['Parent'] == value) {
+                            res[key] = data["9"].Options[key];
                         }
-                        this.options = res;
-                    },
-
-                    onChange: function (event) {
-                        finalText.updateText(1, this.options[this.selected]);
                     }
-                }
-
-            })
-
-            var list2 = new Vue({
-                el: '#uid2',
-                data: {
-                    selected: '',
-                    options: data["3"].Options,
-                    name: ''
+                    this.options = res;
                 },
-                methods: {
-                    onChange: function (event) {
-                        finalText.updateText(2, this.options[this.selected]);
-                    },
-                }
-            })
 
-            var list3 = new Vue({
-                el: '#uid3',
-                data: {
-                    selected: '',
-                    options: data["4"].Options,
-                    name: ''
+                onChange: function (event) {
+                    behaviourAnchor.update(event.srcElement.value);
                 },
-                methods: {
-                    onChange: function (event) {
-                        list4.update(event.srcElement.value);
+            }
+        })
+
+        var behaviourAnchor = new Vue({
+            el: '#uid9',
+            data: {
+                selected: '',
+                options: data[10].Options,
+            },
+            methods: {
+
+                update: function (value) {
+                    res = {}
+                    for (key in data["10"].Options) {
+                        if (data["10"].Options[key]['Parent'] == value) {
+                            res[key] = data["10"].Options[key];
+                        }
                     }
-                }
-            })
-
-            var list4 = new Vue({
-                el: '#uid4',
-                data: {
-                    selected: '',
-                    options: data["5"].Options,
-                    name: ''
+                    this.options = res;
                 },
-                methods: {
 
-                    update: function (value) {
-                        res = {}
-                        for (key in data["5"].Options) {
-                            if (data["5"].Options[key]['Parent'] == value) {
-                                res[key] = data["5"].Options[key];
+                onChange: function (event) {
+                    finalText.updateText(9, this.options[this.selected].Text);
+                },
+            }
+        })
+
+        var list10 = new Vue({
+            el: '#uid10',
+            data: {
+                selected: '',
+                options: data["11"].Options,
+                name: ''
+            },
+            methods: {
+                onChange: function (event) {
+                    finalText.updateText(10, this.options[this.selected].Text);
+                },
+            }
+        })
+
+
+        var buckets = new Vue({
+            el: '#buckets',
+            data: {
+                private: {
+                    selected: 'None',
+                    buckets: bucketsfull
+                }
+            },
+            methods: {
+                onChange: function (event) {
+                    // Debug
+                    console.log(`${this.private.selected} was selected`);
+
+                    // Finding Belief value
+                    var val = -1;
+                    for (el in beliefs.options) {
+                        if (beliefs.options[el]['Text'] == this.private.selected) {
+                            var val = el;
+                            console.log(el);
+                        }
+                    }
+
+                    // Updating "Select specific behaviour to CONTINUE/CONSIDER"
+                    list5.update(val);
+                    // Updating behaviour Anchor
+                    behaviourAnchor.update(val);
+                },
+
+                update: function (value) {
+                    var res = Object.assign({}, bucketsfull);
+                    for (bucket in res) {
+                        for (belief in bucket) {
+                            if (res[bucket].beliefs[belief].value != value) {
+                                console.log(`DEL THIS ONE${res[bucket].beliefs[belief]}`)
+                            } else {
+                                console.log(`KEEP THIS oNE${res[bucket].beliefs[belief]}`)
                             }
                         }
-                        this.options = res;
-                    },
-
-                    onChange: function (event) {
-                        list5.update(event.srcElement.value);
-                    },
-                }
-            })
-
-            var list5 = new Vue({
-                el: '#uid50',
-                data: {
-                    selected: '',
-                    options: data["6"].Options,
-                    name: ''
+                    }
+                    this.private.buckets = res;
                 },
-                methods: {
+            }
+        })
 
-                    update: function (value) {
-                        res = {}
-                        for (key in data["6"].Options) {
-                            if (data["6"].Options[key]['Parent'] == value) {
-                                res[key] = data["6"].Options[key];
-                            }
+        // Final Text
+        var finalText = new Vue({
+            el: "#finalText",
+            data: {
+                arr: [],
+                text: '',
+                show: false
+            },
+            methods: {
+                updateText: function (key, element) {
+                    this.arr[key] = element;
+                    this.text = '';
+                    for (el in this.arr) {
+                        if (el == 0) {
+                            this.text = this.arr[el];
                         }
-                        this.options = res;
-                    },
-
-                    onChange: function (event) {
-                        list51.selected = '';
-                        finalText.updateText(5, this.options[this.selected]);
-                    },
-                }
-            })
-
-            var list51 = new Vue({
-                el: '#uid51',
-                data: {
-                    selected: '',
-                    options: '',
-                    name: '',
-                    test: {}
-                },
-                methods: {
-
-                    update: function (value) {
-                        var res1 = { Point: "Empty" };
-                        var res = data["6"]["Options"].slice();
-                        this.test = res;
-                        for (item in value) {
-                            if (res1["Point"] != "Empty") { res = res1; }
-                            res1 = {};
-                            for (key in res) {
-                                // alert(String(res[key]['Hashtag'])+"  "+value[item]);
-                                if (String(res[key]['Hashtag']).indexOf(value[item]) != -1) {
-                                    res1[key] = res[key];
-                                }
-                            }
-                        }
-                        this.options = res1;
-                    },
-
-                    onChange: function (event) {
-                        list5.selected = '';
-                        finalText.updateText(5, this.options[this.selected]);
-                    },
-                }
-            })
-
-            var list6 = new Vue({
-                el: '#uid6',
-                data: {
-                    selected: '',
-                    options: data["7"].Options,
-                    name: ''
-                },
-                methods: {
-                    onChange: function (event) {
-                        finalText.updateText(6, this.options[this.selected]);
-                    },
-                }
-            })
-
-            var list7 = new Vue({
-                el: '#uid7',
-                data: {
-                    selected: '',
-                    options: data["8"].Options,
-                    name: ''
-                },
-                methods: {
-                    onChange: function (event) {
-                        list8.update(event.srcElement.value);
-                    },
-                }
-            })
-
-            var list8 = new Vue({
-                el: '#uid8',
-                data: {
-                    selected: '',
-                    options: data["9"].Options,
-                    name: ''
-                },
-                methods: {
-
-                    update: function (value) {
-                        res = {}
-                        for (key in data["9"].Options) {
-                            if (data["9"].Options[key]['Parent'] == value) {
-                                res[key] = data["9"].Options[key];
-                            }
-                        }
-                        this.options = res;
-                    },
-
-                    onChange: function (event) {
-                        list9.update(event.srcElement.value);
-                    },
-                }
-            })
-
-            var list9 = new Vue({
-                el: '#uid9',
-                data: {
-                    selected: '',
-                    options: data["10"].Options,
-                    name: ''
-                },
-                methods: {
-
-                    update: function (value) {
-                        res = {}
-                        for (key in data["10"].Options) {
-                            if (data["10"].Options[key]['Parent'] == value) {
-                                res[key] = data["10"].Options[key];
-                            }
-                        }
-                        this.options = res;
-                    },
-
-                    onChange: function (event) {
-                        finalText.updateText(9, this.options[this.selected]);
-                    },
-                }
-            })
-
-            var list10 = new Vue({
-                el: '#uid10',
-                data: {
-                    selected: '',
-                    options: data["11"].Options,
-                    name: ''
-                },
-                methods: {
-                    onChange: function (event) {
-                        finalText.updateText(10, this.options[this.selected]);
-                    },
-                }
-            })
-
-
-
-
-
-            var finalText = new Vue({
-                el: "#finalText",
-                data: {
-                    arr: [],
-                    text: '',
-                    show: false
-                },
-                methods: {
-                    updateText: function (key, element) {
-                        this.arr[key] = element["Text"];
-                        this.text = "";
-                        if (key == 0) {
-                            this.arr[key] = this.arr[key].replace("___", inputName.returnName());
-                        }
-                        for (el in this.arr) {
+                        else {
                             this.text = this.text + " " + this.arr[el];
                         }
-
                     }
                 }
-            })
+            },
+            created: function () {
+                this.updateText(1, firstConnectorPhrase.selected.Text);
+                this.updateText(8, secondConnectorPhrase.selected.Text);
+            }
+        })
 
-            var CopyToClipboard = new Vue({
-                el: '#CopyToClipboard',
-                methods: {
-                    Copy: function () {
-                        document.getElementById("finalTextBox").select();
-                        var successful = document.execCommand('copy');
-                        bootbox.alert({
-                            message: "Copied to clipboard",
-                            backdrop: true
-                        });
-                    }
+        var CopyToClipboard = new Vue({
+            el: '#CopyToClipboard',
+            methods: {
+                Copy: function () {
+                    document.getElementById("finalTextBox").select();
+                    var successful = document.execCommand('copy');
+                    bootbox.alert({
+                        message: "Copied to clipboard",
+                        backdrop: true
+                    });
                 }
-            })
+            }
+        })
 
-
-
-            $(document).ready(function () {
-                $('#fullpage').fullpage({
-                    anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
-                    menu: '#imageGallery',
-                    navigation: true,
-                });
+        var SCROLLING_SPEED = 300;
+        $(document).ready(function () {
+            $('#fullpage').fullpage({
+                scrollingSpeed: SCROLLING_SPEED,
+                anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage'],
+                menu: '#imageGallery',
+                navigation: true,
+                scrollingSpeed: SCROLLING_SPEED,
             });
+        });
 
-            $('.slideDown').click(function () {
-                $.fn.fullpage.moveSectionDown()
-            });
+        $('.slideDown').click(function () {
+            $.fn.fullpage.moveSectionDown();
+        });
 
-            $('#BackToStart').click(function () {
-                inputName.name = '';
-                inputHashtag.hashtag = '';
-                list0.selected = '';
-                list1.selected = '';
-                list2.selected = '';
-                list3.selected = '';
-                list4.selected = '';
-                list5.selected = '';
-                list51.selected = '';
-                list6.selected = '';
-                list7.selected = '';
-                list8.selected = '';
-                list9.selected = '';
-                list10.selected = '';
-                finalText.arr = [];
-                finalText.text = '';
-                $.fn.fullpage.moveTo('firstPage');
-            })
-
-            var $overlay = $('<div id="overlay"></div>');
-            var $image = $("<img>");
-            var $caption = $("<p></p>");
-
-            //An image to overlay
-            $overlay.append($image);
-
-            //A caption to overlay
-            $overlay.append($caption);
-
-            //Add overlay
-            $("body").append($overlay);
-
-            //Capture the click event on a link to an image
-            $("#imageGallery a").click(function (event) {
-                event.preventDefault();
-                var imageLocation = $(this).attr("href");
-                //Update overlay with the image linked in the link
-                $image.attr("src", imageLocation);
-
-                //Show the overlay.
-                $overlay.show();
-
-                //Get child's alt attribute and set caption
-                var captionText = $(this).children("img").attr("alt");
-                $caption.text(captionText);
-            });
-
-            //When overlay is clicked
-            $overlay.click(function () {
-                //Hide the overlay
-                $overlay.hide();
-            });
-        </script> {% endblock %}
+        $('#backToStart').click(function () {
+            // list0.selected = ''; // Don't know what exactly this was
+            // list1.selected = '';
+            list2.selected = '';
+            list3.selected = '';
+            list4.selected = '';
+            list5.selected = '';
+            // list51.selected = ''; // Hashtags
+            list6.selected = '';
+            // list7.selected = '';
+            // list8.selected = '';
+            // list9.selected = '';
+            list10.selected = '';
+            inputName.name = '';
+            finalText.arr = [];
+            finalText.text = '';     
+            $.fn.fullpage.moveTo('firstPage');
+            location.reload();
+        });
+    </script>
+</div>
+{% endblock %}

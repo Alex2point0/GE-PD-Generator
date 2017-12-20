@@ -1,3 +1,33 @@
-.modal-body {
+.v-select {
+    background-color: white;
     color: black;
+}
+
+.col-md-2.bucket0 {
+    border: 1px dashed white;
+    border-radius: 5px;
+}
+
+.col-md-2.bucket1 {
+    border: 1px dashed white;
+    border-radius: 5px;
+}
+
+.col-md-2.bucket2 {
+    border: 1px dashed white;
+    border-radius: 5px;
+}
+
+.col-md-2.bucket3 {
+    border: 1px dashed white;
+    border-radius: 5px;
+}
+
+.col-md-2.bucket4 {
+    border: 1px dashed white;
+    border-radius: 5px;
+}
+
+.display-none {
+    display: none;
 }
